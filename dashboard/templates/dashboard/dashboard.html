@@ -1,0 +1,166 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Learning Management System">
+    <meta name="author" content="Group-11">
+
+    <title>LMS</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <!--font aewsome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+
+    <!--Custom Style-->
+    <link rel="stylesheet" href="{% static "dashboard/css/style.css" %}">
+
+  </head>
+
+  <body>
+
+    <!-- Navigation Bar -->
+  <header class="header">
+    <nav class="navbar navbar-expand-lg bg-light static-top">
+      <div class="container">
+
+        <!--Toggle button-->
+
+         <button class="navbar-toggler text-align-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <img src="{% static "dashboard/images/menu.png" %}" class="nav-menu" alt="menu-button">
+
+          </button>
+
+        <!--Navbar Brand-->
+        <div class="navbar-header">
+          <a href="#">
+            <img src="{% static "dashboard/images/logo.png" %}" alt="Learning Management System" class="navbar-brand">
+          </a>
+        </div>
+
+        <!--Nav Links-->
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="nav navbar-nav navbar-right ml-auto">
+            <li class="nav-item active pr-5">
+              <a class="nav-link" href="#"><strong>Home</strong></a>
+            </li>
+            <li class="nav-item pr-5">
+
+              <div class="dropdown">
+                <button type="button" class="btn btn-primary btn-large dropdown-toggle" style="padding:0.3rem 0.5rem;" data-toggle="dropdown">
+                  <img src="{% static "dashboard/images/st6.jpg" %}" alt="subu" class="img-fluid rounded-circle" width="30" height="30">Subu
+                </button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#">Your Profile</a>
+                  <a class="dropdown-item" href="#">Log Out</a>
+                </div>
+              </div>
+            </li>
+
+          </ul>
+        </div>
+
+      </div>
+    </nav>
+  </header>
+    <!-- Page Content -->
+
+
+  <section class="container-fluid hero-section">
+
+    <div class="row m-2">
+      <div class="col-lg-4 col-md-4 col-sm-6 justify-content-left">
+
+          <input type="file" id="file1" name="image" capture style="display:none"/>
+          <i class="fas fa-upload fa-2x ml-5 mr-4 mt-4" id="upfile1" style="cursor:pointer" ></i>
+
+
+        <button type="button" class="btn btn-primary btn-md">List of All Students</button>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-6 justify-content-right"></div>
+      <div class="searchbox col-lg-4 col-md-4 col-sm-6 justify-content-right">
+          <i class="fas fa-search"></i>
+        <input class="mt-4 pl-4" type="text" name="search" placeholder="Search...">
+      </div>
+    </div>
+
+
+    <!-- First two jumbotrons -->
+
+    <div class="row mt-5 mb-2 justify-content-center">
+        <div class="justify-content-left">
+            <div class="name-chip" >
+                <div class="chip">
+                    <img src="{% static "dashboard/images/st6.jpg" %}" alt="Person" width="96" height="96">PSVN Bhawani Shankar
+                </div>
+            </div>
+        </div>
+
+        <div class="justify-content-left">
+          <div class="name-chip" >
+              <div class="chip">
+                  <img src="{% static "dashboard/images/st6.jpg" %}" alt="Person" width="96" height="96">PSVN Bhawani Shankar
+              </div>
+          </div>
+        </div>
+
+        <div class="justify-content-left">
+          <div class="name-chip" >
+              <div class="chip">
+                  <img src="{% static "dashboard/images/st6.jpg" %}" alt="Person" width="96" height="96">PSVN Bhawani Shankar
+              </div>
+          </div>
+        </div>
+
+        <div class="justify-content-left">
+          <div class="name-chip" >
+              <div class="chip">
+                  <img src="{% static "dashboard/images/st6.jpg" %}" alt="Person" width="96" height="96">PSVN Bhawani Shankar
+              </div>
+          </div>
+        </div>
+
+        <div class="justify-content-left">
+          <div class="name-chip" >
+              <div class="chip">
+                  <img src="{% static "dashboard/images/st6.jpg" %}" alt="Person" width="96" height="96">PSVN Bhawani Shankar
+              </div>
+          </div>
+        </div>
+    </div>
+
+
+
+    <div class="row m-2">
+      <div class="jumbotron col-lg-5 col-md-5 col-sm-12 mx-4 mt-4">
+          <div class="container-jumbotron">
+
+          </div>
+      </div>
+
+      <div class="jumbotron col-lg-5 col-md-5 col-sm-12 mx-4 mt-4">
+        <div class="container-jumbotron">
+          <img class="boxplot img-fluid" src="{% static "dashboard/images/boxplot.png" %}" alt="boxplot graph">
+        </div>
+      </div>
+    </div>
+
+
+    <!-- stats jumbotron -->
+
+
+
+  </section>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="{% static "dashboard/js/custom-script.js" %}"></script>
+  </body>
+
+</html>
+
