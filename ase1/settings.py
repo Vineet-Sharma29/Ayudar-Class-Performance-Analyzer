@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'dashboard.apps.DashboardConfig',
     'student_report.apps.StudentReportConfig',
+    'landing_page.apps.LandingPageConfig',
 ]
 
 MIDDLEWARE = [
