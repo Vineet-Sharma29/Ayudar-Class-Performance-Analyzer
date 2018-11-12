@@ -1,19 +1,8 @@
-/*!
- * Start Bootstrap - One Page Wonder v5.0.0 (https://startbootstrap.com/template-overviews/one-page-wonder)
- * Copyright 2013-2018 Start Bootstrap
- * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-one-page-wonder/blob/master/LICENSE)
- */
-
 body {
   font-family: 'Lato';
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
   font-family: 'Catamaran';
   font-weight: 800 !important;
 }
@@ -177,7 +166,7 @@ header.masthead .bg-circle-4 {
 }
 
 .how{
-    background: url('../img/design.svg') no-repeat;
+    background-repeat: no-repeat;
     background-size:cover;
 }
 
@@ -186,3 +175,15 @@ header.masthead .bg-circle-4 {
 .footer_text{
     word-spacing:0.2rem;
 }
+
+
+.scrollup{
+			width:40px;
+			height:40px;
+			text-indent:-9999px;
+			opacity:0.3;
+			position:fixed;
+			bottom:10px;
+			right:30px;
+			display:none;
+		}

@@ -22,6 +22,18 @@
     <!-- Custom styles for this template -->
     <link href="{% static "landing_page/css/one-page-wonder.css" %}" rel="stylesheet">
 
+      <style>
+          .how{
+              background-image: url("{% static "landing_page/images/design.svg" %}");
+          }
+
+          .scrollup{
+			background: url("{% static "landing_page/images/icon_top.png" %}") no-repeat;
+		}
+
+      </style>
+
+
   </head>
 
   <body>
@@ -67,62 +79,64 @@
 
     </header>
 
-    <section>
-      <div class="container">
-        <img src="{% static "landing_page/images/divider.jpg" %}" alt="divider.svg" style="margin-top:2rem;" width="100%" height="260">
-          <h3 class="centered">Build For Every<br>Concerned Teacher</h3>
-        <div class="row align-items-center">
-          <div class="col-lg-6 order-lg-2">
-            <div class="p-5">
-              <img class="img-fluid" src="{% static "landing_page/images/a_1.png" %}" alt="">
+    <main>
+        <section>
+          <div class="container">
+            <img src="{% static "landing_page/images/divider.jpg" %}" alt="divider.svg" style="margin-top:2rem;" width="100%" height="260">
+              <h3 class="centered">Build For Every<br>Concerned Teacher</h3>
+            <div class="row align-items-center">
+              <div class="col-lg-6 order-lg-2">
+                <div class="p-5">
+                  <img class="img-fluid" src="{% static "landing_page/images/a_1.png" %}" alt="">
+                </div>
+              </div>
+              <div class="col-lg-6 order-lg-1">
+                <div class="p-5 how">
+                  <h3 class="display-4">Every Student Is Unique</h3>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod aliquid, mollitia odio veniam sit iste esse assumenda amet aperiam exercitationem, ea animi blanditiis recusandae! Ratione voluptatum molestiae adipisci, beatae obcaecati.</p>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="col-lg-6 order-lg-1">
-            <div class="p-5 how">
-              <h3 class="display-4">Every Student Is Unique</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod aliquid, mollitia odio veniam sit iste esse assumenda amet aperiam exercitationem, ea animi blanditiis recusandae! Ratione voluptatum molestiae adipisci, beatae obcaecati.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+        </section>
 
-    <section>
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-lg-6">
-            <div class="p-5">
-              <img class="img-fluid" src="{% static "landing_page/images/a_2.png" %}" alt="">
+        <section>
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-lg-6">
+                <div class="p-5">
+                  <img class="img-fluid" src="{% static "landing_page/images/a_2.png" %}" alt="">
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="p-5 how">
+                  <h2 class="display-4">Lorem Ipsum</h2>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod aliquid, mollitia odio veniam sit iste esse assumenda amet aperiam exercitationem, ea animi blanditiis recusandae! Ratione voluptatum molestiae adipisci, beatae obcaecati.</p>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="col-lg-6">
-            <div class="p-5">
-              <h2 class="display-4">Lorem Ipsum</h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod aliquid, mollitia odio veniam sit iste esse assumenda amet aperiam exercitationem, ea animi blanditiis recusandae! Ratione voluptatum molestiae adipisci, beatae obcaecati.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+        </section>
 
-    <section>
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-lg-6 order-lg-2">
-            <div class="p-5">
-              <img class="img-fluid" src="{% static "landing_page/images/how.png" %}" alt="">
-            </div>
-          </div>
-          <div class="col-lg-6 order-lg-1">
+        <section>
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-lg-6 order-lg-2">
+                <div class="p-5">
+                  <img class="img-fluid" src="{% static "landing_page/images/how.png" %}" alt="">
+                </div>
+              </div>
+              <div class="col-lg-6 order-lg-1">
 
-            <div class="p-5 how">
-              <h2 class="display-4">Marks Speak!</h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod aliquid, mollitia odio veniam sit iste esse assumenda amet aperiam exercitationem, ea animi blanditiis recusandae! Ratione voluptatum molestiae adipisci, beatae obcaecati.</p>
+                <div class="p-5 how">
+                  <h2 class="display-4">Marks Speak!</h2>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod aliquid, mollitia odio veniam sit iste esse assumenda amet aperiam exercitationem, ea animi blanditiis recusandae! Ratione voluptatum molestiae adipisci, beatae obcaecati.</p>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
+        </section>
+    </main>
 
     <!-- Footer -->
     <footer class="py-5 bg-black">
@@ -130,12 +144,15 @@
         <p class="m-0 text-center text-white small mb-2 footer_text">Copyright &copy; LMS</p>
           <p class="m-0 text-center text-white small footer_text">Made With <i class="far fa-heart mx-1"></i>work</p>
       </div>
+
+        <a class="scrollup" style="display: none;">Scroll</a>
       <!-- /.container -->
     </footer>
 
     <!-- Bootstrap core JavaScript -->
     <script src="{% static "landing_page/js/jquery.min.js" %}"></script>
     <script src="{% static "landing_page/js/bootstrap.bundle.min.js" %}"></script>
+    <script src="{% static "landing_page/js/custom_script.js" %}"></script>
 
   </body>
 
