@@ -88,6 +88,8 @@ header.masthead .bg-circle-1 {
   width: 90rem;
   bottom: -55rem;
   left: -55rem;
+  opacity: 0.5;
+  z-index: 0;
 }
 
 header.masthead .bg-circle-2 {
@@ -95,6 +97,8 @@ header.masthead .bg-circle-2 {
   width: 50rem;
   top: -25rem;
   right: -25rem;
+  opacity: 0.5;
+  z-index: 0;
 }
 
 header.masthead .bg-circle-3 {
