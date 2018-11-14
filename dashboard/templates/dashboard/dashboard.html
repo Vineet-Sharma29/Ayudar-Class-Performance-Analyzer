@@ -29,12 +29,24 @@
       <div class="container">
 
         <!--Toggle button-->
+          <form action="{% url "dashboard:dashboard" %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file"
+                   title="Upload excel file"
+                   name="excel_file"
+                   style="border: 1px solid black; padding: 5px;"
+                   required="required">
+            
+            <input type="submit"
+                   value="Upload"
+                   style="border: 1px solid green; padding:5px; border-radius: 2px; cursor: pointer;">
+        </form>
 
+<!--
          <button class="navbar-toggler text-align-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <img src="{% static "dashboard/images/menu.png" %}" class="nav-menu" alt="menu-button">
-
           </button>
-
+-->
         <!--Navbar Brand-->
         <div class="navbar-header">
           <a href="#">
