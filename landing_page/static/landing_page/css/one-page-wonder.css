@@ -194,3 +194,8 @@ header.masthead .bg-circle-4 {
 			display:none;
             cursor: pointer;
 		}
+
+footer{
+            -webkit-clip-path: polygon(0 36%, 100% 0, 100% 100%, 0% 100%);
+            clip-path: polygon(0 36%, 100% 0, 100% 100%, 0% 100%);
+        }
