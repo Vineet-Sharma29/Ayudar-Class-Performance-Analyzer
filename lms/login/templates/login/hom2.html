@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta >
+    <title>Home Page</title>
+</head>
+<body>
+{% if request.user.is_authenticated %}
+
+Hi {{ request.user }}
+<a href="logout/">logout</a><br>
+Edit your profile <a href="editprofile/">here</a>
+    View all profiles <a href="allprofiles">here</a>
+    {% else %}
+    Please login
+{% endif %}
+</body>
+</html>

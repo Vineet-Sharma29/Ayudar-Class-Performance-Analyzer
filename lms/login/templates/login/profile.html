@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <title>
+        Profile Page
+      </title>
+    </head>
+    <body>
+      <h1 style="color:blue">
+        Profile
+      </h1>
+          <div>
+            ProfessorFullname :{{ profile.fullname }} <br><br>
+            Eamil Id :  {{ profile.email_id }}<br><br>
+            </div>
+      <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          {{ form1.as_p }}
+          <button>save</button>
+      </form>
+    </body>
+  <html>
