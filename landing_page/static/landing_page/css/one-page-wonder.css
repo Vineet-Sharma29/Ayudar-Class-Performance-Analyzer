@@ -199,3 +199,18 @@ footer{
             -webkit-clip-path: polygon(0 36%, 100% 0, 100% 100%, 0% 100%);
             clip-path: polygon(0 36%, 100% 0, 100% 100%, 0% 100%);
         }
+
+.lms-heading{
+  width:500px;
+  height:190px;
+  position:relative;
+  z-index:100;
+}
+
+.hero-img{
+  width:650px;
+  float:right;
+  position: absolute;
+  top:20%;
+  right:4%;
+}

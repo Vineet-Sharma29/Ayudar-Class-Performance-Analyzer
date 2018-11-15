@@ -34,6 +34,7 @@
 
       </style>
 
+      <script src="{% static "landing_page/js/rellax.js" %}"></script>
 
   </head>
 
@@ -64,21 +65,21 @@
       </div>
     </nav>
 
-    <header class="masthead text-left text-white">
-     <img src="{% static "landing_page/images/hero.png" %}" alt="hero_image" width="650px" style="float:right;position: absolute;top:20%;;right:4%;">
-    <img class="img-responsive ml-5" src="{% static "landing_page/images/lph.svg" %}" alt="LMS" width="500" height="190" style="position:relative;z-index:100;">
+    <header class="masthead text-left text-white" data-rellax-speed="3">
+     <img class="hero-img rellax" src="{% static "landing_page/images/hero.png" %}" alt="hero_image" data-rellax-speed="-3"/>
+    <img class="img-responsive lms-heading ml-5 pl-5 rellax" src="{% static "landing_page/images/lph.svg" %}" alt="LMS" data-rellax-speed="12" />
 
       <div class="masthead-content mt-2">
         <div class="container ">
-          <h1 class="masthead-heading mb-0">Manage Your Class</h1>
-          <h2 class="masthead-subheading mb-0">In A Better Way</h2>
-          <a href="#" class="btn btn-primary btn-xl rounded-pill mt-5">Signup Now</a>
+          <h1 class="masthead-heading mb-0 rellax" data-rellax-speed="9">Manage Your Class</h1>
+          <h2 class="masthead-subheading mb-0 rellax" data-rellax-speed="8">In A Better Way</h2>
+          <a href="#" class="btn btn-primary btn-xl rounded-pill mt-5 rellax" data-rellax-speed="7">Signup Now</a>
         </div>
       </div>
 
 
-      <div class="bg-circle-1 bg-circle"></div>
-      <div class="bg-circle-3 bg-circle"></div>
+      <div class="bg-circle-1 bg-circle rellax" data-rellax-speed="12"></div>
+      <div class="bg-circle-3 bg-circle rellax" data-rellax-speed="6"></div>
 
 
 
@@ -96,7 +97,7 @@
                 </div>
               </div>
               <div class="col-lg-6 order-lg-1">
-                <div class="p-5 how">
+                  <div class="p-5 how">
                   <h3 class="display-5">Every Student Is Unique</h3>
                   <p class="paraText ml-1">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod aliquid, mollitia odio veniam sit iste esse assumenda amet aperiam exercitationem, ea animi blanditiis recusandae! Ratione voluptatum molestiae adipisci, beatae obcaecati.</p>
                 </div>
@@ -158,18 +159,11 @@
     <script src="{% static "landing_page/js/jquery.min.js" %}"></script>
     <script src="{% static "landing_page/js/bootstrap.bundle.min.js" %}"></script>
     <script src="{% static "landing_page/js/custom_script.js" %}"></script>
-    <script>
-        $(document).ready(function() {
-        $(window).scroll(function() {
-        if($(document).scrollTop() > 10) {
-            $('#nav').addClass('shrink');
-        }
-        else {
-        $('#nav').removeClass('shrink');
-        }
-      });
-    });
+
+  <script>
+        var rallax = new Rellax('.rellax')
     </script>
+
   </body>
 
 </html>
