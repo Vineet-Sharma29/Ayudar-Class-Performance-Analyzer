@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>nothing</title>
+</head>
+<body>
+<center>
+<h1>
+    <form action="{% url 'DB.result' %}"method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        choose the file:<input type="file" name="naam" id="file"><br>
+        <input type="submit" value="upload_csv ">
+    </form>
+
+
+</h1>
+
+
+
+    </center>
+</body>
+</html>
+
+
+
+
+
+
+<!--<a href="">click </a>-->
