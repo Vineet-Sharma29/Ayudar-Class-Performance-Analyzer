@@ -193,14 +193,11 @@
 /*}*/
 
 
-/*
-    DEMO STYLE
-*/
-
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 body {
     font-family: 'Poppins', sans-serif;
     background: #fafafa;
+
 }
 
 p {
@@ -210,6 +207,9 @@ p {
     line-height: 1.7em;
     color: #999;
 }
+
+
+
 
 a,
 a:hover,

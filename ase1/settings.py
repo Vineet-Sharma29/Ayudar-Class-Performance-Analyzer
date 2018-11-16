@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'dashboard.apps.DashboardConfig',
+    'student_report.apps.StudentReportConfig',
+    'landing_page.apps.LandingPageConfig',
 ]
 
 MIDDLEWARE = [
