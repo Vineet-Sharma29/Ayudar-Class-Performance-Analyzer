@@ -1,5 +1,4 @@
-venv
-.idea
+
 # Created by https://www.gitignore.io
 
 ### OSX ###
@@ -89,3 +88,11 @@ local_settings.py
 
 .env
 db.sqlite3
+
+#virtual environment
+venv
+
+#IDE
+.idea
+
+
