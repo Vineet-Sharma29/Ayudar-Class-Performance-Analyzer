@@ -12,5 +12,8 @@ students’ point of view, it helps to get them the much needed guidance
 from the teacher.This will be very beneficial for them ,since this will
 help them work on their weakness in a better way
 
-#How to run this project
+# How to run this project
+Download this repo using command ``` git clone https://github.com/Vineet-Sharma29/ase1.git ```
+Then ```cd``` into ```ase1``` repo.
+After changing the directory, run the command ```python manage.py runserver```
 
