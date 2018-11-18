@@ -180,6 +180,7 @@ def reset_otp_verify(request):
 def save_password(request):
     mail = request.session['email']
     user = User.objects.get(email=mail)
+    print(user)
     user.set_password(request.POST['password'])
     user.save()
     return HttpResponse('Password has been reset Please login<a href="http://127.0.0.1:8000/login/">here</a>')
