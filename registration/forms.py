@@ -110,4 +110,4 @@ class CourseForm(forms.ModelForm):
         courselist = course.objects.filter(course_id=course_id)
         if not courselist.exists():
             raise forms.ValidationError('course does not exist')
-            return course_id
+        return course_id
