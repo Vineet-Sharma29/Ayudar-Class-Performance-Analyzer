@@ -67,15 +67,4 @@ def return_tuple(line):
         req_tuple += (x,)
     print(req_tuple)
 
-    # tup=tuple(a)
-    # print(tup(0))
-
-
-    # a[0]=tuple(a[0])
-    # print(type(a[0]))
-
-    # tup=tuple(a)
-    #
-    # print(tup(0))
-
-
+  
