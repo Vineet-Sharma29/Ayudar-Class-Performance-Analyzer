@@ -8,7 +8,7 @@
 <body>
     <form action='reset_otp_verify/' method="POST" onsubmit="myfunction()">
         {%  csrf_token %}
-        Enter Otp :<input type="text" name="otp" id = 'otp' placeholder="otp" value="">
+        Enter Otp :<input type="text" name="otp" id = 'otp' placeholder="otp" value="" autocomplete='off'>
         <button type="submit">Verify</button>
     </form>
 </body>
