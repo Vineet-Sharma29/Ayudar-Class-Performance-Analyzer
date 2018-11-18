@@ -1,5 +1,6 @@
 
 from django.shortcuts import render
+from .models import Enrollments
 from .models import Marks
 from .models import csvfile
 from django.http import HttpResponse
@@ -23,26 +24,30 @@ def output(request):
 def some(pat):
     #var = "/home/phani/PycharmProjects/ASE/"
     csvfile.objects.create(req_file=pat)
-    co_id="DSAA"
+    co_id="ASE"
     Marks.objects.filter(course_id=co_id).delete()
-    pr_id=2
+    pr_id="Subu"
     with open(pat)as f:
         f1 = f.readline().split(",")
         f1[len(f1) - 1] = f1[len(f1) - 1].rstrip()
-        #printreq(f1)
+        return_firstline_as_tuple(f1)
+
         f.seek(0,0)
         f_all = f.readlines()
         return_tuple(f_all)
         f_all[len(f_all) - 1] = f_all[len(f_all) - 1] + '\n'
+
         for i in range(1, len(f_all)):
             f_all[i] = f_all[i].rstrip()
             f2 = f_all[i].split(',')
-            for j in range(0, len(f2) - 1):
+            Enrollments.objects.create(course_id=co_id,student_id=f2[0],student_name=f2[1],prof_id=pr_id,status="not_needy")
+            for j in range(0, len(f2) - 3):
                 sid = f2[0]
-                marks = f2[j + 1]
-                name = f1[j + 1]
+                sname = f2[1]
+                marks = f2[j + 2]
+                qname = f1[j + 2]
 
-                some =  Marks.objects.create(student_id=sid, marks=marks, q_name=name, course_id=co_id, prof_id=pr_id)
+                Marks.objects.create(student_name=sname,student_id=sid, marks=marks, q_name=qname, course_id=co_id, prof_id=pr_id)
     #printreq1(Marks.objects.all())
     #printreq(v)
     call()
@@ -50,6 +55,9 @@ def some(pat):
 
 def call():
     print(Marks.objects.filter(q_name="q3"))
+
+def return_firstline_as_tuple(fline):
+    print(tuple(fline))
 
 def return_tuple(line):
     req_tuple = ()
@@ -59,15 +67,4 @@ def return_tuple(line):
         req_tuple += (x,)
     print(req_tuple)
 
-    # tup=tuple(a)
-    # print(tup(0))
-
-
-    # a[0]=tuple(a[0])
-    # print(type(a[0]))
-
-    # tup=tuple(a)
-    #
-    # print(tup(0))
-
-
+  

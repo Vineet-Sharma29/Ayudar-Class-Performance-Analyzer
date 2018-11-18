@@ -1,4 +1,3 @@
-
 from django.db import models
 
 
@@ -6,8 +5,11 @@ from django.db import models
 
 
 class Enrollments(models.Model):
-    student_id = models.IntegerField(primary_key=True)
-    course_id = models.CharField(null=False,max_length=15)
+
+    course_id = models.CharField(max_length=15)
+    student_id = models.CharField(max_length=15)
+    student_name = models.CharField(max_length=15)
+    prof_id = models.CharField(max_length=15)
     status = models.CharField(max_length=15)
 
 class csvfile(models.Model):
@@ -15,22 +17,13 @@ class csvfile(models.Model):
 
 
 class Marks(models.Model):
-    student_id = models.IntegerField(default=0)
+    student_name = models.CharField(max_length=15)
+    student_id = models.CharField(default=0,max_length=15)
     course_id = models.CharField(default=0,max_length=15)
-    prof_id = models.IntegerField(default=0)
+    prof_id = models.CharField(default=0,max_length=15)
     marks = models.FloatField(default=0)
     q_name = models.CharField(max_length=15)
 
     class Meta:
-        unique_together = ('student_id', 'course_id','prof_id','q_name')
-
-
-
-
-"""class Marks(models.Model):
-    student_id = models.ForeignKey(Enrollments,on_delete=models.PROTECT)
-    course_id = models.ForeignKey(Enrollments, on_delete=models.PROTECT)
-    marks = models.FloatField(null=False)
-    q_name = models.CharField(max_length=15)"""
-
+        unique_together = ('student_id', 'course_id','prof_id','q_name','student_name')
 
