@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+{%  load staticfiles %}
+
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>RegistrationForm_v2 by Colorlib</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<!-- STYLE CSS -->
+		<link rel="stylesheet" href="{%static "css/style.css"%}">
+
+	</head>
+
+	<body>
+
+		<div class="wrapper">
+			<div class="inner">
+				<form class="form-style" method="POST">
+                    {% csrf_token %}
+					<h3 class="heading">Signup</h3>
+					<div class="form-group">
+						<div class="form-wrapper">
+							<label>First Name :</label>
+							{{ form.first_name }}
+						</div>
+						<div class="form-wrapper">
+							<label>Last Name :</label>
+							{{ form.last_name }}
+						</div>
+					</div>
+					<div class="form-wrapper">
+						<label for="">Username :</label>
+						{{ form.username }}
+                        <p class="message" id='message'>{{ form.username.errors }}</p>
+					</div>
+					<div class="form-wrapper">
+						<label>Email :</label>
+						{{ form.email }}
+                        <p class="message" id='message'>{{ form.email.errors }}</p>
+					</div>
+					<div class="form-wrapper" >
+						<label>Password :</label>
+						{{ form.password }}
+					</div>
+					<div class="form-wrapper" >
+						<label>Confirm Password :</label>
+						{{ form.confirm_password }}
+						<p class="message" id='message'>{{ form.confirm_password.errors }}</p>
+					</div>
+
+					<button>Signup</button>
+
+					<div class="row">
+						<p>or<p>
+					</div>
+
+					<div class="row">
+						<div class="col">
+							<img class="img-position" src="{%static "images/github.png"%}" width="64" height="64">
+						</div>
+
+						<div class="col">
+							<img class="img-position" src="{%static "images/github.png"%}" width="64" height="64">
+						</div>
+					</div>
+
+					<div class="row-3">
+						<p>Alerady have an account ? <a style="color:blue;" href="http://127.0.0.1:8000/login/">Login</a> instead</p>
+					</div>
+				</form>
+			</div>
+		</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	</body>
+</html>
