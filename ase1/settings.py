@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'ase1.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'lms',
+        'NAME': 'ase1',
         'USER': 'root',
         'PASSWORD': 'bradison',
         'PORT': '3306',
