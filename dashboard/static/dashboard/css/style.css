@@ -197,8 +197,12 @@
 body {
     font-family: 'Poppins', sans-serif;
     background: #fafafa;
-
 }
+
+body{
+    overflow-x: auto;
+}
+
 
 p {
     font-family: 'Poppins', sans-serif;
@@ -261,6 +265,8 @@ span {
 	min-height:100%;
     background: #343a40;
     color: #fff;
+ -webkit-clip-path: polygon(0 0, 100% 0, 100% 96%, 0% 100%);
+clip-path: polygon(0 0, 100% 0, 100% 96%, 0% 100%);
     transition: all 0.3s;
 
 }
@@ -470,6 +476,7 @@ a.article:hover {
 }
 
 .well-container{
+    border:3px solid rgb(255,92,13);
    -webkit-clip-path: polygon(83% 0, 100% 25%, 100% 100%, 50% 100%, 0 100%, 0 0);
 clip-path: polygon(83% 0, 100% 25%, 100% 100%, 50% 100%, 0 100%, 0 0);
 }
@@ -521,3 +528,22 @@ h5::after{
 
 }
 
+footer.bg-dark{
+    background-color: black;
+    -webkit-clip-path: polygon(0 36%, 100% 0, 100% 100%, 0% 100%);
+    clip-path: polygon(0 36%, 100% 0, 100% 100%, 0% 100%);
+}
+
+
+.image-upload > input
+{
+    display: none;
+}
+
+.fa-upload{
+    transition: transform 0.4s;
+}
+
+.fa-upload:hover{
+    transform: scale(1.2);
+}

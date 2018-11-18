@@ -6,33 +6,43 @@
 
 
 {% block content %}
-    <div class="row bg-info mt-3">
+    <div class="row mt-3">
         <div class="col-6">
-            <input type="file" name="marksFile" id="">
+            <div class="image-upload">
+                <label for="file-input">
+                    <i class="ml-5 fas fa-upload fa-2x" data-toggle="tooltip" title="Upload File"></i>
+                </label>
+
+                <input id="file-input" type="file"/>
+            </div>
         </div>
-        <div class="col-6 bg-danger"></div>
+        <div class="col-6"></div>
     </div>
     <div class="wildcards row my-5">
-      <div class="col-md-3 col-sm-12 mx-auto rounded well-container p-2 w-25">
+      <div class="col-md-3 col-sm-12 col-md-3 col-xs-12 mx-auto rounded well-container p-2 w-25">
         <div class="well">
-          <h5 class="text-black"><!--<span class="label label-danger pull-right">- 9%</span>--> Deviation</h5>
-            <p class="text-white">+9%</p>
+          <h5 class="text-black"><!--<span class="label label-danger pull-right">- 9%</span>--> Overall Difficulty</h5>
+            <p class="text-white p-2 display-4">+9%</p>
         </div>
       </div>
-      <div class="col-md-3 col-sm-12 mx-auto rounded well-container p-2 w-25">
+      <div class="col-md-3 col-sm-12 col-md-3 col-xs-12 mx-auto rounded well-container p-2 w-25">
         <div class="well">
-          <h5 class="text-black"><!--<span class="label label-success pull-right">+ 3%</span>--> Average </h5>
-            <p class="text-white">+9%</p>
+          <h5 class="text-black"><!--<span class="label label-success pull-right">+ 3%</span>--> Overall Risk </h5>
+            <p class="text-white p-2 display-4">+9%</p>
         </div>
       </div>
-      <div class="col-md-3 col-sm-12 mx-auto rounded well-container p-2 w-25">
+      <div class="col-md-3 col-sm-12 col-md-3 col-xs-12 mx-auto rounded well-container p-2 w-25">
         <div class="well">
-          <h5 class="text-black"><!--<span class="label label-primary pull-right">201</span>--> Variance </h5>
-            <p class="text-white">+9%</p>
+          <h5 class="text-black"><!--<span class="label label-primary pull-right">201</span>--> Course Average </h5>
+            <p class="text-white p-2 display-4">+9%</p>
         </div>
       </div>
 
     </div><!--/row-->
+
+    <div class="container">
+
+    </div>
 
     <h2 class="display-5 my-2">Boxplot</h2>
     <div class="mx-auto" id="myDiv"></div>
