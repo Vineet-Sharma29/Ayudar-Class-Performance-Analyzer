@@ -15,19 +15,18 @@ otp2 = ''
 
 def login_display(request):
     if (request.method == 'POST'):
-        form = LoginForm(request.POST or None)
+        form = LoginForm(request.POST)
         if form.is_valid():
             emailid = form.cleaned_data.get("emailid")
             password = form.cleaned_data.get('password')
-
             print(emailid)
             userlog = User.objects.get(email=emailid)
             print(userlog)
             user = authenticate(username=userlog, password=password)
             if user:
                 if user.is_active:
-                    login(request, user, backend='django.contrib.auth.backends.ModelBackend')
-                    return redirect('http://127.0.0.1:8000/')
+                    login(request, user)
+                    return redirect('http://127.0.0.1:8000/dashboard/')
                 else:
                     return HttpResponse('Not registered')
     else:
@@ -109,7 +108,7 @@ def otp_verify(request):
             p = User.objects.get(username=username)
             otp = ''
             p.delete()
-            return HttpResponse('<a href="http://127.0.0.1:8000/">Go back to Home</a>')
+        return HttpResponse('<a href="http://127.0.0.1:8000/">Go back to Home</a>')
     else:
         return HttpResponse('Please Register')
 
@@ -221,9 +220,9 @@ def course_selection(request):
         if form.is_valid():
             user = User.objects.get(username=request.user)
             profile = professor_profile.objects.get(professor=user)
-            profile.professor_course = str(form.cleaned_data['Course']).upper()
+            profile.professor_course = str(form.cleaned_data['course_id']).upper()
             profile.save()
             return redirect('http://127.0.0.1:8000/dashboard')
     else:
-        myform = CourseForm()
-        return render(request, 'login/course.html', {'form': myform})
+        form = CourseForm()
+    return render(request, 'login/course.html', {'form': form})
