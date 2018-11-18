@@ -79,8 +79,13 @@ WSGI_APPLICATION = 'ase1.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'lms',
+
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'ase1',
+        'USER': 'root',
+        'PASSWORD': 'bradison',
+        'PORT': '3306',
+
 
     }
 }
