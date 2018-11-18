@@ -79,8 +79,12 @@ WSGI_APPLICATION = 'ase1.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'lms',
+        'USER': 'root',
+        'PASSWORD': 'bradison',
+        'PORT': '3306',
+
     }
 }
 
@@ -118,7 +122,23 @@ USE_L10N = True
 USE_TZ = True
 
 
+
+STATIC_URL = '/static/'
+STATIC_ROOT=os.path.join(os.path.dirname(BASE_DIR), 'static/')
+STATICFILES_DIRS= [os.path.join(BASE_DIR, 'static/'),
+]
+
+MEDIA_URL='/media/'
+
+MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media')
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
-STATIC_URL = '/static/'
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'iiits2021'
+EMAIL_HOST_PASSWORD = 'qwerty@123'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
