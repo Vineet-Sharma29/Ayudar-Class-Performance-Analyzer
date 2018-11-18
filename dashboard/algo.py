@@ -223,15 +223,15 @@ def ExamStats(marks):
     for i in range (10):
         try:
             if freq_df.loc[i] >= 0:
-            continue
+            	continue
         except:
-        freq_df.loc[i] = 0
+        	freq_df.loc[i] = 0
     
     #Calculate the variance of the same Dataframe and figure out cheating risk
     cheat_var = freq_df.describe()['std']**2
     if cheat_var < 15 :
         cheat_risk = 'LOW'
-    if cheat_risk > 15 and cheat_risk < 80 :
+    if cheat_var > 15 and cheat_var < 80 :
         cheat_risk = 'MODERATE'
     else:
         cheat_risk = 'HIGH'
