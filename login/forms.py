@@ -83,7 +83,12 @@ class ProfileForm(forms.ModelForm):
         cleaned_data =super().clean()
         professor_description = cleaned_data.get('professor_description')
         return professor_description
-
+    course_id = str(cleaned_data.get('professor_course'))
+    course_id = course_id.upper()
+    courselist = course.objects.filter(course_id=course_id)
+    if not courselist.exists():
+    	raise forms.ValidationError('course does not exist')
+        return course_id
 class ResetForm(forms.ModelForm):
     email = forms.EmailField(widget=forms.TextInput(attrs={'autocomplete':'off'}))
     class Meta:
