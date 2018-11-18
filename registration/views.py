@@ -26,7 +26,7 @@ def login_display(request):
             if user:
                 if user.is_active:
                     login(request, user)
-                    return redirect('http://127.0.0.1:8000/')
+                    return redirect('http://127.0.0.1:8000/dashboard/')
                 else:
                     return HttpResponse('Not registered')
     else:
