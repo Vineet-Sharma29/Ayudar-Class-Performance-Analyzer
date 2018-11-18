@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'dashboard.apps.DashboardConfig',
     'student_report.apps.StudentReportConfig',
     'landing_page.apps.LandingPageConfig',
+    'registration',
 ]
 
 MIDDLEWARE = [

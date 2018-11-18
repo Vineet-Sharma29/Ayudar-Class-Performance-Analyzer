@@ -6,27 +6,35 @@
 
 
 {% block content %}
-
+    <div class="row bg-info mt-3">
+        <div class="col-6">
+            <input type="file" name="" id="">
+        </div>
+        <div class="col-6 bg-danger"></div>
+    </div>
     <div class="wildcards row my-5">
       <div class="col-md-3 col-sm-12 mx-auto rounded well-container p-2 w-25">
         <div class="well">
           <h5 class="text-black"><!--<span class="label label-danger pull-right">- 9%</span>--> Deviation</h5>
+            <p class="text-white">+9%</p>
         </div>
       </div>
       <div class="col-md-3 col-sm-12 mx-auto rounded well-container p-2 w-25">
         <div class="well">
           <h5 class="text-black"><!--<span class="label label-success pull-right">+ 3%</span>--> Average </h5>
+            <p class="text-white">+9%</p>
         </div>
       </div>
       <div class="col-md-3 col-sm-12 mx-auto rounded well-container p-2 w-25">
         <div class="well">
-          <h4 class="text-black"><!--<span class="label label-primary pull-right">201</span>--> Variance </h4>
+          <h5 class="text-black"><!--<span class="label label-primary pull-right">201</span>--> Variance </h5>
+            <p class="text-white">+9%</p>
         </div>
       </div>
 
     </div><!--/row-->
 
-    <h2 class="display-4 my-2">Boxplot</h2>
+    <h2 class="display-5 my-2">Boxplot</h2>
     <div class="mx-auto" id="myDiv"></div>
 
     <script>
@@ -51,6 +59,17 @@
 
         Plotly.newPlot('myDiv', data);
     </script>
+    <script>
+$("i").click(function () {
+  $("input[type='file']").trigger('click');
+});
+
+$('input[type="file"]').on('change', function() {
+  var val = $(this).val();
+  $(this).siblings('span').text(val);
+})
+</script>
+
 
 {% endblock %}
 

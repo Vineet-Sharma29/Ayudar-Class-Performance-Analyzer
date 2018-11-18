@@ -13,7 +13,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="{% static "landing_page/css/bootstrap.min.css" %}" rel="stylesheet">
-
+    <link rel="shortcut icon" type="image/png" href="{% static "landing_page/images/LMS-i.png" %}"/>
     <!-- Custom fonts-->
     <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
@@ -66,14 +66,13 @@
     </nav>
 
     <header class="masthead text-left text-white" data-rellax-speed="3">
-     <img class="hero-img rellax" src="{% static "landing_page/images/hero.png" %}" alt="hero_image" data-rellax-speed="-3"/>
-    <img class="img-responsive lms-heading ml-5 pl-5 rellax" src="{% static "landing_page/images/lph.svg" %}" alt="LMS" data-rellax-speed="12" />
-
+     <img class="hero-img rellax img-fluid" src="{% static "landing_page/images/hero.png" %}" alt="hero_image" data-rellax-speed="-3"/>
+    <img class="img-responsive img-fluid lms-heading ml-5 pl-5 rellax" src="{% static "landing_page/images/lph.svg" %}" alt="LMS" data-rellax-speed="12" />
       <div class="masthead-content mt-2">
         <div class="container ">
           <h1 class="masthead-heading mb-0 rellax" data-rellax-speed="9">Manage Your Class</h1>
           <h2 class="masthead-subheading mb-0 rellax" data-rellax-speed="8">In A Better Way</h2>
-          <a href="#" class="btn btn-primary btn-xl rounded-pill mt-5 rellax" data-rellax-speed="7">Signup Now</a>
+          <a class="btn btn-primary btn-xl rounded-pill mt-5 rellax" data-rellax-speed="7">Signup Now</a>
         </div>
       </div>
 
@@ -159,11 +158,10 @@
     <script src="{% static "landing_page/js/jquery.min.js" %}"></script>
     <script src="{% static "landing_page/js/bootstrap.bundle.min.js" %}"></script>
     <script src="{% static "landing_page/js/custom_script.js" %}"></script>
-
+    <script src="{% static "landing_page/js/anime.min.js" %}"></script>
   <script>
         var rallax = new Rellax('.rellax')
     </script>
-
   </body>
 
 </html>

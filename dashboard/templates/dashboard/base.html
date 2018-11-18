@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
+   <link rel="shortcut icon" type="image/png" href="{% static "landing_page/images/LMS-i.png" %}"/>
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <!-- Our Custom CSS -->
@@ -34,22 +34,22 @@
 
                 </li>
                 <li>
-                    <a href="{% url 'needy_list' %}">
-                        <i class="fas fa-image"></i>
+                    <a href="{% url 'dashboard' %}">
+                        <i class="fas fa-graduation-cap mr-2"></i>
                         Class Overview
                     </a>
                 </li>
 
                 <li>
-                    <a href="#">
-                        <i class="fas fa-paper-plane"></i>
+                    <a href="{% url 'needy_list' %}">
+                        <i class="fas fa-asterisk mr-2"></i>
                         Needy List
                     </a>
                 </li>
 
                  <li>
                     <a href="#">
-                        <i class="fas fa-question"></i>
+                        <i class="fas fa-list-alt mr-2"></i>
                         List of All Students
                     </a>
                 </li>
@@ -60,9 +60,9 @@
 
         <!-- Page Content  -->
         <div id="content">
-           <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+           <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
               <div class="container">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="{% url 'landing_page' %}">
                     <img class="img-responsive" src="{% static "landing_page/images/LMS.svg" %}" alt="LMS" width="50" height="50" style="position:absolute;z-index:4;top:7%;left:6%;">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -71,7 +71,7 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                   <ul class="navbar-nav ml-auto">
                       <li class="nav-item">
-                         <a class="nav-link" href="#">Home</a>
+                         <a class="nav-link" href="{% url 'landing_page' %}">Home</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="#">Sign Up</a>
@@ -90,6 +90,7 @@
             {% endblock %}
             </div>
     </div>
+
 
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

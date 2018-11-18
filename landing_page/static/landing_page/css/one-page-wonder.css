@@ -59,7 +59,7 @@ header.masthead {
   background-size: cover;
 -webkit-clip-path: polygon(0 0, 100% 0, 95% 90%, 0% 100%);
 clip-path: polygon(0 0, 100% 0, 95% 90%, 0% 100%);
-    
+
 }
 
 header.masthead .masthead-content {
@@ -214,3 +214,6 @@ footer{
   top:20%;
   right:4%;
 }
+
+
+
