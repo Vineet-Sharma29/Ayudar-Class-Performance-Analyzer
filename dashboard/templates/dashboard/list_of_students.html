@@ -1,25 +1,21 @@
 {% extends 'dashboard/base.html' %}
 
 {% block head %}
-
     <title>Students</title>
-    <link rel="stylesheet" href="{% url 'dashboard/css/reset.css'%}">
-    <link rel="stylesheet" href="{% static 'dashboard/css/design.css' %}">
+
 {% endblock %}
 
 
 {% block content %}
     <div class="page">
-      <div class="page-header cf">
-        <h2>Students</h2>
-      </div>
+
       <ul class="student-list">
         <li class="student-item cf">
 
 		<a href="">
 
             <div class="student-details">
-                <img class="avatar" src="{% static "dashboard/images/unknown.jpg" %}">
+                <img class="avatar" src="http://placehold.it/250x150">
                 <h3>Aniket Raj</h3>
                 <span class="roll">S20170010012</span>
             </div>
@@ -35,218 +31,218 @@
 
 
 
-{#        <li class="student-item cf">#}
-{##}
-{#		<a href="">#}
-{##}
-{#            <div class="student-details">#}
-{#                <img class="avatar" src="unknown.jpg">#}
-{#                <h3>Tanay Rathore </h3>#}
-{#                <span class="roll">S2017001321</span>#}
-{#            </div>#}
-{##}
-{#		</a>#}
-{#            <div class="type">#}
-{#                   <span class="dow">#}
-{#				   <button type="submit" name="submit" class="login" ><b>D E T A I L S</b></button>#}
-{#				   </span>#}
-{#           </div>#}
-{#        </li>#}
-{##}
-{#        <li class="student-item cf">#}
-{##}
-{#		<a href="">#}
-{##}
-{#            <div class="student-details">#}
-{#                <img class="avatar" src="unknown.jpg">#}
-{#                <h3>Vineet Sharma</h3>#}
-{#                <span class="roll">S2017001321</span>#}
-{#            </div>#}
-{##}
-{#		</a>#}
-{##}
-{#            <div class="type">#}
-{#                   <span class="dow">#}
-{#				   <button type="submit" name="submit" class="login" ><b>D E T A I L S</b></button>#}
-{#				   </span>#}
-{#           </div>#}
-{#        </li>#}
-{##}
-{#        <li class="student-item cf">#}
-{##}
-{#		<a href="">#}
-{#            <div class="student-details">#}
-{#                <img class="avatar" src="unknown.jpg">#}
-{#                <h3>Phani</h3>#}
-{#                <span class="roll">S20170010012</span>#}
-{#            </div>#}
-{##}
-{#		</a>#}
-{#            <div class="type">#}
-{#                   <span class="dow">#}
-{#				   <button type="submit" name="submit" class="login" ><b>D E T A I L S</b></button>#}
-{#				   </span>#}
-{#           </div>#}
-{#        </li>#}
-{##}
-{#       <li class="student-item cf">#}
-{##}
-{#	   <a href="">#}
-{##}
-{#            <div class="student-details">#}
-{#                <img class="avatar" src="unknown.jpg">#}
-{#                <h3>Tanay Rathore </h3>#}
-{#                <span class="roll">S2017001321</span>#}
-{#            </div>#}
-{##}
-{#		</a>#}
-{##}
-{#            <div class="type">#}
-{#                   <span class="dow">#}
-{#				   <button type="submit" name="submit" class="login" ><b>D E T A I L S</b></button>#}
-{#				   </span>#}
-{#           </div>#}
-{#        </li>#}
-{##}
-{#        <li class="student-item cf">#}
-{##}
-{#		<a href="">#}
-{##}
-{#            <div class="student-details">#}
-{#                <img class="avatar" src="unknown.jpg">#}
-{#                <h3>Vineet Sharma</h3>#}
-{#                <span class="roll">S2017001321</span>#}
-{#            </div>#}
-{#		</a>#}
-{##}
-{#            <div class="type">#}
-{#                   <span class="dow">#}
-{#				   <button type="submit" name="submit" class="login" ><b>D E T A I L S</b></button>#}
-{#				   </span>#}
-{#           </div>#}
-{#        </li>#}
-{#        <li class="student-item cf">#}
-{##}
-{#		<a href="">#}
-{##}
-{#            <div class="student-details">#}
-{#                <img class="avatar" src="unknown.jpg">#}
-{#                <h3>Phani</h3>#}
-{#                <span class="roll">S20170010012</span>#}
-{#            </div>#}
-{#		</a>#}
-{#            <div class="type">#}
-{#                   <span class="dow">#}
-{#				   <button type="submit" name="submit" class="login" ><b>D E T A I L S</b></button>#}
-{#				   </span>#}
-{#           </div>#}
-{#        </li>#}
-{##}
-{#		<li class="student-item cf">#}
-{##}
-{#		<a href="">#}
-{##}
-{#            <div class="student-details">#}
-{#                <img class="avatar" src="unknown.jpg">#}
-{#                <h3>Tanay Rathore </h3>#}
-{#                <span class="roll">S2017001321</span>#}
-{#            </div>#}
-{#		</a>#}
-{#            <div class="type">#}
-{#                   <span class="dow">#}
-{#				   <button type="submit" name="submit" class="login" ><b>D E T A I L S</b></button>#}
-{#				   </span>#}
-{#           </div>#}
-{#        </li>#}
-{#        <li class="student-item cf">#}
-{##}
-{#		<a href="">#}
-{##}
-{#            <div class="student-details">#}
-{#                <img class="avatar" src="unknown.jpg">#}
-{#                <h3>Vineet Sharma</h3>#}
-{#                <span class="roll">S2017001321</span>#}
-{#            </div>#}
-{##}
-{#		</a>#}
-{##}
-{#            <div class="type">#}
-{#                   <span class="dow">#}
-{#				   <button type="submit" name="submit" class="login" ><b>D E T A I L S</b></button>#}
-{#				   </span>#}
-{#           </div>#}
-{#        </li>#}
-{##}
-{#        <li class="student-item cf">#}
-{##}
-{#		<a href="">#}
-{##}
-{#            <div class="student-details">#}
-{#                <img class="avatar" src="unknown.jpg">#}
-{#                <h3>Phani</h3>#}
-{#                <span class="roll">S20170010012</span>#}
-{#            </div>#}
-{#		</a>#}
-{#            <div class="type">#}
-{#                   <span class="dow">#}
-{#				   <button type="submit" name="submit" class="login" ><b>D E T A I L S</b></button>#}
-{#				   </span>#}
-{#           </div>#}
-{#        </li>#}
-{#		<li class="student-item cf">#}
-{##}
-{#		<a href="">#}
-{##}
-{#            <div class="student-details">#}
-{#                <img class="avatar" src="unknown.jpg">#}
-{#                <h3>Tanay Rathore </h3>#}
-{#                <span class="roll">S2017001321</span>#}
-{#            </div>#}
-{#		</a>#}
-{#            <div class="type">#}
-{#                   <span class="dow">#}
-{#				   <button type="submit" name="submit" class="login" ><b>D E T A I L S</b></button>#}
-{#				   </span>#}
-{#           </div>#}
-{#        </li>#}
-{#        <li class="student-item cf">#}
-{##}
-{#		<a href="">#}
-{##}
-{#            <div class="student-details">#}
-{#                <img class="avatar" src="unknown.jpg">#}
-{#                <h3>Vineet Sharma</h3>#}
-{#                <span class="roll">S2017001321</span>#}
-{#            </div>#}
-{##}
-{#		</a>#}
-{#            <div class="type">#}
-{#                   <span class="dow">#}
-{#				   <button type="submit" name="submit" class="login" ><b>D E T A I L S</b></button>#}
-{#				   </span>#}
-{#           </div>#}
-{#        </li>#}
-{#        <li class="student-item cf">#}
-{##}
-{#		<a href="">#}
-{##}
-{#            <div class="student-details">#}
-{#                <img class="avatar" src="unknown.jpg">#}
-{#                <h3>Phani</h3>#}
-{#                <span class="roll">S20170010012</span>#}
-{#            </div>#}
-{##}
-{#		</a>#}
-{##}
-{#            <div class="type">#}
-{#                   <span class="dow">#}
-{#				   <button type="submit" name="submit" class="login" ><b>D E T A I L S</b></button>#}
-{#				   </span>#}
-{#           </div>#}
-{#        </li>#}
+        <li class="student-item cf">
+
+		<a href="">
+
+            <div class="student-details">
+                <img class="avatar" src="http://placehold.it/250x150">
+                <h3>Tanay Rathore </h3>
+                <span class="roll">S2017001321</span>
+            </div>
+
+		</a>
+            <div class="type">
+                   <span class="dow">
+				   <button type="submit" name="submit" class="login" ><b>D E T A I L S</b></button>
+				   </span>
+           </div>
+        </li>
+
+        <li class="student-item cf">
+
+		<a href="">
+
+            <div class="student-details">
+                <img class="avatar" src="http://placehold.it/250x150">
+                <h3>Vineet Sharma</h3>
+                <span class="roll">S2017001321</span>
+            </div>
+
+		</a>
+
+            <div class="type">
+                   <span class="dow">
+				   <button type="submit" name="submit" class="login" ><b>D E T A I L S</b></button>
+				   </span>
+           </div>
+        </li>
+
+        <li class="student-item cf">
+
+		<a href="">
+            <div class="student-details">
+                <img class="avatar" src="http://placehold.it/250x150">
+                <h3>Phani</h3>
+                <span class="roll">S20170010012</span>
+            </div>
+
+		</a>
+            <div class="type">
+                   <span class="dow">
+				   <button type="submit" name="submit" class="login" ><b>D E T A I L S</b></button>
+				   </span>
+           </div>
+        </li>
+
+       <li class="student-item cf">
+
+	   <a href="">
+
+            <div class="student-details">
+                <img class="avatar" src="http://placehold.it/250x150">
+                <h3>Tanay Rathore </h3>
+                <span class="roll">S2017001321</span>
+            </div>
+
+		</a>
+
+            <div class="type">
+                   <span class="dow">
+				   <button type="submit" name="submit" class="login" ><b>D E T A I L S</b></button>
+				   </span>
+           </div>
+        </li>
+
+        <li class="student-item cf">
+
+		<a href="">
+
+            <div class="student-details">
+                <img class="avatar" src="http://placehold.it/250x150">
+                <h3>Vineet Sharma</h3>
+                <span class="roll">S2017001321</span>
+            </div>
+		</a>
+
+            <div class="type">
+                   <span class="dow">
+				   <button type="submit" name="submit" class="login" ><b>D E T A I L S</b></button>
+				   </span>
+           </div>
+        </li>
+        <li class="student-item cf">
+
+		<a href="">
+
+            <div class="student-details">
+                <img class="avatar" src="http://placehold.it/250x150">
+                <h3>Phani</h3>
+                <span class="roll">S20170010012</span>
+            </div>
+		</a>
+            <div class="type">
+                   <span class="dow">
+				   <button type="submit" name="submit" class="login" ><b>D E T A I L S</b></button>
+				   </span>
+           </div>
+        </li>
+
+		<li class="student-item cf">
+
+		<a href="">
+
+            <div class="student-details">
+                <img class="avatar" src="http://placehold.it/250x150">
+                <h3>Tanay Rathore </h3>
+                <span class="roll">S2017001321</span>
+            </div>
+		</a>
+            <div class="type">
+                   <span class="dow">
+				   <button type="submit" name="submit" class="login" ><b>D E T A I L S</b></button>
+				   </span>
+           </div>
+        </li>
+        <li class="student-item cf">
+
+		<a href="">
+
+            <div class="student-details">
+                <img class="avatar" src="http://placehold.it/250x150">
+                <h3>Vineet Sharma</h3>
+                <span class="roll">S2017001321</span>
+            </div>
+
+		</a>
+
+            <div class="type">
+                   <span class="dow">
+				   <button type="submit" name="submit" class="login" ><b>D E T A I L S</b></button>
+				   </span>
+           </div>
+        </li>
+
+        <li class="student-item cf">
+
+		<a href="">
+
+            <div class="student-details">
+                <img class="avatar" src="http://placehold.it/250x150">
+                <h3>Phani</h3>
+                <span class="roll">S20170010012</span>
+            </div>
+		</a>
+            <div class="type">
+                   <span class="dow">
+				   <button type="submit" name="submit" class="login" ><b>D E T A I L S</b></button>
+				   </span>
+           </div>
+        </li>
+		<li class="student-item cf">
+
+		<a href="">
+
+            <div class="student-details">
+                <img class="avatar" src="http://placehold.it/250x150">
+                <h3>Tanay Rathore </h3>
+                <span class="roll">S2017001321</span>
+            </div>
+		</a>
+            <div class="type">
+                   <span class="dow">
+				   <button type="submit" name="submit" class="login" ><b>D E T A I L S</b></button>
+				   </span>
+           </div>
+        </li>
+        <li class="student-item cf">
+
+		<a href="">
+
+            <div class="student-details">
+                <img class="avatar" src="http://placehold.it/250x150">
+                <h3>Vineet Sharma</h3>
+                <span class="roll">S2017001321</span>
+            </div>
+
+		</a>
+            <div class="type">
+                   <span class="dow">
+				   <button type="submit" name="submit" class="login" ><b>D E T A I L S</b></button>
+				   </span>
+           </div>
+        </li>
+        <li class="student-item cf">
+
+		<a href="">
+
+            <div class="student-details">
+                <img class="avatar" src="http://placehold.it/250x150">
+                <h3>Phani</h3>
+                <span class="roll">S20170010012</span>
+            </div>
+
+		</a>
+
+            <div class="type">
+                   <span class="dow">
+				   <button type="submit" name="submit" class="login" ><b>D E T A I L S</b></button>
+				   </span>
+           </div>
+        </li>
       </ul>
     </div>
 
-    <script src="{% static "dashboard/js/script.js" %}"></script>
+
 {% endblock %}
 
