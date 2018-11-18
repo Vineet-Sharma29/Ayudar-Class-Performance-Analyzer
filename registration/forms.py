@@ -64,14 +64,20 @@ class LoginForm(forms.Form):
 
         if not email_set.exists():
             raise forms.ValidationError('Email is not registered')
-            return emailid
-        else:
+        return emailid
+    def clean_password(self):
+        cleaned_data = super().clean()
+        emailid = cleaned_data.get("emailid")
+        email_set = User.objects.filter(email=emailid)
+
+        if email_set.exists():
+
             password = cleaned_data.get('password')
             user = User.objects.get(email=emailid)
             userlog = authenticate(username=user, password=password)
             if userlog is None:
                 raise forms.ValidationError('Invalid password')
-                return password
+        return password
 class ProfileForm(forms.ModelForm):
     professor_description = forms.CharField(max_length=200,widget=forms.Textarea())
     professor_course = forms.CharField(max_length=100)
@@ -98,11 +104,8 @@ class ResetForm(forms.ModelForm):
             raise forms.ValidationError('Email is not registered')
             return email
 
-class CourseForm(forms.ModelForm):
+class CourseForm(forms.Form):
     course_id = forms.CharField()
-    class Meta:
-        model = course
-        fields = ('course_id',)
     def clean(self):
         cleaned_data = super().clean()
         course_id = str(cleaned_data.get('course_id'))
@@ -110,4 +113,4 @@ class CourseForm(forms.ModelForm):
         courselist = course.objects.filter(course_id=course_id)
         if not courselist.exists():
             raise forms.ValidationError('course does not exist')
-        return course_id
+            return course_id
