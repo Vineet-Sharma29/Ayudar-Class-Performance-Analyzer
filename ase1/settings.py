@@ -74,7 +74,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'ase1.wsgi.application'
 
 
-# Database
+# Databasegit
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 DATABASES = {
@@ -133,7 +133,7 @@ STATIC_ROOT=os.path.join(os.path.dirname(BASE_DIR), 'static/')
 STATICFILES_DIRS= [os.path.join(BASE_DIR, 'static/'),
 ]
 
-MEDIA_URL='/home/bradison/Documents/ase1/media/'
+MEDIA_URL='/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media/')
 
 # Static files (CSS, JavaScript, Images)
