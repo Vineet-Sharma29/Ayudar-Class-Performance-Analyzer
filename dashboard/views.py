@@ -101,4 +101,8 @@ def list_of_students(request):
     return render(request, "dashboard/list_of_students.html")
 
 
+def custom_404(request):
+    return render(request, "dashboard/404.html")
+
+
 
