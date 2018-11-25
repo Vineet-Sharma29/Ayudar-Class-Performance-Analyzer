@@ -37,8 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'dashboard.apps.DashboardConfig',
-    'landing_page.apps.LandingPageConfig',
+    'dashboard',
+    'landing_page',
     'registration',
     'student_report',
 ]

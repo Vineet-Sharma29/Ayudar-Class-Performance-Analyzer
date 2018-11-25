@@ -11,10 +11,6 @@
         .how {
             background-image: url("{% static "landing_page/images/design.svg" %}");
         }
-
-        .scrollup {
-            background: url("{% static "landing_page/images/icon_top.png" %}") no-repeat;
-        }
     </style>
 
 {% endblock %}
@@ -113,17 +109,6 @@
         </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="py-5 bg-black">
-        <div class="container">
-            <p class="m-0 text-center text-white small mb-2 footer_text">Copyright &copy; LMS</p>
-            <p class="m-0 text-center text-white small footer_text">Made With <i class="far fa-heart mx-1"></i>work</p>
-        </div>
-
-        <a class="scrollup" style="display: none;">Scroll</a>
-        <!-- /.container -->
-    </footer>
-
 {% endblock %}
 
 
@@ -139,6 +124,6 @@
     <!--     <script src="{% static "landing_page/js/anime.min.js" %}"></script> -->
     <script src="{% static "landing_page/js/rellax.js" %}"></script>
     <script>
-        var rallax = new Rellax('.rellax')
+        let rallax = new Rellax('.rellax')
     </script>
 {% endblock %}

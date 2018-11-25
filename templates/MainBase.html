@@ -18,6 +18,12 @@
 
     <!-- Custom styles for this template -->
     <link href="{% static "landing_page/css/one-page-wonder.css" %}" rel="stylesheet">
+    <style>
+        .scrollup {
+            background: url("{% static "landing_page/images/icon_top.png" %}") no-repeat;
+        }
+    </style>
+
     {% block head %}
     {% endblock %}
 </head>
@@ -36,13 +42,13 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="http://127.0.0.1:8000/">Home</a>
+                    <a class="nav-link" href="{% url '' %}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="http://127.0.0.1:8000/register/">Sign Up</a>
+                    <a class="nav-link" href="{% url 'registration:register' %}">Sign Up</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="http://127.0.0.1:8000/login/">Log In</a>
+                    <a class="nav-link" href="{% url 'registration:login' %}">Log In</a>
                 </li>
             </ul>
         </div>
@@ -51,6 +57,16 @@
 
 {% block content %}
 {% endblock %}
+<!-- Footer -->
+<footer class="py-5 bg-black">
+    <div class="container">
+        <p class="m-0 text-center text-white small mb-2 footer_text">Copyright &copy; LMS</p>
+        <p class="m-0 text-center text-white small footer_text">Made With <i class="far fa-heart mx-1"></i>work</p>
+    </div>
+
+    <a class="scrollup" style="display: none;">Scroll</a>
+    <!-- /.container -->
+</footer>
 
 {% block script %}
 {% endblock %}
