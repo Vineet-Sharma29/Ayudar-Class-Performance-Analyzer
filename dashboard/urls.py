@@ -4,7 +4,8 @@ from . import views
 urlpatterns = [
     path('', views.dashboard, name="dashboard"),
     path('needy_list/', views.needy_list, name='needy_list'),
-    path('list_of_students', views.list_of_students, name='list_of_students'),
+    path('list_of_students/', views.list_of_students, name='list_of_students'),
+    path('custom_404/', views.custom_404, name='custom_404'),
 ]
 
-handler404 = 'dashboard.views.custom_404'
+

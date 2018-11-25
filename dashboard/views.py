@@ -1,21 +1,19 @@
-
 from django.shortcuts import render
 from .models import Marks
 from .models import csvfile
 from django.http import HttpResponse
-#from .forms import file_class
+# from .forms import file_class
 from django.core.files.storage import FileSystemStorage
 
-
 from django.shortcuts import render
+
+
 # import algo as ag
-
-
-
 
 
 def uselesspage(request):
     return render(request, 'DB/uselesspage.html')
+
 
 def output(request):
     if request.method == 'POST' and request.FILES['marksFile']:
@@ -27,17 +25,18 @@ def output(request):
         print(url)
         return some(url)
 
+
 def some(pat):
-    #var = "/home/phani/PycharmProjects/ASE/"
+    # var = "/home/phani/PycharmProjects/ASE/"
     csvfile.objects.create(req_file=pat)
-    co_id="DSAA"
+    co_id = "DSAA"
     Marks.objects.filter(course_id=co_id).delete()
-    pr_id=2
+    pr_id = 2
     with open(pat)as f:
         f1 = f.readline().split(",")
         f1[len(f1) - 1] = f1[len(f1) - 1].rstrip()
-        #printreq(f1)
-        f.seek(0,0)
+        # printreq(f1)
+        f.seek(0, 0)
         f_all = f.readlines()
         return_tuple(f_all)
         f_all[len(f_all) - 1] = f_all[len(f_all) - 1] + '\n'
@@ -49,14 +48,16 @@ def some(pat):
                 marks = f2[j + 1]
                 name = f1[j + 1]
 
-                some =  Marks.objects.create(student_id=sid, marks=marks, q_name=name, course_id=co_id, prof_id=pr_id)
-    #printreq1(Marks.objects.all())
-    #printreq(v)
+                some = Marks.objects.create(student_id=sid, marks=marks, q_name=name, course_id=co_id, prof_id=pr_id)
+    # printreq1(Marks.objects.all())
+    # printreq(v)
     call()
     return HttpResponse("check your database :)")
 
+
 def call():
     print(Marks.objects.filter(q_name="q3"))
+
 
 def return_tuple(line):
     req_tuple = ()
@@ -69,7 +70,6 @@ def return_tuple(line):
     # tup=tuple(a)
     # print(tup(0))
 
-
     # a[0]=tuple(a[0])
     # print(type(a[0]))
 
@@ -78,10 +78,8 @@ def return_tuple(line):
     # print(tup(0))
 
 
-
 def dashboard(request):
     return render(request, "dashboard/dashboard.html")
-
 
 
 # for student in students:
@@ -103,6 +101,3 @@ def list_of_students(request):
 
 def custom_404(request):
     return render(request, "dashboard/404.html")
-
-
-
