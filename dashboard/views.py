@@ -3,8 +3,7 @@ from django.shortcuts import render
 from .models import Marks
 from .models import csvfile
 from django.http import HttpResponse
-#from .forms import file_class
-from django.core.files.storage import FileSystemStorage
+from .forms import file_class
 
 
 from django.shortcuts import render
@@ -13,19 +12,10 @@ from django.shortcuts import render
 
 
 
+#
+# def uselesspage(request):
+#     return render(request, 'DB/uselesspage.html')
 
-def uselesspage(request):
-    return render(request, 'DB/uselesspage.html')
-
-def output(request):
-    if request.method == 'POST' and request.FILES['marksFile']:
-        myfile = request.FILES['marksFile']
-        name = myfile.name
-        fs = FileSystemStorage()
-        ame = fs.save(myfile.name, myfile)
-        url = fs.url(ame)
-        print(url)
-        return some(url)
 
 def some(pat):
     #var = "/home/phani/PycharmProjects/ASE/"
@@ -80,7 +70,16 @@ def return_tuple(line):
 
 
 def dashboard(request):
-    return render(request, "dashboard/dashboard.html")
+    if request.method == 'POST':
+        form1 = file_class(request.POST, request.FILES)
+        if form1.is_valid():
+            form1.save()
+            print(request.FILES['req_file'])
+            file1 = str(request.FILES['req_file'])
+            return some(file1)
+    else:
+        form1 = file_class()
+        return render(request, "dashboard/dashboard.html",{'form':form1})
 
 
 
