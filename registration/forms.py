@@ -71,13 +71,12 @@ class LoginForm(forms.Form):
         email_set = User.objects.filter(email=emailid)
 
         if email_set.exists():
-
             password = cleaned_data.get('password')
             user = User.objects.get(email=emailid)
             userlog = authenticate(username=user, password=password)
             if userlog is None:
                 raise forms.ValidationError('Invalid password')
-        return password
+            return password
 class ProfileForm(forms.ModelForm):
     professor_description = forms.CharField(max_length=200,widget=forms.Textarea())
     professor_course = forms.CharField(max_length=100)
