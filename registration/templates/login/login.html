@@ -3,15 +3,15 @@
 
 {% block head %}
     <title>LMS-Login</title>
-    <link rel="stylesheet" type="text/css" href="{% static "css/util.css" %}">
-    <link rel="stylesheet" type="text/css" href="{% static "css/main.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "registration/css/util.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "registration/css/main.css" %}">
 {% endblock %}
 
 
 {% block content %}
     {% if not user.is_authenticated %}
 
-        <div class="limiter">
+        <div class="limiter mt-5 p-5">
             <div class="container-login100">
                 <div class="wrap-login100">
                     <form class="login100-form validate-form p-l-55 p-r-55 p-t-178" method="POST">
@@ -51,12 +51,12 @@
 
                     <div class="row">
                         <div class="col">
-                            <img class="img-position" src="{% static "images/google-icon.png" %}" width="64"
+                            <img class="img-position" src="{% static "registration/images/google-icon.png" %}" width="64"
                                  height="64">
                         </div>
 
                         <div class="col">
-                            <img class="img-position" src="{% static "images/linkedin-logo.png" %}" width="64"
+                            <img class="img-position" src="{% static "registration/images/linkedin-logo.png" %}" width="64"
                                  height="64">
                         </div>
                     </div>
