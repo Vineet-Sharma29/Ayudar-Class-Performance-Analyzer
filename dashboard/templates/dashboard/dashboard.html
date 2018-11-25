@@ -1,4 +1,5 @@
 {% extends 'dashboard/base.html' %}
+{% load static %}
 
 {% block head %}
 <title>Dashboard</title>
@@ -10,31 +11,44 @@
         <div class="col-6">
             <div class="image-upload">
                 <label for="file-input">
-                    <i class="ml-5 fas fa-upload fa-2x" data-toggle="tooltip" title="Upload File"></i>
+                    <i class="ml-5 fas fa-upload fa-2x align-baseline" data-toggle="tooltip" title="Upload File"></i>
+                    <button type="button" class="ml-5 btn btn-primary align-top">Generate Result</button>
                 </label>
 
                 <input id="file-input" type="file"/>
             </div>
         </div>
-        <div class="col-6"></div>
+        <div class="col-6">
+
+        </div>
     </div>
+
     <div class="wildcards row my-5">
-      <div class="col-md-3 col-sm-12 col-md-3 col-xs-12 mx-auto rounded well-container p-2 w-25">
+      <div class="col-md-3 col-sm-12 col-md-3 col-xs-12 mx-auto rounded well-container p-2 w-25 bg-light">
         <div class="well">
-          <h5 class="text-black"><!--<span class="label label-danger pull-right">- 9%</span>--> Overall Difficulty</h5>
-            <p class="text-white p-2 display-4">+9%</p>
+            <div class="row">
+                <h5 class="text-black col-8"><!--<span class="label label-danger pull-right">- 9%</span>--> Overall Difficulty</h5>
+                <img class="col-4" src="{% static "dashboard/images/test.svg" %}" alt="test" width="32" height="32"/>
+            </div>
+            <p class="text-black p-2 pt-3 display-4 text-right">+9%</p>
         </div>
       </div>
-      <div class="col-md-3 col-sm-12 col-md-3 col-xs-12 mx-auto rounded well-container p-2 w-25">
+      <div class="col-md-3 col-sm-12 col-md-3 col-xs-12 mx-auto rounded well-container p-2 w-25 bg-light">
         <div class="well">
-          <h5 class="text-black"><!--<span class="label label-success pull-right">+ 3%</span>--> Overall Risk </h5>
-            <p class="text-white p-2 display-4">+9%</p>
+            <div class="row">
+                <h5 class="text-black col-8"><!--<span class="label label-danger pull-right">- 9%</span>--> Overall Risk</h5>
+                <img class="col-4" src="{% static "dashboard/images/risk.svg" %}" alt="test" width="32" height="32"/>
+            </div>
+            <p class="text-black p-2 pt-3 display-4 text-right">+9%</p>
         </div>
       </div>
-      <div class="col-md-3 col-sm-12 col-md-3 col-xs-12 mx-auto rounded well-container p-2 w-25">
+      <div class="col-md-3 col-sm-12 col-md-3 col-xs-12 mx-auto rounded well-container p-2 w-25 bg-light">
         <div class="well">
-          <h5 class="text-black"><!--<span class="label label-primary pull-right">201</span>--> Course Average </h5>
-            <p class="text-white p-2 display-4">+9%</p>
+            <div class="row">
+                <h5 class="text-black col-8"><!--<span class="label label-danger pull-right">- 9%</span>--> Course Average</h5>
+                <img class="col-4" src="{% static "dashboard/images/graph.svg" %}" alt="test" width="32" height="32"/>
+            </div>
+            <p class="text-black p-2 pt-3 display-4 text-right">+9%</p>
         </div>
       </div>
 
@@ -48,7 +62,7 @@
     <div class="mx-auto" id="myDiv"></div>
 
     <script>
-        var y0=[],y1=[]
+        var y0=[],y1=[];
         for ( i = 0; i < 50; i ++)
         {
             y0[i] = Math.random();
