@@ -2,35 +2,30 @@
 from django.shortcuts import render
 from .models import Enrollments
 from .models import Marks
-from .models import csvfile
 from django.http import HttpResponse
-from django.core.files.storage import FileSystemStorage
-
+from .forms import file_class
 
 def uselesspage(request):
-    return render(request, 'DB/uselesspage.html')
-
-def output(request):
-    if request.method == 'POST' and request.FILES['uploadedfile']:
-        myfile = request.FILES['uploadedfile']
-        name = myfile.name
-        fs = FileSystemStorage()
-        s = fs.save(myfile.name, myfile)
-        url = fs.url(s)
-        print(url)
-        return some(url)
-
+    if request.method == 'POST':
+        form1 = file_class(request.POST, request.FILES)
+        if form1.is_valid():
+            form1.save()
+            print(request.FILES['req_file'])
+            file1 = str(request.FILES['req_file'])
+            return some(file1)
+    else:
+        form1 = file_class()
+        return render(request,'DB/uselesspage.html',{'form':form1})
 def some(path):
 
-    csvfile.objects.create(req_file=path)
-
+    path = 'media/media_/'+path
     co_id="ASE"
     pr_id = "SUBU"
 
     Marks.objects.filter(course_id=co_id).delete()
     Enrollments.objects.filter(course_id=co_id).delete()
 
-    with open(path)as f:
+    with open(path) as f:
         f1 = f.readline().split(",")
         f1[len(f1) - 1] = f1[len(f1) - 1].rstrip()
 
@@ -62,14 +57,14 @@ def some(path):
 
 
 def all_quiz_marks_in_a_course():
-    b=Marks.objects.filter(student_id="063", course_id="ASE", prof_id="SUBU").values_list('q_name','marks')
+    b=Marks.objects.filter(student_id="55", course_id="ASE", prof_id="SUBU").values_list('q_name','marks')
     print(b)
     print(type(b))
 
 
 
 def all_quiz_marks_in_all_courses():
-    print(Marks.objects.filter(student_id="063").values_list('course_id','q_name','marks'))
+    print(Marks.objects.filter(student_id="55").values_list('course_id','q_name','marks'))
 
 
 
