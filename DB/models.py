@@ -1,3 +1,4 @@
+
 from django.db import models
 
 
@@ -13,7 +14,7 @@ class Enrollments(models.Model):
     status = models.CharField(max_length=15)
 
 class csvfile(models.Model):
-    req_file = models.FileField(upload_to='documents')
+    req_file = models.FileField(upload_to='media_')
 
 
 class Marks(models.Model):
@@ -26,4 +27,14 @@ class Marks(models.Model):
 
     class Meta:
         unique_together = ('student_id', 'course_id','prof_id','q_name','student_name')
+
+
+
+
+"""class Marks(models.Model):
+    student_id = models.ForeignKey(Enrollments,on_delete=models.PROTECT)
+    course_id = models.ForeignKey(Enrollments, on_delete=models.PROTECT)
+    marks = models.FloatField(null=False)
+    q_name = models.CharField(max_length=15)"""
+
 
