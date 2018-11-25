@@ -1,0 +1,74 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Learning Management System">
+    <meta name="author" content="Group-4">
+    <!-- Bootstrap core CSS -->
+    <link href="{% static "landing_page/css/bootstrap.min.css" %}" rel="stylesheet">
+    <link rel="shortcut icon" type="image/png" href="{% static "landing_page/images/LMS-i.png" %}"/>
+    <!-- Custom fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i"
+          rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+          integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static "landing_page/css/one-page-wonder.css" %}" rel="stylesheet">
+    <style>
+        .scrollup {
+            background: url("{% static "landing_page/images/icon_top.png" %}") no-repeat;
+        }
+    </style>
+
+    {% block head %}
+    {% endblock %}
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <img class="img-responsive" src="{% static "landing_page/images/LMS.svg" %}" alt="LMS" width="50"
+                 height="50" style="position:absolute;z-index:4;top:7%;left:6%;">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url '' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'registration:register' %}">Sign Up</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'registration:login' %}">Log In</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+{% block content %}
+{% endblock %}
+<!-- Footer -->
+<footer class="py-5 bg-black">
+    <div class="container">
+        <p class="m-0 text-center text-white small mb-2 footer_text">Copyright &copy; LMS</p>
+        <p class="m-0 text-center text-white small footer_text">Made With <i class="far fa-heart mx-1"></i>work</p>
+    </div>
+
+    <a class="scrollup" style="display: none;">Scroll</a>
+    <!-- /.container -->
+</footer>
+
+{% block script %}
+{% endblock %}
+</body>
+</html>
