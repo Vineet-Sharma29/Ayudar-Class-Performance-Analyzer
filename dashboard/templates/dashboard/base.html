@@ -37,20 +37,20 @@
                 </li>
                 <li>
                     <a href="{% url 'dashboard' %}">
-                        <i class="fas fa-graduation-cap mr-2"></i>
+                        <i class="fas fa-graduation-cap mr-2" data-target="classOverview"></i>
                         Class Overview
                     </a>
                 </li>
 
                 <li>
                     <a href="{% url 'needy_list' %}">
-                        <i class="fas fa-asterisk mr-2"></i>
+                        <i class="fas fa-asterisk mr-2" data-target="needyList"></i>
                         Needy List
                     </a>
                 </li>
 
                  <li>
-                    <a href="{% url 'list_of_students' %}">
+                    <a href="{% url 'list_of_students' %}" data-target="listStudents">
                         <i class="fas fa-list-alt mr-2"></i>
                         List of All Students
                     </a>
@@ -89,6 +89,9 @@
                 <i class="fas fa-align-left"></i>
             </button>
             {% block content %}
+                <div id="container">
+
+                </div>
             {% endblock %}
             </div>
     </div>
@@ -116,6 +119,27 @@
                 $('#sidebar').toggleClass('active');
             });
         });
+    </script>
+
+    <script>
+         $(document).ready(function(){
+        // Set trigger and container variables
+        var trigger = $('#sidebar ul li a'),
+            container = $('#content');
+
+        // Fire on click
+        trigger.on('click', function(){
+          // Set $this for re-use. Set target from data attribute
+          var $this = $(this),
+            target = $this.data('target');
+
+          // Load target page into container
+          container.load(target + '.php');
+
+          // Stop normal link behavior
+          return false;
+        });
+      });
     </script>
 
 

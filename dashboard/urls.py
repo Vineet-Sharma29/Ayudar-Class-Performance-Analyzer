@@ -6,3 +6,5 @@ urlpatterns = [
     path('needy_list/', views.needy_list, name='needy_list'),
     path('list_of_students', views.list_of_students, name='list_of_students'),
 ]
+
+handler404 = 'dashboard.views.custom_404'

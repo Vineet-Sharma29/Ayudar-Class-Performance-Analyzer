@@ -18,16 +18,14 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
-
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('dashboard/', include('dashboard.urls')),
-    path('student_report/', include('student_report.urls')),
-    path('', include('registration.urls')),
-    path('', include('registration.urls')),
-    path('', include('landing_page.urls')),
-]
-
+                  path('admin/', admin.site.urls),
+                  path('dashboard/', include('dashboard.urls')),
+                  path('', include('registration.urls')),
+                  path('', include('registration.urls')),
+                  path('', include('landing_page.urls')),
+                  path('student_report/', include('student_report.urls')),
+              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
