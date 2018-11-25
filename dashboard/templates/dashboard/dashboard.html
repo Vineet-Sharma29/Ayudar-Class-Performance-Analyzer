@@ -11,8 +11,11 @@
         <div class="col-6">
             <div class="image-upload">
                 <label for="file-input">
-                    <i class="ml-5 fas fa-upload fa-2x align-baseline" data-toggle="tooltip" title="Upload File"></i>
-                    <button type="button" class="ml-5 btn btn-primary align-top">Generate Result</button>
+                    <form>
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="button" class="ml-5 btn btn-primary align-top">Generate Result</button>
+                    </form>
                 </label>
 
                 <input id="file-input" type="file"/>
