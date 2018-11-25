@@ -11,10 +11,10 @@
         <div class="col-6">
             <div class="image-upload">
                 <label for="file-input">
-                    <form>
+                    <form method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
                         {{ form.as_p }}
-                        <button type="button" class="ml-5 btn btn-primary align-top">Generate Result</button>
+                        <button type="submit" class="ml-5 btn btn-primary align-top">Generate Result</button>
                     </form>
                 </label>
 
