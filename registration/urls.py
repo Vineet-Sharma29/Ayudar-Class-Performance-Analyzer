@@ -20,7 +20,7 @@ app_name = "registration"
 
 urlpatterns = [
     path('login/', views.login_display, name='login'),
-    path('register/', views.register_display, name='signup'),
+    path('register/', views.register_display, name='register'),
     path('register/otp_verify/', views.otp_verify, name='otp'),
     path('logout/', views.logout_view, name='logout'),
     path('login/reset_password/', views.reset_password, name='reset'),
