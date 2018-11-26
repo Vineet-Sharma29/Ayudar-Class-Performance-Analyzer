@@ -28,5 +28,5 @@ urlpatterns = [
     path('login/reset_password/reset_otp_verify/save_password/', views.save_password, name='save_password'),
     path('dashboard/edit_profile/', views.editprofile, name='edit_profile'),
     path('dashboard/my_profile/', views.show_profile, name='show_profile'),
-    path('course/', views.course_selection, name='course_selection')
+    path('course/', views.course_selection, name='course_selection'),
 ]
