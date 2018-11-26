@@ -208,14 +208,13 @@ def CourseStats(marks):
     # Flag out top 5 students whose overall scores and assignment socres tell two different stories
 
     marks['cheatflagged'] = 0
-    marks['cheatflagged'] = marks['avgAsgn'] - df['ChMarks']
-    cheat_flagged = marks.sort_values('cheatflagged',
-                                      ascending=False)['RollNumber'].iloc[1:6]
+
+    marks['cheatflagged'] = marks['avgAsgn'] - marks['ChMarks']
+    cheat_flagged = marks.sort_values('cheatflagged', ascending=False)['RollNumber'].iloc[1:6]
 
     # Calculate the range of marks for most students
+    avg_marks = str(CI(marks, 'overall')[0]) + '-' + str(CI(marks, 'overall')[1])
 
-    avg_marks = str(CI(df, 'overall')[0]) + '-' + str(CI(df, 'overall'
-                                                         )[1])
 
     # Calculate quartile scores for weighted marks
 
@@ -268,7 +267,8 @@ def ExamStats(marks):
 
     # Build the frequency table for digit occurences, add the numbers not present in DataFrame with zero occurence
 
-    freq_df = df['fraud'].apply(lambda x: int(x % 10)).value_counts()
+    freq_df = marks['fraud'].apply(lambda x: int(x % 10)).value_counts()
+
     for i in range(10):
         try:
             if freq_df.loc[i] >= 0:
@@ -298,8 +298,8 @@ def ExamStats(marks):
 
     # Calculate the range of marks for most students
 
-    avg_marks = str(CI(df, location)[0]) + '-' + str(CI(df,
-                                                        location)[1])
+    avg_marks = str(CI(marks, location)[0]) + '-' + str(CI(marks, location)[1])
+
 
     # Calculate quartile scores for exam marks
 
@@ -377,3 +377,4 @@ def initialse(tuples, headers):
     df = createAvg(df)
     df = createChMarks(df)
     df = variance(df)
+    return df
