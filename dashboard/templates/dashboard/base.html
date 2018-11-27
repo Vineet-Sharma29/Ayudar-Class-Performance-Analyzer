@@ -29,93 +29,82 @@
 
 <body class="dashboard-body">
 {% if user.is_authenticated %}
-    <div class="wrapper">
-        <nav id="sidebar">
+<div class="wrapper">
+    <nav id="sidebar">
 
-            <ul class="list-unstyled components">
-                <li>
-                    <a href="#">
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                    </a>
-                </li>
+        <ul class="list-unstyled components">
+            <li>
+                <a href="#">
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                </a>
+            </li>
 
-                <li>
-                    <a href="#">
-                        <img class="img-responsive rounded-circle mx-5 mt-3 border border-primary" src="{{ photo.url }}"
-                             alt="Professor Name" width="120" height="120"/>
-                        <div class="page-header mx-4 my-4 text-center">
-                            <h1>Hi!<br/>{{ username }}</h1>
-                        </div>
-                    </a>
-                </li>
-                <hr/>
-                <li>
-                    <a href="{% url 'dashboard:dashboard' %}">
-                        <i class="fas fa-graduation-cap fa-2x mr-2" data-target="classOverview"></i>
-                        Class Overview
-                    </a>
-                </li>
-
-                <li>
-                    <a href="{% url 'dashboard:needy_list' %}">
-                        <i class="fas fa-asterisk fa-2x mr-2" data-target="needyList"></i>
-                        Needy List
-                    </a>
-                </li>
-
-                <li>
-                    <a href="{% url 'dashboard:list_of_students' %}" data-target="listStudents">
-                        <i class="fas fa-list-alt fa-2x mr-2"></i>
-                        List of All Students
-                    </a>
-                </li>
-
-                <li>
-                    <a href="{% url 'dashboard:list_of_students' %}" data-target="listStudents">
-                        <i class="fas fa-list-alt fa-2x mr-2"></i>
-                        List of All Students
-                    </a>
-                </li>
-            </ul>
-
-
-        </nav>
-
-        <!-- Page Content  -->
-        <div id="content">
-            <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
-                <div class="container">
-                    <a class="navbar-brand" href="{% url 'landing_page:landing_page' %}">
-                        <img class="img-responsive" src="{% static "landing_page/images/LMS.svg" %}" alt="LMS"
-                             width="50"
-                             height="50" style="position:absolute;z-index:4;top:7%;left:6%;">
-                    </a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                            aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarResponsive">
-                        <ul class="navbar-nav ml-auto">
-                            <li class="nav-item">
-                                <a class="nav-link text-primary font-weight-bold"
-                                   href="{% url 'landing_page:landing_page' %}">HOME</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link text-primary font-weight-bold"
-                                   href="{% url 'dashboard:dashboard' %}">DASHBOARD</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link text-primary font-weight-bold"
-                                   href="{% url 'registration:logout' %}">LOGOUT</a>
-                            </li>
-
-                        </ul>
+             <li>
+                <a href="#">
+                    <img class="img-responsive rounded-circle mx-5 mt-3 border border-primary" src="http://placehold.it/250x150" alt="Professor Name" width="120" height="120" />
+                    <div class="page-header mx-4 my-4 text-center">
+                      <h1>Hi!<br/>Subu</h1>
                     </div>
+                </a>
+            </li>
+            <hr/>
+            <li>
+                <a href="{% url 'dashboard:dashboard' %}">
+                    <i class="fas fa-graduation-cap fa-2x mr-2" data-target="classOverview"></i>
+                    <span>Class Overview</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="{% url 'dashboard:needy_list' %}">
+                    <i class="fas fa-asterisk fa-2x mr-2" data-target="needyList"></i>
+                    <span>Needy List</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="{% url 'dashboard:list_of_students' %}" data-target="listStudents">
+                    <i class="fas fa-list-alt fa-2x mr-2"></i>
+                    <span>List of All Students</span>
+                </a>
+            </li>
+        </ul>
+
+
+    </nav>
+
+    <!-- Page Content  -->
+    <div id="content">
+        <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="{% url 'landing_page:landing_page' %}">
+                    <img class="img-responsive" src="{% static "landing_page/images/LMS.svg" %}" alt="LMS" width="50"
+                         height="50" style="position:absolute;z-index:4;top:7%;left:6%;">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link text-primary font-weight-bold" href="{% url 'landing_page:landing_page' %}">HOME</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-primary font-weight-bold" href="{% url 'dashboard:dashboard' %}">DASHBOARD</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-primary font-weight-bold" href="{% url 'registration:logout' %}">LOGOUT</a>
+                        </li>
+
+                    </ul>
+
+
                 </div>
             </nav>
             <button type="button" id="sidebarCollapse" class="btn">
@@ -123,10 +112,10 @@
             </button>
             {% block content %}
                 <div id="container">
-
                 </div>
             {% endblock %}
         </div>
+
     </div>
 
     <footer class="py-5 bg-dark">
