@@ -14,9 +14,9 @@ Including another URLconf
     2. Add a UruRL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.conf.urls import url
-from django.urls import path
+from django.urls import path,include
 from . import views
-
+import social_django
 app_name = "registration"
 
 urlpatterns = [
@@ -31,4 +31,4 @@ urlpatterns = [
     path('course/', views.course_selection, name='course_selection'),
     url(r'activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/',
         views.activate, name='activate'),
-]
+    ]

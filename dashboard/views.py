@@ -1,4 +1,7 @@
+from django.contrib.auth.models import User
 from django.shortcuts import render
+
+from registration.models import professor_profile
 from .models import Marks
 from .models import csvfile, Enrollments
 from django.http import HttpResponse
@@ -94,8 +97,10 @@ def dashboard(request):
         else:
             return HttpResponse("form is invalidd")
     else:
+        user = User.objects.get(username=request.user)
+        profile = professor_profile.objects.get(professor=user)
         form1 = file_class()
-        return render(request, "dashboard/dashboard.html", {'form': form1})
+        return render(request, "dashboard/dashboard.html", {'form': form1,'username':user.username,'photo':profile.professor_photo})
 
 
 # for student in students:
