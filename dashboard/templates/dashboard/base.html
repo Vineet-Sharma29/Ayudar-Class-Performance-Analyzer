@@ -27,6 +27,7 @@
 </head>
 
 <body class="dashboard-body">
+{% if user.is_authenticated %}
 <div class="wrapper">
     <nav id="sidebar">
 
@@ -41,6 +42,12 @@
                 </a>
             </li>
 
+             <li>
+                <a href="#">
+                    <img class="img-responsive rounded-circle" src="http://placehold.it/250x150" alt="Professor Name" width="64" height="64"/>
+                    <span class="mt-1" style="font-size: 1vw;">Subu</span>
+                </a>
+            </li>
 
             <li>
                 <a href="{% url 'dashboard' %}">
@@ -84,12 +91,11 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'landing_page:landing_page' %}">Home</a>
                         </li>
+
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'registration:register' %}">Sign Up</a>
+                            <a class="nav-link" href="{% url 'registration:login' %}">Logout</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'registration:login' %}">Log In</a>
-                        </li>
+
                     </ul>
                 </div>
             </div>
@@ -114,6 +120,7 @@
     <a class="scrollup" style="display: none;">Scroll</a>
     <!-- /.container -->
 </footer>
+
 
 <!-- jQuery CDN - Slim version (=without AJAX) -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -156,7 +163,7 @@
         });
     });
 </script>
-
+{% endif %}
 
 </body>
 </html>
