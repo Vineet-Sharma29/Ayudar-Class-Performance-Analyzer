@@ -218,7 +218,7 @@ p {
 a,
 a:hover,
 a:focus {
-    color: inherit;
+    color: blue;
     text-decoration: none;
     transition: all 0.3s;
 }
@@ -263,12 +263,17 @@ span {
     min-width: 250px;
     max-width: 250px;
 	min-height:100%;
-    background: #343a40;
+    background: white;
     color: #fff;
  -webkit-clip-path: polygon(0 0, 100% 0, 100% 96%, 0% 100%);
 clip-path: polygon(0 0, 100% 0, 100% 96%, 0% 100%);
     transition: all 0.3s;
 
+}
+
+#sidebar.active{
+    height: 64;
+    width:64;
 }
 
 #sidebar.active {
@@ -478,6 +483,8 @@ a.article:hover {
 .well-container{
     border:1px solid lightgray;
     height:150px;
+    -webkit-clip-path: polygon(90% 0, 100% 11%, 100% 100%, 0 100%, 0 0);
+clip-path: polygon(90% 0, 100% 11%, 100% 100%, 0 100%, 0 0);
 
 }
 
@@ -553,13 +560,31 @@ footer.bg-dark{
 
 
 .dashboard-body{
-    background-color: aliceblue;
+    background-color: lightgray;
     overflow-x: hidden;
+}
+
+#myDiv{
+    width:100%;
+}
+
+
+.image-upload > input
+{
+    display: none;
+}
+
+.image-upload img
+{
+    width: 80px;
+    cursor: pointer;
 }
 
 
 
 
-#myDiv{
-    width:100%;
+.fa-download:hover{
+    cursor: pointer;
+    color: blue;
+    transition: color 0.3s;
 }

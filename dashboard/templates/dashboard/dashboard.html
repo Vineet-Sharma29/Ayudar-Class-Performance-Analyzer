@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block head %}
-<title>Dashboard</title>
+    <title>Dashboard</title>
 {% endblock %}
 
 
@@ -10,49 +10,61 @@
     <div class="row mt-3">
         <div class="col-6">
             <div class="image-upload">
-                <label for="file-input">
-                    <form method="POST" enctype="multipart/form-data">
-                        {% csrf_token %}
-                        {{ form.as_p }}
-                    </form>
-                </label>
 
-                <input id="file-input" type="file"/>
             </div>
         </div>
         <div class="col-6 text-right align-bottom">
+             <label for="file-input">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    <div class="image-upload">
+                        <label for="file-input">
+                            <i class="fa fa-download fa-2x" aria-hidden="true"></i>
+                        </label>
+
+                        {{ form.req_file }}
+                    </div>
+                </form>
+            </label>
             <button type="submit" class="ml-5 btn btn-primary align-top">Generate Result</button>
         </div>
     </div>
 
     <div class="wildcards row mt-4">
-      <div class="col-md-3 col-sm-12 col-md-3 col-xs-12 mx-auto rounded well-container p-2 w-25 bg-light">
-        <div class="well">
-            <div class="row">
-                <h5 class="text-black col-8"><!--<span class="label label-danger pull-right">- 9%</span>--> Overall Difficulty</h5>
-                <img class="col-4" src="{% static "dashboard/images/test.svg" %}" alt="test" width="32" height="32"/>
+        <div class="col-md-3 col-sm-12 col-md-3 col-xs-12 mx-auto rounded well-container p-2 w-25 bg-light">
+            <div class="well">
+                <div class="row">
+                    <h5 class="text-sec col-8"><!--<span class="label label-danger pull-right">- 9%</span>--> Overall
+                        Difficulty</h5>
+                    <img class="col-4" src="{% static "dashboard/images/test.svg" %}" alt="test" width="32"
+                         height="32"/>
+                </div>
+                <p class="text-black p-2 pt-3 display-4 text-right">+9%</p>
             </div>
-            <p class="text-black p-2 pt-3 display-4 text-right">+9%</p>
         </div>
-      </div>
-      <div class="col-md-3 col-sm-12 col-md-3 col-xs-12 mx-auto rounded well-container p-2 w-25 bg-light">
-        <div class="well">
-            <div class="row">
-                <h5 class="text-black col-8"><!--<span class="label label-danger pull-right">- 9%</span>--> Overall Risk</h5>
-                <img class="col-4" src="{% static "dashboard/images/risk.svg" %}" alt="test" width="32" height="32"/>
+        <div class="col-md-3 col-sm-12 col-md-3 col-xs-12 mx-auto rounded well-container p-2 w-25 bg-light">
+            <div class="well">
+                <div class="row">
+                    <h5 class="text-black col-8"><!--<span class="label label-danger pull-right">- 9%</span>--> Overall
+                        Risk</h5>
+                    <img class="col-4" src="{% static "dashboard/images/risk.svg" %}" alt="test" width="32"
+                         height="32"/>
+                </div>
+                <p class="text-black p-2 pt-3 display-4 text-right">+9%</p>
             </div>
-            <p class="text-black p-2 pt-3 display-4 text-right">+9%</p>
         </div>
-      </div>
-      <div class="col-md-3 col-sm-12 col-md-3 col-xs-12 mx-auto rounded well-container p-2 w-25 bg-light">
-        <div class="well">
-            <div class="row">
-                <h5 class="text-black col-8"><!--<span class="label label-danger pull-right">- 9%</span>--> Course Average</h5>
-                <img class="col-4" src="{% static "dashboard/images/graph.svg" %}" alt="test" width="32" height="32"/>
+        <div class="col-md-3 col-sm-12 col-md-3 col-xs-12 mx-auto rounded well-container p-2 w-25 bg-light">
+            <div class="well">
+                <div class="row">
+                    <h5 class="text-black col-8"><!--<span class="label label-danger pull-right">- 9%</span>--> Course
+                        Average</h5>
+                    <img class="col-4" src="{% static "dashboard/images/graph.svg" %}" alt="test" width="32"
+                         height="32"/>
+                </div>
+                <p class="text-black p-2 pt-3 display-4 text-right">+9%</p>
             </div>
-            <p class="text-black p-2 pt-3 display-4 text-right">+9%</p>
         </div>
-      </div>
 
     </div><!--/row-->
 
@@ -60,7 +72,7 @@
 
     </div>
 
-{#    <h2 class="display-5 my-2">Boxplot</h2>#}
+    {#    <h2 class="display-5 my-2">Boxplot</h2>#}
     <div class="row">
         <div class="mx-4" id="myDiv"></div>
     </div>
@@ -69,58 +81,56 @@
     <div class="contatiner">
         <div class="row my-5 ">
             <div class="col-6">
-            <div class="jumbotron w-100 h-100">
-                <h5 class="text-black mt-0">Cheat Risk</h5>
-                <div class="row w-100 h-75 bg-primary mx-auto mt-3"></div>
+                <div class="jumbotron w-100 h-100">
+                    <h5 class="text-black mt-0">Cheat Risk</h5>
+                    <div class="row w-100 h-75 bg-primary mx-auto mt-3"></div>
 
 
+                </div>
             </div>
-        </div>
-        <div class="col-6">
-            <div class="jumbotron w-100 h-100">
-                <h5 class="text-black mt-0">Course Poor Performers</h5>
+            <div class="col-6">
+                <div class="jumbotron w-100 h-100">
+                    <h5 class="text-black mt-0">Course Poor Performers</h5>
+                </div>
             </div>
-        </div>
         </div>
     </div>
 
+{% endblock %}
+
+
+{% block script %}
     <script>
-        var y0=[],y1=[];
-        for ( i = 0; i < 50; i ++)
-        {
+        var y0 = [], y1 = [];
+        for (i = 0; i < 50; i++) {
             y0[i] = Math.random();
             y1[i] = Math.random();
         }
 
         var trace1 = {
-          y: y0,
-          type: 'box'
+            y: y0,
+            type: 'box'
         };
 
         var trace2 = {
-          y: y1,
-          type: 'box'
+            y: y1,
+            type: 'box'
         };
 
         var data = [trace1, trace2];
 
         Plotly.newPlot('myDiv', data);
     </script>
-    <script>
-$("i").click(function () {
-  $("input[type='file']").trigger('click');
-});
-
-$('input[type="file"]').on('change', function() {
-  var val = $(this).val();
-  $(this).siblings('span').text(val);
-})
-</script>
 
     <script>
+        $("i").click(function () {
+            $("input[type='file']").trigger('click');
+        });
 
+        $('input[type="file"]').on('change', function () {
+            var val = $(this).val();
+            $(this).siblings('span').text(val);
+        })
     </script>
 
-
 {% endblock %}
-
