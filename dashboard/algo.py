@@ -251,7 +251,8 @@ def ExamStats(marks):
     temp = list(marks.columns)
     count = 1
     for i in range(len(temp)):
-        if temp[i].split('-') > 2:
+        if len(temp[i].split('-')) > 2:
+
             count += 1
     location = temp[count]
 
@@ -291,10 +292,13 @@ def ExamStats(marks):
     max_repeat = freq_df.index[0]
     marks['fraud'] = marks['fraud'].apply(lambda x: int(x % 10))
     suspicious = marks[marks['fraud'] == max_repeat]['fraud']
-    check_sheets_index = random.sample(range(len(suspicious)), 5)
-    cheat_flagged = []
-    for index in check_sheets_index:
-        cheat_flagged.append(marks['RollNumber'].iloc[index])
+    if len(suspicious) > 5:
+        check_sheets_index = random.sample(list(range(0, len(suspicious))), 5)
+        cheat_flagged = []
+        for index in check_sheets_index:
+            cheat_flagged.append(marks['RollNumber'].iloc[index])
+    else :
+        cheat_flagged = []
 
     # Calculate the range of marks for most students
 
