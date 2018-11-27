@@ -50,21 +50,21 @@
             </li>
 
             <li>
-                <a href="{% url 'dashboard' %}">
+                <a href="{% url 'dashboard:dashboard' %}">
                     <i class="fas fa-graduation-cap mr-2" data-target="classOverview"></i>
                     Class Overview
                 </a>
             </li>
 
             <li>
-                <a href="{% url 'needy_list' %}">
+                <a href="{% url 'dashboard:needy_list' %}">
                     <i class="fas fa-asterisk mr-2" data-target="needyList"></i>
                     Needy List
                 </a>
             </li>
 
             <li>
-                <a href="{% url 'list_of_students' %}" data-target="listStudents">
+                <a href="{% url 'dashboard:list_of_students' %}" data-target="listStudents">
                     <i class="fas fa-list-alt mr-2"></i>
                     List of All Students
                 </a>
@@ -93,7 +93,11 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'registration:login' %}">Logout</a>
+                            <a class="nav-link" href="{% url 'dashboard:dashboard' %}">Dashboard</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'registration:logout' %}">Logout</a>
                         </li>
 
                     </ul>
