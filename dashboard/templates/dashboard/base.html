@@ -28,7 +28,7 @@
 </head>
 
 <body class="dashboard-body">
-{% if not user.is_authenticated %}
+{% if user.is_authenticated %}
 <div class="wrapper">
     <nav id="sidebar">
 
@@ -54,28 +54,21 @@
             <li>
                 <a href="{% url 'dashboard:dashboard' %}">
                     <i class="fas fa-graduation-cap fa-2x mr-2" data-target="classOverview"></i>
-                    Class Overview
+                    <span>Class Overview</span>
                 </a>
             </li>
 
             <li>
                 <a href="{% url 'dashboard:needy_list' %}">
                     <i class="fas fa-asterisk fa-2x mr-2" data-target="needyList"></i>
-                    Needy List
+                    <span>Needy List</span>
                 </a>
             </li>
 
             <li>
                 <a href="{% url 'dashboard:list_of_students' %}" data-target="listStudents">
                     <i class="fas fa-list-alt fa-2x mr-2"></i>
-                    List of All Students
-                </a>
-            </li>
-
-            <li>
-                <a href="{% url 'dashboard:list_of_students' %}" data-target="listStudents">
-                    <i class="fas fa-list-alt fa-2x mr-2"></i>
-                    List of All Students
+                    <span>List of All Students</span>
                 </a>
             </li>
         </ul>
@@ -124,7 +117,7 @@
     </div>
 </div>
 
-<footer class="py-5 bg-dark">
+<footer class="py-5 bg-dark mt-5">
     <div class="container">
         <p class="m-0 text-center text-white small mb-2 footer_text">Copyright &copy; LMS</p>
         <p class="m-0 text-center text-white small footer_text">Made With <i class="fa fa-heart mx-1"></i>work</p>
