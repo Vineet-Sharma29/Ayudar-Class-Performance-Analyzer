@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect
+
+import dashboard.views as vw
 from .models import professor_profile, course, User
 from django.core.mail import send_mail
 from django.shortcuts import HttpResponse
@@ -32,7 +34,7 @@ def login_display(request):
             if user:
                 if user.is_active:
                     login(request, user)
-                    return redirect('dashboard/')
+                    return redirect(vw.dashboard)
                 else:
                     return HttpResponse('Not registered')
     else:
