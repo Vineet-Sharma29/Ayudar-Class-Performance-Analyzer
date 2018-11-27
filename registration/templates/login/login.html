@@ -5,11 +5,14 @@
     <title>LMS-Login</title>
     <link rel="stylesheet" type="text/css" href="{% static "registration/css/util.css" %}">
     <link rel="stylesheet" type="text/css" href="{% static "registration/css/main.css" %}">
+    <meta name="google-signin-client_id" content="852947580202-pdbtv1kduh66tcko77bn7l0etom31566.apps.googleusercontent.com">
 {% endblock %}
 
 
 {% block content %}
     {% if not user.is_authenticated %}
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+
 
         <div class="limiter mt-5 p-5">
             <div class="container-login100">
@@ -51,8 +54,8 @@
 
                     <div class="row">
                         <div class="col">
-                            <img class="img-position" src="{% static "registration/images/google-icon.png" %}" width="64"
-                                 height="64">
+                            <a href="{% url 'social:begin' 'google-oauth2' %}"><img class="img-position" src="{% static "registration/images/google-icon.png" %}" width="64"
+                                                                                    height="64"></a>
                         </div>
 
                         <div class="col">

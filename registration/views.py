@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse
 
 import dashboard.views as vw
 from .models import professor_profile, course, User
@@ -34,7 +35,7 @@ def login_display(request):
             if user:
                 if user.is_active:
                     login(request, user)
-                    return redirect(vw.dashboard)
+                    return redirect('dashboard:dashboard')
                 else:
                     return HttpResponse('Not registered')
     else:
@@ -61,7 +62,7 @@ def register_display(request):
             user.last_name = form.cleaned_data["last_name"]
 
             user.save()
-
+            p = professor_profile.objects.create(professor=user)
             mail = form.cleaned_data.get('email')
             print(mail)
             current_site = get_current_site(request)
@@ -218,7 +219,7 @@ def activate(request, uidb64, token):
         user.save()
         login(request, user)
         # return redirect('home')
-        return redirect('registration:course')
+        return HttpResponse('Thank you')
 
     else:
         return HttpResponse('Activation link is invalid!')
