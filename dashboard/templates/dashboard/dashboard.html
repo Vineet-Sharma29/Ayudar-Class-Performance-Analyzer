@@ -14,19 +14,18 @@
                     <form method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
                         {{ form.as_p }}
-                        <button type="submit" class="ml-5 btn btn-primary align-top">Generate Result</button>
                     </form>
                 </label>
 
                 <input id="file-input" type="file"/>
             </div>
         </div>
-        <div class="col-6">
-
+        <div class="col-6 text-right align-bottom">
+            <button type="submit" class="ml-5 btn btn-primary align-top">Generate Result</button>
         </div>
     </div>
 
-    <div class="wildcards row my-5">
+    <div class="wildcards row mt-4">
       <div class="col-md-3 col-sm-12 col-md-3 col-xs-12 mx-auto rounded well-container p-2 w-25 bg-light">
         <div class="well">
             <div class="row">
@@ -61,8 +60,29 @@
 
     </div>
 
-    <h2 class="display-5 my-2">Boxplot</h2>
-    <div class="mx-auto" id="myDiv"></div>
+{#    <h2 class="display-5 my-2">Boxplot</h2>#}
+    <div class="row">
+        <div class="mx-4" id="myDiv"></div>
+    </div>
+
+
+    <div class="contatiner">
+        <div class="row my-5 ">
+            <div class="col-6">
+            <div class="jumbotron w-100 h-100">
+                <h5 class="text-black mt-0">Cheat Risk</h5>
+                <div class="row w-100 h-75 bg-primary mx-auto mt-3"></div>
+
+
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="jumbotron w-100 h-100">
+                <h5 class="text-black mt-0">Course Poor Performers</h5>
+            </div>
+        </div>
+        </div>
+    </div>
 
     <script>
         var y0=[],y1=[];

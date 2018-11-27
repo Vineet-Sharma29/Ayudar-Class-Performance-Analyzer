@@ -7,11 +7,21 @@ from .forms import file_class
 from django.shortcuts import render
 
 
-# import algo as ag
 
 #
 # def uselesspage(request):
 #     return render(request, 'DB/uselesspage.html')
+
+
+# df= initialise(marks,marks_header)
+# Course = CourseStats(marks)
+# Exam = ExamStats(marks)
+# PersistentLabels = PersistentLabels()
+# PerformanceLabels = PerformanceLabels()
+# Needy_List = mainFunc()
+
+
+
 
 def add_to_database(pat):
     path = 'media/media_/' + pat
