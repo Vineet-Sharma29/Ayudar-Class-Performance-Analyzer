@@ -18,16 +18,17 @@
                 <form method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
 
-                    <div class="image-upload">
+                    <div class="d-inline-block image-upload">
                         <label for="file-input">
                             <i class="fa fa-download fa-2x" aria-hidden="true"></i>
                         </label>
 
                         {{ form.req_file }}
                     </div>
+                    <button type="submit" class="d-inline-block ml-5 btn btn-primary align-top">Generate Result</button>
                 </form>
             </label>
-            <button type="submit" class="ml-5 btn btn-primary align-top">Generate Result</button>
+
         </div>
     </div>
 
