@@ -2,7 +2,7 @@ from django import forms
 from .models import csvfile
 
 class file_class(forms.ModelForm):
-	#req_file = forms.FileField()
+	req_file = forms.FileField(widget=forms.FileInput(attrs={'id':'file-input'}))
 	class Meta:
 		model = csvfile
 		fields = ('req_file',)

@@ -7,7 +7,7 @@
     <meta name="description" content="Learning Management System">
     <meta name="author" content="Group-4">
     <!-- Bootstrap core CSS -->
-    <link href="{% static "landing_page/css/bootstrap.min.css" %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="shortcut icon" type="image/png" href="{% static "landing_page/images/LMS-i.png" %}"/>
     <!-- Custom fonts-->
     <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
@@ -42,23 +42,23 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'landing_page:landing_page' %}">Home</a>
+                    <a class="nav-link text-primary" href="{% url 'landing_page:landing_page' %}">Home</a>
                 </li>
                 {% if not user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'registration:register' %}">Sign Up</a>
+                    <a class="nav-link text-primary" href="{% url 'registration:register' %}">Sign Up</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'registration:login' %}">Log In</a>
+                    <a class="nav-link text-primary" href="{% url 'registration:login' %}">Log In</a>
                 </li>
                 {% else %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'dashboard:dashboard' %}">Dashboard</a>
+                    <a class="nav-link text-primary" href="{% url 'dashboard:dashboard' %}">Dashboard</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'registration:logout' %}">Logout</a>
+                    <a class="nav-link text-primary" href="{% url 'registration:logout' %}">Logout</a>
                 </li>
                 {% endif %}
 
@@ -73,7 +73,7 @@
 <footer class="py-5 bg-black">
     <div class="container">
         <p class="m-0 text-center text-white small mb-2 footer_text">Copyright &copy; LMS</p>
-        <p class="m-0 text-center text-white small footer_text">Made With <i class="far fa-heart mx-1"></i>work</p>
+        <p class="m-0 text-center text-white small footer_text">Made With <i class="fa fa-heart mx-1"></i>work</p>
     </div>
 
     <a class="scrollup" style="display: none;">Scroll</a>
