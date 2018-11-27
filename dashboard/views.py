@@ -1,26 +1,11 @@
 from django.shortcuts import render
 from .models import Marks
-from .models import csvfile,Enrollments
+from .models import csvfile, Enrollments
 from django.http import HttpResponse
 from .forms import file_class
 
 from django.shortcuts import render
-
-
-
-#
-# def uselesspage(request):
-#     return render(request, 'DB/uselesspage.html')
-
-
-# df= initialise(marks,marks_header)
-# Course = CourseStats(marks)
-# Exam = ExamStats(marks)
-# PersistentLabels = PersistentLabels()
-# PerformanceLabels = PerformanceLabels()
-# Needy_List = mainFunc()
-
-
+import dashboard.algo as alg
 
 
 def add_to_database(pat):
@@ -40,8 +25,17 @@ def add_to_database(pat):
         f.seek(0, 0)
         f_all = f.readlines()
 
-        return_tuple(f_all)
-
+        tuples = return_tuple(f_all)
+        print(list(tuples))
+        headers = ['RollNumber', 'Name', 'oth-q1-70', 'oth-q2-70', 'oth-q3-90', 'oth-q4-70']
+        df = alg.initialse(tuples, headers)
+        print(df.columns)
+        NeedyList = alg.mainFunc(df)
+        CourseOverview = alg.CourseStats(df)
+        ExamOverview = alg.ExamStats(df)
+        Persistent_Labels = alg.PersistentLabels(df)
+        Performance_Labels = alg.PerformanceLabels(df)
+        print(NeedyList)
         f_all[len(f_all) - 1] = f_all[len(f_all) - 1] + '\n'
         for i in range(1, len(f_all)):
             f_all[i] = f_all[i].rstrip()
@@ -63,28 +57,29 @@ def add_to_database(pat):
     # all_quiz_marks_in_all_courses()
     return 'done'
 
+
 #
 # def call():
 #     print(Marks.objects.filter(q_name="q3"))
 
+#
+# def return_tuple(line):
+#     req_tuple = ()
+#     for n in range(1, len(line)):
+#         line[n] = line[n].rstrip()
+#         x = tuple(line[n].split(','))
+#         req_tuple += (x,)
+#     print(req_tuple)
 
-def return_tuple(line):
-    req_tuple = ()
-    for n in range(1, len(line)):
-        line[n] = line[n].rstrip()
-        x = tuple(line[n].split(','))
-        req_tuple += (x,)
-    print(req_tuple)
+# tup=tuple(a)
+# print(tup(0))
 
-    # tup=tuple(a)
-    # print(tup(0))
+# a[0]=tuple(a[0])
+# print(type(a[0]))
 
-    # a[0]=tuple(a[0])
-    # print(type(a[0]))
-
-    # tup=tuple(a)
-    #
-    # print(tup(0))
+# tup=tuple(a)
+#
+# print(tup(0))
 
 
 def dashboard(request):
@@ -95,12 +90,12 @@ def dashboard(request):
             print(request.FILES['req_file'])
             file1 = str(request.FILES['req_file'])
             add_to_database(file1)
-            return render(request, "dashboard/dashboard.html",{'form':form1})
+            return render(request, "dashboard/dashboard.html", {'form': form1})
         else:
             return HttpResponse("form is invalidd")
     else:
         form1 = file_class()
-        return render(request, "dashboard/dashboard.html",{'form':form1})
+        return render(request, "dashboard/dashboard.html", {'form': form1})
 
 
 # for student in students:
@@ -123,27 +118,31 @@ def list_of_students(request):
 def custom_404(request):
     return render(request, "dashboard/404.html")
 
+
 def all_quiz_marks_in_a_course():
-    b=Marks.objects.filter(student_id="55", course_id="ASE", prof_id="SUBU").values_list('q_name','marks')
+    b = Marks.objects.filter(student_id="55", course_id="ASE", prof_id="SUBU").values_list('q_name', 'marks')
     print(b)
     print(type(b))
 
 
-
 def all_quiz_marks_in_all_courses():
-    print(Marks.objects.filter(student_id="55").values_list('course_id','q_name','marks'))
-
+    print(Marks.objects.filter(student_id="55").values_list('course_id', 'q_name', 'marks'))
 
 
 def return_firstline_as_tuple(fline):
     print(tuple(fline))
 
 
-
 def return_tuple(line):
-    req_tuple = ()
+    req_tuple = []
     for n in range(1, len(line)):
         line[n] = line[n].rstrip()
-        x = tuple(line[n].split(','))
-        req_tuple += (x,)
+        x = line[n].split(',')
+        y = []
+        y.append(x[0])
+        y.append(x[1])
+        for i in range(2, len(x)):
+            y.append(int(x[i]))
+        req_tuple += [y]
     print(req_tuple)
+    return req_tuple

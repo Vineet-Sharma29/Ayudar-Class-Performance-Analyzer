@@ -13,6 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a UruRL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls import url
 from django.urls import path
 from . import views
 
@@ -21,7 +22,6 @@ app_name = "registration"
 urlpatterns = [
     path('login/', views.login_display, name='login'),
     path('register/', views.register_display, name='register'),
-    path('register/otp_verify/', views.otp_verify, name='otp'),
     path('logout/', views.logout_view, name='logout'),
     path('login/reset_password/', views.reset_password, name='reset'),
     path('login/reset_password/reset_otp_verify/', views.reset_otp_verify, name='reset'),
@@ -29,4 +29,6 @@ urlpatterns = [
     path('dashboard/edit_profile/', views.editprofile, name='edit_profile'),
     path('dashboard/my_profile/', views.show_profile, name='show_profile'),
     path('course/', views.course_selection, name='course_selection'),
+    url(r'activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/',
+        views.activate, name='activate'),
 ]
