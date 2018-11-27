@@ -32,7 +32,7 @@ def login_display(request):
             if user:
                 if user.is_active:
                     login(request, user)
-                    return redirect('http://127.0.0.1:8000/dashboard/')
+                    return redirect('dashboard/')
                 else:
                     return HttpResponse('Not registered')
     else:
@@ -216,6 +216,7 @@ def activate(request, uidb64, token):
         user.save()
         login(request, user)
         # return redirect('home')
-        return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
+        return redirect('registration:course')
+
     else:
         return HttpResponse('Activation link is invalid!')
