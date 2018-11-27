@@ -6,6 +6,12 @@ from .forms import RegisterForm, LoginForm, ResetForm, ProfileForm, CourseForm
 from django.contrib.auth import authenticate, login, logout
 import random
 from django.contrib.auth.decorators import login_required
+from django.contrib.sites.shortcuts import get_current_site
+from django.utils.encoding import force_bytes, force_text
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.template.loader import render_to_string
+from .tokens import account_activation_token
+
 
 otp = ''
 otp2 = ''
@@ -56,21 +62,18 @@ def register_display(request):
 
             mail = form.cleaned_data.get('email')
             print(mail)
+            current_site = get_current_site(request)
+            mail_subject = 'Activate your blog account.'
+            message = render_to_string('login/acc_active_email.html', {
+                'user': user,
+                'domain': current_site.domain,
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)).decode(),
+                'token': account_activation_token.make_token(user),
+            })
 
-            global otp
+            send_mail(mail_subject, message, 'iiits2021@gmail.com', [mail])
+            return HttpResponse('email has been sent')
 
-            for i in range(6):
-                otp = otp + str(random.randint(0, 9))
-            mail_subject = 'Otp Verifiaction'
-            message = 'Your otp is ' + otp
-            send_mail(
-                mail_subject,
-                message,
-                'iiits2021@gmail.com',
-                [mail],
-            )
-            request.session['username'] = form.cleaned_data.get('username')
-            return render(request, 'login/otp.html', {})
     else:
         form = RegisterForm()
     context = {
@@ -84,33 +87,6 @@ def register_display(request):
 register otp verify
 
 '''
-
-
-def otp_verify(request):
-    global otp
-    if request.method == 'POST':
-        otp1 = str(request.POST['otp'])
-        otp = otp1.upper()
-        if otp == otp1:
-            username = request.session['username']
-            p = User.objects.get(username=username)
-            print(p)
-            p.is_active = True
-            password = p.password
-            print(password)
-            q = professor_profile.objects.create(professor=p)
-            login(request, p)
-            otp = ''
-            return redirect('http://127.0.0.1:8000/course/')
-
-        else:
-            username = request.session['username']
-            p = User.objects.get(username=username)
-            otp = ''
-            p.delete()
-        return HttpResponse('<a href="http://127.0.0.1:8000/">Go back to Home</a>')
-    else:
-        return HttpResponse('Please Register')
 
 
 '''
@@ -226,3 +202,20 @@ def course_selection(request):
     else:
         form = CourseForm()
     return render(request, 'login/course.html', {'form': form})
+
+
+def activate(request, uidb64, token):
+    try:
+        uid = force_text(urlsafe_base64_decode(uidb64))
+        print(uid)
+        user = User.objects.get(pk=uid)
+    except(TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+    if user is not None and account_activation_token.check_token(user, token):
+        user.is_active = True
+        user.save()
+        login(request, user)
+        # return redirect('home')
+        return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
+    else:
+        return HttpResponse('Activation link is invalid!')
