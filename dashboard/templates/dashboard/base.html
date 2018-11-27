@@ -9,6 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="shortcut icon" type="image/png" href="{% static "landing_page/images/LMS-i.png" %}"/>
     <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
           integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <!-- Our Custom CSS -->
@@ -27,12 +28,11 @@
 </head>
 
 <body class="dashboard-body">
-{% if user.is_authenticated %}
+{% if not user.is_authenticated %}
 <div class="wrapper">
     <nav id="sidebar">
 
         <ul class="list-unstyled components">
-
             <li>
                 <a href="#">
                 </a>
@@ -44,28 +44,37 @@
 
              <li>
                 <a href="#">
-                    <img class="img-responsive rounded-circle" src="http://placehold.it/250x150" alt="Professor Name" width="64" height="64"/>
-                    <span class="mt-1" style="font-size: 1vw;">Subu</span>
+                    <img class="img-responsive rounded-circle mx-5 mt-3 border border-primary" src="http://placehold.it/250x150" alt="Professor Name" width="120" height="120" />
+                    <div class="page-header mx-4 my-4 text-center">
+                      <h1>Hi!<br/>Subu</h1>
+                    </div>
                 </a>
             </li>
-
+            <hr/>
             <li>
                 <a href="{% url 'dashboard:dashboard' %}">
-                    <i class="fas fa-graduation-cap mr-2" data-target="classOverview"></i>
+                    <i class="fas fa-graduation-cap fa-2x mr-2" data-target="classOverview"></i>
                     Class Overview
                 </a>
             </li>
 
             <li>
                 <a href="{% url 'dashboard:needy_list' %}">
-                    <i class="fas fa-asterisk mr-2" data-target="needyList"></i>
+                    <i class="fas fa-asterisk fa-2x mr-2" data-target="needyList"></i>
                     Needy List
                 </a>
             </li>
 
             <li>
                 <a href="{% url 'dashboard:list_of_students' %}" data-target="listStudents">
-                    <i class="fas fa-list-alt mr-2"></i>
+                    <i class="fas fa-list-alt fa-2x mr-2"></i>
+                    List of All Students
+                </a>
+            </li>
+
+            <li>
+                <a href="{% url 'dashboard:list_of_students' %}" data-target="listStudents">
+                    <i class="fas fa-list-alt fa-2x mr-2"></i>
                     List of All Students
                 </a>
             </li>
@@ -89,15 +98,15 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link text-primary" href="{% url 'landing_page:landing_page' %}">Home</a>
+                            <a class="nav-link text-primary font-weight-bold" href="{% url 'landing_page:landing_page' %}">HOME</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link text-primary" href="{% url 'dashboard:dashboard' %}">Dashboard</a>
+                            <a class="nav-link text-primary font-weight-bold" href="{% url 'dashboard:dashboard' %}">DASHBOARD</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link text-primary" href="{% url 'registration:logout' %}">Logout</a>
+                            <a class="nav-link text-primary font-weight-bold" href="{% url 'registration:logout' %}">LOGOUT</a>
                         </li>
 
                     </ul>
@@ -118,7 +127,7 @@
 <footer class="py-5 bg-dark">
     <div class="container">
         <p class="m-0 text-center text-white small mb-2 footer_text">Copyright &copy; LMS</p>
-        <p class="m-0 text-center text-white small footer_text">Made With <i class="far fa-heart mx-1"></i>work</p>
+        <p class="m-0 text-center text-white small footer_text">Made With <i class="fa fa-heart mx-1"></i>work</p>
     </div>
 
     <a class="scrollup" style="display: none;">Scroll</a>
@@ -167,7 +176,17 @@
         });
     });
 </script>
+
+
+{% block script %}
+{% endblock %}
+
+
+
+
 {% endif %}
+
+
 
 </body>
 </html>
