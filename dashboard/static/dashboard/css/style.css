@@ -348,7 +348,7 @@ clip-path: polygon(0 0, 100% 0, 100% 96%, 0% 100%);
 
 #sidebar ul li a:hover {
     color: #7386D5;
-    background: #fff;
+    background: #efefef;
 }
 
 #sidebar ul li a i {
