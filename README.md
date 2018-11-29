@@ -17,3 +17,6 @@ Download this repo using command ``` git clone https://github.com/Vineet-Sharma2
 Then ```cd``` into ```ase1``` repo.
 After changing the directory, run the command ```python manage.py runserver```
 
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/df7203a2435749eebc34ccd72f10c748)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Vineet-Sharma29/ase1&amp;utm_campaign=Badge_Grade)
+
