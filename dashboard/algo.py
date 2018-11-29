@@ -213,14 +213,13 @@ def CourseStats(marks):
     cheat_flagged = marks.sort_values('cheatflagged', ascending=False)['RollNumber'].iloc[1:6]
 
     # Calculate the range of marks for most students
-    avg_marks = str(CI(marks, 'overall')[0]) + '-' + str(CI(marks, 'overall')[1])
-
+    avg_marks = str(round(CI(marks, 'overall')[0], 2)) + '-' + str(round(CI(marks, 'overall')[1], 2))
 
     # Calculate quartile scores for weighted marks
 
-    quartile1 = marks['overall'].describe()['25%']
-    quartile2 = marks['overall'].describe()['50%']
-    quartile3 = marks['overall'].describe()['75%']
+    quartile1 = round(marks['overall'].describe()['25%'], 2)
+    quartile2 = round(marks['overall'].describe()['50%'], 2)
+    quartile3 = round(marks['overall'].describe()['75%'], 2)
 
     return (
         course_difficulty,
@@ -252,7 +251,6 @@ def ExamStats(marks):
     count = 1
     for i in range(len(temp)):
         if len(temp[i].split('-')) > 2:
-
             count += 1
     location = temp[count]
 
@@ -297,13 +295,12 @@ def ExamStats(marks):
         cheat_flagged = []
         for index in check_sheets_index:
             cheat_flagged.append(marks['RollNumber'].iloc[index])
-    else :
+    else:
         cheat_flagged = []
 
     # Calculate the range of marks for most students
 
     avg_marks = str(CI(marks, location)[0]) + '-' + str(CI(marks, location)[1])
-
 
     # Calculate quartile scores for exam marks
 
@@ -316,6 +313,7 @@ def ExamStats(marks):
         cheat_risk,
         cheat_flagged,
         avg_marks,
+        CI(marks, 'overall')[1],
         quartile1,
         quartile2,
         quartile3,
