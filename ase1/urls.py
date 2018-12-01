@@ -21,11 +21,11 @@ from django.conf.urls import url
 
 urlpatterns = [
                   path('admin/', admin.site.urls),
-                  path('dashboard/', include(('dashboard.urls','dashboard'))),
-                  path('registration/', include(('registration.urls','registration'))),
-                  path('', include(('landing_page.urls','landing_page'))),
+                  path('dashboard/', include(('dashboard.urls', 'dashboard'))),
+                  path('registration/', include(('registration.urls', 'registration'))),
+                  path('', include(('landing_page.urls', 'landing_page'))),
                   path('student_report/', include('student_report.urls')),
-                  url(r'auth/', include(('social_django.urls','social'))),
+                  url(r'auth/', include(('social_django.urls', 'social'))),
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

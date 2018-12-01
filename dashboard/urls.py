@@ -1,7 +1,7 @@
 from django.urls import path
 from . import views
 
-app_name="dashboard"
+app_name = "dashboard"
 
 urlpatterns = [
     path('', views.dashboard, name="dashboard"),
@@ -9,5 +9,3 @@ urlpatterns = [
     path('list_of_students/', views.list_of_students, name='list_of_students'),
     path('custom_404/', views.custom_404, name='custom_404'),
 ]
-
-

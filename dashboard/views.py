@@ -9,7 +9,7 @@ from .forms import file_class
 
 from django.shortcuts import render
 import dashboard.algo as alg
-
+from django.contrib.auth.decorators import login_required
 
 def add_to_database(pat):
     path = 'media/media_/' + pat
@@ -84,7 +84,7 @@ def add_to_database(pat):
 #
 # print(tup(0))
 
-
+# @login_required
 def dashboard(request):
     form1 = file_class(request.POST, request.FILES or None)
     if request.method == 'POST':
@@ -97,7 +97,8 @@ def dashboard(request):
         else:
             return HttpResponse("form is invalidd")
     else:
-        user = User.objects.get(username=request.user)
+        # user = User.objects.get(username=request.user)
+        user = User.objects.get(username="vineet")
         profile = professor_profile.objects.get(professor=user)
         form1 = file_class()
         return render(request, "dashboard/dashboard.html", {'form': form1,'username':user.username,'photo':profile.professor_photo})
