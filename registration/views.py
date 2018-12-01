@@ -1,24 +1,16 @@
 from django.shortcuts import render, redirect
-from django.urls import reverse
-
-import dashboard.views as vw
 from .models import professor_profile, course, User
 from django.core.mail import send_mail
 from django.shortcuts import HttpResponse
 from .forms import RegisterForm, LoginForm, ResetForm, ProfileForm, CourseForm
 from django.contrib.auth import authenticate, login, logout
-import random
 from django.contrib.auth.decorators import login_required
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from .tokens import account_activation_token
-
-
-otp = ''
-otp2 = ''
-
+from .forms import ResetPasswordForm
 
 # login
 
@@ -66,7 +58,7 @@ def register_display(request):
             mail = form.cleaned_data.get('email')
             print(mail)
             current_site = get_current_site(request)
-            mail_subject = 'Activate your blog account.'
+            mail_subject = 'Activate your account.'
             message = render_to_string('login/acc_active_email.html', {
                 'user': user,
                 'domain': current_site.domain,
@@ -84,12 +76,6 @@ def register_display(request):
     }
     return render(request, 'login/register1.html', context)
 
-
-'''
-
-register otp verify
-
-'''
 
 
 '''
@@ -114,56 +100,54 @@ forgot password
 
 def reset_password(request):
     if request.method == 'POST':
-        form = ResetForm(request.POST)
-        if form.is_valid():
-            mail = form.cleaned_data.get('email')
-            global otp2
-            for i in range(6):
-                otp2 = otp2 + str(random.randint(0, 9))
-            mail_subject = 'Password Reset Otp Verification'
-            message = 'Your otp is ' + otp2
-            send_mail(
-                mail_subject,
-                message,
-                'iiits2021@gmail.com',
-                [mail],
-            )
-            request.session['email'] = mail
-            return render(request, 'login/otp2.html')
-        else:
-            return HttpResponse('Email does not exist')
+        form1 = ResetForm(request.POST)
+        if form1.is_valid():
+            mail = form1.cleaned_data.get('email')
+            user=  User.objects.get(email=mail)
+            current_site = get_current_site(request)
+            mail_subject = 'Password Reset Link.'
+            message = render_to_string('login/reset_confirm_email.html', {
+                'user': user,
+                'domain': current_site.domain,
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)).decode(),
+                'token': account_activation_token.make_token(user),
+            })
+
+            send_mail(mail_subject, message, 'iiits2021@gmail.com', [mail])
+            return HttpResponse('Link has been sent to your email')
     else:
         form1 = ResetForm()
-        return render(request, 'login/reset_email.html', {'form': form1})
+    return render(request, 'login/reset_email.html', {'form': form1})
 
 
-def reset_otp_verify(request):
-    if request.method == 'POST':
-        global otp2
-        otp = str(request.POST['otp'])
-        otp = otp.upper()
-        if otp2 == otp:
-            otp2 = ''
-            return render(request, 'login/reset_password.html', {})
+def display_reset_password(request, uidb64, token):
+    try:
+        uid = force_text(urlsafe_base64_decode(uidb64))
+        print(uid)
+        user = User.objects.get(pk=uid)
+    except(TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+    if user is not None and account_activation_token.check_token(user, token):
+        #login(request, user)
+        request.session['email']=user.email
+        return redirect('registration:save_password')
 
-        else:
-            otp2 = ''
-            del request.session['email']
-            return HttpResponse(
-                'Worng Otp,to resend click <a href="http://127.0.0.1:8000/login/reset_password/">here</a>')
     else:
-        return HttpResponse('404 error')
-
+        return HttpResponse('Activation link is invalid!')
 
 def save_password(request):
-    mail = request.session['email']
-    user = User.objects.get(email=mail)
-    print(user)
-    user.set_password(request.POST['password'])
-    user.save()
-    return HttpResponse('Password has been reset Please login<a href="http://127.0.0.1:8000/login/">here</a>')
-
-
+    if request.method=="POST":
+        form1 = ResetPasswordForm(request.POST)
+        if form1.is_valid():
+            mail = request.session['email']
+            user = User.objects.get(email=mail)
+            print(user)
+            user.set_password(form1.cleaned_data.get('password'))
+            user.save()
+            return HttpResponse("Password has been reset Please login<a href='{{ url 'registrartion:login' }}'>here</a>")
+    else:
+        form1 = ResetPasswordForm()
+    return render(request,'login/reset_password.html',{'form':form1})
 def editprofile(request):
     if request.method == 'POST':
         user = User.objects.get(username=request.user)

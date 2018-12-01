@@ -28,7 +28,7 @@
 </head>
 
 <body class="dashboard-body">
-{% if not user.is_authenticated %}
+{% if user.is_authenticated %}
 <div class="wrapper">
     <nav id="sidebar">
 
@@ -44,9 +44,9 @@
 
              <li class="dashboard-nav-link">
                 <a href="#">
-                    <img class="img-responsive rounded-circle mx-5 mt-3 border border-primary" src="http://placehold.it/250x150" alt="Professor Name" width="120" height="120" />
+                    <img class="img-responsive rounded-circle mx-5 mt-3 border border-primary" src="{{ photo.url }}" alt="Professor Name" width="120" height="120" />
                     <div class="page-header mx-4 my-4 text-center">
-                      <h1>Hi!<br/>Subu</h1>
+                      <h1>Hi!<br/>{{ username }}</h1>
                     </div>
                 </a>
             </li>

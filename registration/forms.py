@@ -94,14 +94,14 @@ class ResetForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('email',)
-    def clean(self):
+    def clean_email(self):
         cleaned_data = super().clean()
         email = cleaned_data.get("email")
         email_set = User.objects.filter(email=email)
 
         if not email_set.exists():
             raise forms.ValidationError('Email is not registered')
-            return email
+        return email
 
 class CourseForm(forms.Form):
     course_id = forms.CharField()
@@ -113,3 +113,14 @@ class CourseForm(forms.Form):
         if not courselist.exists():
             raise forms.ValidationError('course does not exist')
             return course_id
+
+class ResetPasswordForm(forms.Form):
+    password = forms.CharField(widget=forms.PasswordInput)
+    confirm_password = forms.CharField(widget=forms.PasswordInput)
+    def clean_confirm_password(self):
+        cleaned_data = super().clean()
+        password = cleaned_data.get('password')
+        confirm_password = cleaned_data.get('confirm_password')
+        if password!=confirm_password:
+            raise forms.ValidationError('Passwords did not match')
+        return confirm_password
