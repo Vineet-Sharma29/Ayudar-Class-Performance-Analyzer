@@ -24,11 +24,12 @@ urlpatterns = [
     path('register/', views.register_display, name='register'),
     path('logout/', views.logout_view, name='logout'),
     path('login/reset_password/', views.reset_password, name='reset'),
-    path('login/reset_password/reset_otp_verify/', views.reset_otp_verify, name='reset'),
-    path('login/reset_password/reset_otp_verify/save_password/', views.save_password, name='save_password'),
+    url(r'display_reset_password/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/',
+        views.display_reset_password, name='display_reset_password'),
     path('dashboard/edit_profile/', views.editprofile, name='edit_profile'),
     path('dashboard/my_profile/', views.show_profile, name='show_profile'),
     path('course/', views.course_selection, name='course_selection'),
     url(r'activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/',
         views.activate, name='activate'),
+    path('save_password',views.save_password,name='save_password')
     ]

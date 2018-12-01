@@ -6,7 +6,7 @@
 </head>
 <body>
     <form method="POST">
-        Enter email to which Otp will be sent
+        Enter email to which link will be sent
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">send</button>
