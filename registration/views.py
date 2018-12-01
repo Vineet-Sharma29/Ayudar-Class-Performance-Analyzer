@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import professor_profile, course, User
+from .models import professor_profile, User
 from django.core.mail import send_mail
 from django.shortcuts import HttpResponse
 from .forms import RegisterForm, LoginForm, ResetForm, ProfileForm, CourseForm
@@ -11,6 +11,7 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from .tokens import account_activation_token
 from .forms import ResetPasswordForm
+from dashboard.models import course_dashboard
 
 # login
 
@@ -148,6 +149,8 @@ def save_password(request):
     else:
         form1 = ResetPasswordForm()
     return render(request,'login/reset_password.html',{'form':form1})
+
+
 def editprofile(request):
     if request.method == 'POST':
         user = User.objects.get(username=request.user)
@@ -185,7 +188,8 @@ def course_selection(request):
             profile = professor_profile.objects.get(professor=user)
             profile.professor_course = str(form.cleaned_data['course_id']).upper()
             profile.save()
-            return redirect('http://127.0.0.1:8000/dashboard')
+            course_dashboard.objects.create(professor=user)
+            return redirect('dashboard:dashboard')
     else:
         form = CourseForm()
     return render(request, 'login/course.html', {'form': form})
@@ -202,8 +206,7 @@ def activate(request, uidb64, token):
         user.is_active = True
         user.save()
         login(request, user)
-        # return redirect('home')
-        return HttpResponse('Thank you')
+        return redirect('registration:course_selection')
 
     else:
         return HttpResponse('Activation link is invalid!')
