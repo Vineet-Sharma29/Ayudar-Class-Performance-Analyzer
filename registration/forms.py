@@ -80,6 +80,7 @@ class LoginForm(forms.Form):
 class ProfileForm(forms.ModelForm):
     professor_description = forms.CharField(max_length=200,widget=forms.Textarea())
     professor_course = forms.CharField(max_length=100)
+    professor_photo = forms.ImageField()
     class Meta:
         model=professor_profile
         fields=('professor_description',
@@ -114,7 +115,7 @@ class ResetForm(forms.ModelForm):
 
 class CourseForm(forms.Form):
     course_id = forms.CharField()
-    def clean(self):
+    def clean_course_id(self):
         cleaned_data = super().clean()
         course_id = str(cleaned_data.get('course_id'))
         course_id = course_id.upper()

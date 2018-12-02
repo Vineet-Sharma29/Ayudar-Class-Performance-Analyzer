@@ -5,12 +5,12 @@ from .models import Marks
 from .models import Enrollments, course_dashboard
 from django.http import HttpResponse
 from .forms import file_class
-
+#from background_task import background
 from django.shortcuts import render
 import dashboard.algo as alg
 from django.contrib.auth.decorators import login_required
 
-
+#@background()
 def add_to_database(pat, username, course_id):
     path = 'media/media_/' + pat
     co_id = course_id
@@ -43,23 +43,23 @@ def add_to_database(pat, username, course_id):
 
         print(CourseOverview)
         f_all[len(f_all) - 1] = f_all[len(f_all) - 1] + '\n'
-        # for i in range(1, len(f_all)):
-        #     f_all[i] = f_all[i].rstrip()
-        #     f2 = f_all[i].split(',')
-        #
-        #     Enrollments.objects.create(course_id=co_id, student_id=f2[0], student_name=f2[1], prof_id=pr_id,
-        #                                status="not_needy")
-        #
-        #     for j in range(0, len(f2) - 2):
-        #         sid = f2[0]
-        #         sname = f2[1]
-        #         marks = f2[j + 2]
-        #         qname = f1[j + 2]
-        #
-        #         Marks.objects.create(student_name=sname, student_id=sid, marks=marks, q_name=qname, course_id=co_id,
-        #                              prof_id=pr_id)
-    #
-    # all_quiz_marks_in_a_course()
+        for i in range(1, len(f_all)):
+            f_all[i] = f_all[i].rstrip()
+            f2 = f_all[i].split(',')
+
+            Enrollments.objects.create(course_id=co_id, student_id=f2[0], student_name=f2[1], prof_id=pr_id,
+                                       status="not_needy")
+
+            for j in range(0, len(f2) - 2):
+                sid = f2[0]
+                sname = f2[1]
+                marks = f2[j + 2]
+                qname = f1[j + 2]
+
+                Marks.objects.create(student_name=sname, student_id=sid, marks=marks, q_name=qname, course_id=co_id,
+                                     prof_id=pr_id)
+
+    all_quiz_marks_in_a_course()
     # all_quiz_marks_in_all_courses()
     return [CourseOverview, ExamOverview, NeedyList]
 

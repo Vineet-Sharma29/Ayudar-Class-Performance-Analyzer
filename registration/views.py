@@ -161,7 +161,7 @@ def editprofile(request):
             profile.professor_description = form.cleaned_data['professor_description']
             profile.professor_course = form.cleaned_data['professor_course']
             profile.save()
-            return HttpResponse('saved <a href="view-profiles">here</a>')
+            return redirect('registration:allprofiles')
 
     else:
         user = User.objects.get(username=request.user)
@@ -171,7 +171,16 @@ def editprofile(request):
 
     return render(request, 'login/profile.html', {'form':form})
 
-
+def allprofiles(request):
+    professors_details = []
+    users = User.objects.all()
+    for i in users:
+        if not i.is_superuser:
+            professor = User.objects.get(username=i)
+            profile = professor_profile.objects.get(professor=professor)
+            details = (str(professor.first_name+' '+professor.last_name),profile.professor_photo,profile.professor_course,profile.professor_description)
+            professors_details.append(details)
+    return render(request,'login/all_profiles.html',{'professor_details':professors_details})
 def show_profile(request):
     user1 = User.objects.get(username=request.user)
     profile1 = professor_profile.objects.get(professor=user1)
