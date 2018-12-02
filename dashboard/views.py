@@ -94,9 +94,8 @@ def dashboard(request):
         if form1.is_valid():
             form1.save()
             print(request.FILES['req_file'])
-            user = User.objects.get(username=request.user)
-            profile = professor_profile.objects.get(professor=user)
-
+            user = User.objects.get(username='vineet')
+            profile = professor_profile.objects.get(professor='vineet')
             file1 = str(request.FILES['req_file'], user.username, professor_profile.professor_course)
             dashboard_stats = add_to_database(file1)
             context = {'form': form1, 'courseoverview': dashboard_stats[0], 'examoverview': dashboard_stats[1],
@@ -106,22 +105,24 @@ def dashboard(request):
         else:
             return HttpResponse("form is invalid")
     else:
-        user = User.objects.get(username=request.user)
-        #user = User.objects.get(username="vineet")
+        # user = User.objects.get(username=request.user)
+        user = User.objects.get(username="vineet")
         profile = professor_profile.objects.get(professor=user)
         form1 = file_class()
         p = course_dashboard.objects.get(professor=user)
         course_values = (
-        p.course_difficulty, p.course_risk, p.course_student_list, p.course_average, p.quartile_1, p.quartile_2,
-        p.quartile_3)
+            p.course_difficulty, p.course_risk, p.course_student_list, p.course_average, [p.quartile_1, p.quartile_2,
+            p.quartile_3])
         last_exam_details = (
-        p.exam_difficulty, p.exam_cheat_risk, p.exam_student_list, p.exam_average, p.quartile_1, p.quartile_2,
-        p.quartile_3)
+            p.exam_difficulty, p.exam_cheat_risk, p.exam_student_list, p.exam_average,[p.quartile_1, p.quartile_2,
+            p.quartile_3])
         return render(request, "dashboard/dashboard.html",
 
                       {'form': form1, 'username': user.username, 'photo': profile.professor_photo,
-                       'courseoverview': course_values, 'examoverview': last_exam_details,
-                       'needystudents': [1, 2, 3, 4, 5]})
+                       'courseoverview': course_values, 'examoverview': last_exam_details
+                       # 'needystudents': [1, 2, 3, 4, 5]
+                       }
+                      )
 
 
 # for student in students:

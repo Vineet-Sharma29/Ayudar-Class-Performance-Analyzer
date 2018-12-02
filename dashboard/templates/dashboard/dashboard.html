@@ -36,8 +36,8 @@
         <div class="col-md-3 col-sm-12 col-md-3 col-xs-12 mx-auto rounded well-container p-2 w-25 bg-light">
             <div class="well">
                 <div class="row">
-                    <h5 class="text-sec col-8"><!--<span class="label label-danger pull-right">- 9%</span>--> Overall
-                        Difficulty</h5>
+                    <h5 class="text-black col-8"><!--<span class="label label-danger pull-right">- 9%</span>--> OVERALL
+                        DIFFICULTY</h5>
                     <img class="col-4" src="{% static "dashboard/images/test.svg" %}" alt="test" width="32"
                          height="32"/>
                 </div>
@@ -78,8 +78,8 @@
         <div class="col-md-3 col-sm-12 col-md-3 col-xs-12 mx-auto rounded well-container p-2 w-25 wildcard-color">
             <div class="well">
                 <div class="row">
-                    <h5 class="text-black col-8"><!--<span class="label label-danger pull-right">- 9%</span>--> Overall
-                        Risk</h5>
+                    <h5 class="text-black col-8"><!--<span class="label label-danger pull-right">- 9%</span>--> OVERALL
+                        RISK</h5>
                     <img class="col-4" src="{% static "dashboard/images/risk.svg" %}" alt="test" width="32"
                          height="32"/>
                 </div>
@@ -98,8 +98,8 @@
         <div class="col-md-3 col-sm-12 col-md-3 col-xs-12 mx-auto rounded well-container p-2 w-25 bg-light">
             <div class="well">
                 <div class="row">
-                    <h5 class="text-black col-8"><!--<span class="label label-danger pull-right">- 9%</span>--> Course
-                        Average</h5>
+                    <h5 class="text-black col-8"><!--<span class="label label-danger pull-right">- 9%</span>-->COURSE
+                        AVERAGE</h5>
                     <img class="col-4" src="{% static "dashboard/images/graph.svg" %}" alt="test" width="32"
                          height="32"/>
                 </div>
@@ -153,56 +153,71 @@
                         <div id="collapseOne" class="collapse show fade" aria-labelledby="headingOne"
                              data-parent="#accordionExample">
                             <div class="card-body m-2">
-                                <div class="chip m-2 w-100">
-                                    <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}"
-                                                      alt="Person"
-                                                      width="96"
-                                                      height="96">
-                                        John Doe
-                                        <span class="text-right badge badge-danger ml-5">Danger</span>
-                                        <span class="text-right badge badge-warning">Warning</span>
-                                    </a>
-                                </div>
-                                <hr class="hr-line"/>
-                                <div class="chip m-2 w-100">
-                                    <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}" alt="Person"
-                                                      width="96"
-                                                      height="96">
-                                        John Doe
-                                        <span class="text-right badge badge-danger ml-5">Danger</span>
-                                        <span class="text-right badge badge-warning">Warning</span>
-                                    </a>
-                                </div>
-                                <hr class="hr-line"/>
-                                <div class="chip m-2 w-100">
-                                    <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}" alt="Person"
-                                                      width="96"
-                                                      height="96">
-                                        John Doe
-                                        <span class="text-right badge badge-danger ml-5">Danger</span>
-                                        <span class="text-right badge badge-warning">Warning</span>
-                                    </a>
-                                </div>
-                                <hr class="hr-line"/>
-                                <div class="chip m-2 w-100">
-                                    <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}" alt="Person"
-                                                      width="96"
-                                                      height="96">
-                                        John Doe
-                                        <span class="text-right badge badge-danger ml-5">Danger</span>
-                                        <span class="text-right badge badge-warning">Warning</span>
-                                    </a>
-                                </div>
-                                <hr class="hr-line"/>
-                                <div class="chip m-2 w-100">
-                                    <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}" alt="Person"
-                                                      width="96"
-                                                      height="96">
-                                        John Doe
-                                        <span class="text-right badge badge-danger ml-5">Danger</span>
-                                        <span class="text-right badge badge-warning">Warning</span>
-                                    </a>
-                                </div>
+
+                                {% for student in courseoverview.2 %}
+                                    <div class="chip m-2 w-100">
+                                        <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}"
+                                                          alt="Person"
+                                                          width="96"
+                                                          height="96">
+                                            {{ student }}
+                                            <span class="text-right badge badge-danger ml-5">Danger</span>
+                                            <span class="text-right badge badge-warning">Warning</span>
+                                        </a>
+                                    </div>
+                                    <hr class="hr-line"/>
+                                {% endfor %}
+
+                                {#                                <div class="chip m-2 w-100">#}
+                                {#                                    <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}"#}
+                                {#                                                      alt="Person"#}
+                                {#                                                      width="96"#}
+                                {#                                                      height="96">#}
+                                {#                                        John Doe#}
+                                {#                                        <span class="text-right badge badge-danger ml-5">Danger</span>#}
+                                {#                                        <span class="text-right badge badge-warning">Warning</span>#}
+                                {#                                    </a>#}
+                                {#                                </div>#}
+                                {#                                <hr class="hr-line"/>#}
+                                {#                                <div class="chip m-2 w-100">#}
+                                {#                                    <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}" alt="Person"#}
+                                {#                                                      width="96"#}
+                                {#                                                      height="96">#}
+                                {#                                        John Doe#}
+                                {#                                        <span class="text-right badge badge-danger ml-5">Danger</span>#}
+                                {#                                        <span class="text-right badge badge-warning">Warning</span>#}
+                                {#                                    </a>#}
+                                {#                                </div>#}
+                                {#                                <hr class="hr-line"/>#}
+                                {#                                <div class="chip m-2 w-100">#}
+                                {#                                    <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}" alt="Person"#}
+                                {#                                                      width="96"#}
+                                {#                                                      height="96">#}
+                                {#                                        John Doe#}
+                                {#                                        <span class="text-right badge badge-danger ml-5">Danger</span>#}
+                                {#                                        <span class="text-right badge badge-warning">Warning</span>#}
+                                {#                                    </a>#}
+                                {#                                </div>#}
+                                {#                                <hr class="hr-line"/>#}
+                                {#                                <div class="chip m-2 w-100">#}
+                                {#                                    <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}" alt="Person"#}
+                                {#                                                      width="96"#}
+                                {#                                                      height="96">#}
+                                {#                                        John Doe#}
+                                {#                                        <span class="text-right badge badge-danger ml-5">Danger</span>#}
+                                {#                                        <span class="text-right badge badge-warning">Warning</span>#}
+                                {#                                    </a>#}
+                                {#                                </div>#}
+                                {#                                <hr class="hr-line"/>#}
+                                {#                                <div class="chip m-2 w-100">#}
+                                {#                                    <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}" alt="Person"#}
+                                {#                                                      width="96"#}
+                                {#                                                      height="96">#}
+                                {#                                        John Doe#}
+                                {#                                        <span class="text-right badge badge-danger ml-5">Danger</span>#}
+                                {#                                        <span class="text-right badge badge-warning">Warning</span>#}
+                                {#                                    </a>#}
+                                {#                                </div>#}
                             </div>
                         </div>
                     </div>
@@ -222,47 +237,70 @@
                         <div id="collapseTwo" class="collapse fade" aria-labelledby="headingTwo"
                              data-parent="#accordionExample">
                             <div class="card-body">
-                                <div class="row">
-                                    <div class="w-100 pl-3"><h3 class="display-5 text-primary">Quartile 1</h3></div>
-                                    <div class="row w-100 pl-3">
-                                         <div class="col-9 mt-2">
-                                            <div class="progress">
-                                                <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:{{ courseoverview.4 }}%"></div>
+
+                                {% for quartile in courseoverview.4 %}
+                                    <div class="row">
+                                        <div class="w-100 pl-3"><h3 class="display-5 text-primary">
+                                            Quartile 1</h3></div>
+                                        <div class="row w-100 pl-3">
+                                            <div class="col-9 mt-2">
+                                                <div class="progress">
+                                                    <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                                         style="width:{{ quartile }}%"></div>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-3">
-                                            <p class="display-5 text-success ml-3 text-left">{{ courseoverview.4 }}</p>
+                                            <div class="col-3">
+                                                <p class="display-5 text-success ml-3 text-left">{{ quartile }}</p>
+                                            </div>
                                         </div>
                                     </div>
                                     <hr/>
 
-                                </div>
-                                <hr/>
-                                <div class="row">
-                                    <div class="w-100 pl-3"><h3 class="display-5 text-primary">Quartile 2</h3></div>
-                                    <div class="w-100 pl-3">
-                                        <div class="col-3">
-                                            <p class="display-5 text-success ml-3 text-left">{{ courseoverview.5 }}</p>
-                                        </div>
-                                        <div class="col-9">
-                                            <div class="progress-bar progress-bar-striped progress-bar-animated"
-                                                 style="width: 40%"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr/>
-                                <div class="row">
-                                    <div class="w-100 pl-3"><h3 class="display-5 text-primary">Quartile 3</h3></div>
-                                    <div class="w-100 pl-3">
-                                        <div class="col-3">
-                                            <p class="display-5 text-success ml-3 text-left">{{ courseoverview.6 }}</p>
-                                        </div>
-
-                                        <div class="progress-bar" style="width:70%"></div>
-
-                                    </div>
-
-                                </div>
+                                {% endfor %}
+                                {#                                <div class="row">#}
+                                {#                                    <div class="w-100 pl-3"><h3 class="display-5 text-primary">Quartile </h3></div>#}
+                                {#                                    <div class="row w-100 pl-3">#}
+                                {#                                        <div class="col-9 mt-2">#}
+                                {#                                            <div class="progress">#}
+                                {#                                                <div class="progress-bar progress-bar-striped progress-bar-animated"#}
+                                {#                                                     style="width:{{ quartile }}%"></div>#}
+                                {#                                            </div>#}
+                                {#                                        </div>#}
+                                {#                                        <div class="col-3">#}
+                                {#                                            <p class="display-5 text-success ml-3 text-left">{{ quartile }}</p>#}
+                                {#                                        </div>#}
+                                {#                                    </div>#}
+                                {#                                </div>#}
+                                {#                                <hr/>#}
+                                {#                                <div class="row">#}
+                                {#                                    <div class="w-100 pl-3"><h3 class="display-5 text-primary">Quartile 1</h3></div>#}
+                                {#                                    <div class="row w-100 pl-3">#}
+                                {#                                        <div class="col-9 mt-2">#}
+                                {#                                            <div class="progress">#}
+                                {#                                                <div class="progress-bar progress-bar-striped progress-bar-animated"#}
+                                {#                                                     style="width:{{ courseoverview.4 }}%"></div>#}
+                                {#                                            </div>#}
+                                {#                                        </div>#}
+                                {#                                        <div class="col-3">#}
+                                {#                                            <p class="display-5 text-success ml-3 text-left">{{ courseoverview.4 }}</p>#}
+                                {#                                        </div>#}
+                                {#                                    </div>#}
+                                {#                                </div>#}
+                                {#                                <hr/>#}
+                                {#                                <div class="row">#}
+                                {#                                    <div class="w-100 pl-3"><h3 class="display-5 text-primary">Quartile 1</h3></div>#}
+                                {#                                    <div class="row w-100 pl-3">#}
+                                {#                                        <div class="col-9 mt-2">#}
+                                {#                                            <div class="progress">#}
+                                {#                                                <div class="progress-bar progress-bar-striped progress-bar-animated"#}
+                                {#                                                     style="width:{{ courseoverview.4 }}%"></div>#}
+                                {#                                            </div>#}
+                                {#                                        </div>#}
+                                {#                                        <div class="col-3">#}
+                                {#                                            <p class="display-5 text-success ml-3 text-left">{{ courseoverview.4 }}</p>#}
+                                {#                                        </div>#}
+                                {#                                    </div>#}
+                                {#                                </div>#}
                             </div>
                         </div>
                     </div>
@@ -289,65 +327,69 @@
                         <div id="collapseThree" class="collapse show fade" aria-labelledby="headingTwo"
                              data-parent="#accordionExample">
                             <div class="card-body">
-                                <div class="chip m-2 w-100">
-                                    <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}"
-                                                      alt="Person"
-                                                      width="96"
-                                                      height="96">
-                                        John Doe
-                                        <span class="text-right badge badge-danger ml-5">Danger</span>
-                                        <span class="text-right badge badge-warning">Warning</span>
-                                    </a>
-                                </div>
-                                <hr class="hr-line"/>
 
-                                <div class="chip m-2 w-100">
-                                    <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}"
-                                                      alt="Person"
-                                                      width="96"
-                                                      height="96">
-                                        John Doe
-                                        <span class="text-right badge badge-danger ml-5">Danger</span>
-                                        <span class="text-right badge badge-warning">Warning</span>
-                                    </a>
-                                </div>
-                                <hr class="hr-line"/>
+                                {% for student in examoverview.2 %}
+                                    <div class="chip m-2 w-100">
+                                        <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}"
+                                                          alt="Person"
+                                                          width="96"
+                                                          height="96">
+                                            {{ student }}
+                                            <span class="text-right badge badge-danger ml-5">Danger</span>
+                                            <span class="text-right badge badge-warning">Warning</span>
+                                        </a>
+                                    </div>
+                                    <hr class="hr-line"/>
+                                {% endfor %}
 
-                                <div class="chip m-2 w-100">
-                                    <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}"
-                                                      alt="Person"
-                                                      width="96"
-                                                      height="96">
-                                        John Doe
-                                        <span class="text-right badge badge-danger ml-5">Danger</span>
-                                        <span class="text-right badge badge-warning">Warning</span>
-                                    </a>
-                                </div>
-                                <hr class="hr-line"/>
 
-                                <div class="chip m-2 w-100">
-                                    <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}"
-                                                      alt="Person"
-                                                      width="96"
-                                                      height="96">
-                                        John Doe
-                                        <span class="text-right badge badge-danger ml-5">Danger</span>
-                                        <span class="text-right badge badge-warning">Warning</span>
-                                    </a>
-                                </div>
-                                <hr class="hr-line"/>
-
-                                <div class="chip m-2 w-100">
-                                    <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}"
-                                                      alt="Person"
-                                                      width="96"
-                                                      height="96">
-                                        John Doe
-                                        <span class="text-right badge badge-danger ml-5">Danger</span>
-                                        <span class="text-right badge badge-warning">Warning</span>
-                                    </a>
-                                </div>
-                                <hr class="hr-line"/>
+                                {#                                <div class="chip m-2 w-100">#}
+                                {#                                    <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}"#}
+                                {#                                                      alt="Person"#}
+                                {#                                                      width="96"#}
+                                {#                                                      height="96">#}
+                                {#                                        John Doe#}
+                                {#                                        <span class="text-right badge badge-danger ml-5">Danger</span>#}
+                                {#                                        <span class="text-right badge badge-warning">Warning</span>#}
+                                {#                                    </a>#}
+                                {#                                </div>#}
+                                {#                                <hr class="hr-line"/>#}
+                                {##}
+                                {#                                <div class="chip m-2 w-100">#}
+                                {#                                    <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}"#}
+                                {#                                                      alt="Person"#}
+                                {#                                                      width="96"#}
+                                {#                                                      height="96">#}
+                                {#                                        John Doe#}
+                                {#                                        <span class="text-right badge badge-danger ml-5">Danger</span>#}
+                                {#                                        <span class="text-right badge badge-warning">Warning</span>#}
+                                {#                                    </a>#}
+                                {#                                </div>#}
+                                {#                                <hr class="hr-line"/>#}
+                                {##}
+                                {#                                <div class="chip m-2 w-100">#}
+                                {#                                    <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}"#}
+                                {#                                                      alt="Person"#}
+                                {#                                                      width="96"#}
+                                {#                                                      height="96">#}
+                                {#                                        John Doe#}
+                                {#                                        <span class="text-right badge badge-danger ml-5">Danger</span>#}
+                                {#                                        <span class="text-right badge badge-warning">Warning</span>#}
+                                {#                                    </a>#}
+                                {#                                </div>#}
+                                {#                                <hr class="hr-line"/>#}
+                                {##}
+                                {#                                <div class="chip m-2 w-100">#}
+                                {#                                    <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}"#}
+                                {#                                                      alt="Person"#}
+                                {#                                                      width="96"#}
+                                {#                                                      height="96">#}
+                                {#                                        John Doe#}
+                                {#                                        <span class="text-right badge badge-danger ml-5">Danger</span>#}
+                                {#                                        <span class="text-right badge badge-warning">Warning</span>#}
+                                {#                                    </a>#}
+                                {#                                </div>#}
+                                {#                                <hr class="hr-line"/>#}
 
                             </div>
                         </div>
@@ -368,47 +410,68 @@
                         <div id="collapseFour" class="collapse fade" aria-labelledby="headingFour"
                              data-parent="#accordionExample">
                             <div class="card-body">
-                                <div class="row">
-                                    <div class="w-100 pl-3"><h3 class="display-5 text-primary">Quartile 1</h3></div>
-                                    <div class="w-100 pl-3">
-                                        <div class="col-3">
-                                            <p class="display-5 text-success ml-3 text-left">{{ examoverview.4 }}</p>
-                                        </div>
-                                        <div class="col-9">
-                                            <div class="progress-bar progress-bar-striped progress-bar-animated"
-                                                 style="width: 40%"></div>
+
+                                {% for quartile in examoverview.4 %}
+                                    <div class="row">
+                                        <div class="w-100 pl-3"><h3 class="display-5 text-primary">
+                                            Quartile 1</h3></div>
+                                        <div class="row w-100 pl-3">
+                                            <div class="col-9 mt-2">
+
+                                                <div class="progress">
+                                                    <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                                         style="width:{{ quartile }}%"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-3">
+                                                <p class="display-5 text-success ml-3 text-left">{{ quartile }}</p>
+                                            </div>
                                         </div>
                                     </div>
+                                    <hr/>
 
-                                </div>
-                                <hr/>
-                                <div class="row">
-                                    <div class="w-100 pl-3"><h3 class="display-5 text-primary">Quartile 2</h3></div>
-                                    <div class="w-100 pl-3">
-                                        <div class="col-3">
-                                            <p class="display-5 text-success ml-3 text-left">{{ examoverview.5 }}</p>
-                                        </div>
-                                        <div class="col-9">
-                                            <div class="progress-bar progress-bar-striped progress-bar-animated"
-                                                 style="width: 40%"></div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <hr/>
-                                <div class="row">
-                                    <div class="w-100 pl-3"><h3 class="display-5 text-primary">Quartile 3</h3></div>
-                                    <div class="w-100 pl-3">
-                                        <div class="col-3">
-                                            <p class="display-5 text-success ml-3 text-left">{{ examoverview.6 }}</p>
-                                        </div>
-                                        <div class="col-9">
-                                            <div class="progress-bar progress-bar-striped progress-bar-animated"
-                                                 style="width: 40%"></div>
-                                        </div>
-                                    </div>
-
-                                </div>
+                                {% endfor %}
+{#                                <div class="row">#}
+{#                                    <div class="w-100 pl-3"><h3 class="display-5 text-primary">Quartile 1</h3></div>#}
+{#                                    <div class="w-100 pl-3">#}
+{#                                        <div class="col-3">#}
+{#                                            <p class="display-5 text-success ml-3 text-left">{{ examoverview.4 }}</p>#}
+{#                                        </div>#}
+{#                                        <div class="col-9">#}
+{#                                            <div class="progress-bar progress-bar-striped progress-bar-animated"#}
+{#                                                 style="width: 40%"></div>#}
+{#                                        </div>#}
+{#                                    </div>#}
+{##}
+{#                                </div>#}
+{#                                <hr/>#}
+{#                                <div class="row">#}
+{#                                    <div class="w-100 pl-3"><h3 class="display-5 text-primary">Quartile 2</h3></div>#}
+{#                                    <div class="w-100 pl-3">#}
+{#                                        <div class="col-3">#}
+{#                                            <p class="display-5 text-success ml-3 text-left">{{ examoverview.5 }}</p>#}
+{#                                        </div>#}
+{#                                        <div class="col-9">#}
+{#                                            <div class="progress-bar progress-bar-striped progress-bar-animated"#}
+{#                                                 style="width: 40%"></div>#}
+{#                                        </div>#}
+{#                                    </div>#}
+{##}
+{#                                </div>#}
+{#                                <hr/>#}
+{#                                <div class="row">#}
+{#                                    <div class="w-100 pl-3"><h3 class="display-5 text-primary">Quartile 3</h3></div>#}
+{#                                    <div class="w-100 pl-3">#}
+{#                                        <div class="col-3">#}
+{#                                            <p class="display-5 text-success ml-3 text-left">{{ examoverview.6 }}</p>#}
+{#                                        </div>#}
+{#                                        <div class="col-9">#}
+{#                                            <div class="progress-bar progress-bar-striped progress-bar-animated"#}
+{#                                                 style="width: 40%"></div>#}
+{#                                        </div>#}
+{#                                    </div>#}
+{##}
+{#                                </div>#}
 
                             </div>
                         </div>
