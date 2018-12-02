@@ -106,8 +106,8 @@ def dashboard(request):
         else:
             return HttpResponse("form is invalid")
     else:
-        # user = User.objects.get(username=request.user)
-        user = User.objects.get(username="vineet")
+        user = User.objects.get(username=request.user)
+        #user = User.objects.get(username="vineet")
         profile = professor_profile.objects.get(professor=user)
         form1 = file_class()
         p = course_dashboard.objects.get(professor=user)
