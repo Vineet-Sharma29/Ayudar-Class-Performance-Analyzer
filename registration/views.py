@@ -157,20 +157,19 @@ def editprofile(request):
         print(user)
         form = ProfileForm(request.POST, request.FILES, instance=professor_profile.objects.get(professor=user))
         if form.is_valid():
-            course_id = form.cleaned_data['professor_course']
             profile = form.save(commit=False)
             profile.professor_description = form.cleaned_data['professor_description']
+            profile.professor_course = form.cleaned_data['professor_course']
             profile.save()
             return HttpResponse('saved <a href="view-profiles">here</a>')
 
     else:
         user = User.objects.get(username=request.user)
-        profile = professor_profile.objects.get(professor=user
-                                                )
-        form1 = ProfileForm(initial={'professor_description': profile.professor_description,
-                                     'professor_photo': profile.professor_photo})
-        context = {'form': form1}
-        return render(request, 'login/profile.html', context)
+        profile = professor_profile.objects.get(professor=user)
+        form = ProfileForm(initial={'professor_description': profile.professor_description,
+                                     'professor_photo': profile.professor_photo,'professor_course':profile.professor_course})
+
+    return render(request, 'login/profile.html', {'form':form})
 
 
 def show_profile(request):
