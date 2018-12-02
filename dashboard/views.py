@@ -119,8 +119,8 @@ def dashboard(request):
         return render(request, "dashboard/dashboard.html",
 
                       {'form': form1, 'username': user.username, 'photo': profile.professor_photo,
-                       'courseoverview': course_values, 'examoverview': last_exam_details
-                       # 'needystudents': [1, 2, 3, 4, 5]
+                       'courseoverview': course_values, 'examoverview': last_exam_details,
+                       'needystudents': [1, 2, 3, 4, 5]
                        }
                       )
 
@@ -171,5 +171,4 @@ def return_tuple(line):
         for i in range(2, len(x)):
             y.append(int(x[i]))
         req_tuple += [y]
-    # print(req_tuple)
     return req_tuple

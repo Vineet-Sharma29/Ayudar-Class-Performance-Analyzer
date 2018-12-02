@@ -300,20 +300,19 @@ def ExamStats(marks):
 
     # Calculate the range of marks for most students
 
-    avg_marks = str(CI(marks, location)[0]) + '-' + str(CI(marks, location)[1])
+    avg_marks = str(round(CI(marks, location)[0], 2)) + '-' + str(round(CI(marks, location)[1],2))
 
     # Calculate quartile scores for exam marks
 
-    quartile1 = marks[location].describe()['25%']
-    quartile2 = marks[location].describe()['50%']
-    quartile3 = marks[location].describe()['75%']
+    quartile1 = round(marks[location].describe()['25%'], 2)
+    quartile2 = round(marks[location].describe()['50%'], 2)
+    quartile3 = round(marks[location].describe()['75%'], 2)
 
     return (
         exam_difficulty,
         cheat_risk,
         cheat_flagged,
         avg_marks,
-        CI(marks, 'overall')[1],
         [quartile1,
          quartile2,
          quartile3],
