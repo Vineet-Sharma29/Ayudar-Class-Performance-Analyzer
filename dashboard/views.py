@@ -2,15 +2,16 @@ from django.contrib.auth.models import User
 from django.shortcuts import render
 from registration.models import professor_profile
 from .models import Marks
-from .models import Enrollments,course_dashboard
+from .models import Enrollments, course_dashboard
 from django.http import HttpResponse
 from .forms import file_class
 
 from django.shortcuts import render
 import dashboard.algo as alg
+from django.contrib.auth.decorators import login_required
 
 
-def add_to_database(pat,username,course_id):
+def add_to_database(pat, username, course_id):
     path = 'media/media_/' + pat
     co_id = course_id
     pr_id = username
@@ -29,7 +30,9 @@ def add_to_database(pat,username,course_id):
 
         tuples = return_tuple(f_all)
         print(list(tuples))
-        headers =  ['RollNumber', 'Name', 'exam-mid-35', 'exam-end-50', 'lab-basic01-20','lab-basic02-20','lab-basic03-20','asgn-basic01-15','asgn-basic02-15','asgn-basic03-15','asgn-basic04-15','oth-quiz01-30', 'oth-quiz02-30', 'oth-quiz03-30']
+        headers = ['RollNumber', 'Name', 'exam-mid-35', 'exam-end-50', 'lab-basic01-20', 'lab-basic02-20',
+                   'lab-basic03-20', 'asgn-basic01-15', 'asgn-basic02-15', 'asgn-basic03-15', 'asgn-basic04-15',
+                   'oth-quiz01-30', 'oth-quiz02-30', 'oth-quiz03-30']
         df = alg.initialse(tuples, headers)
         # print(df.columns)
         NeedyList = alg.mainFunc(df)
@@ -37,6 +40,7 @@ def add_to_database(pat,username,course_id):
         ExamOverview = alg.ExamStats(df)
         Persistent_Labels = alg.PersistentLabels(df)
         Performance_Labels = alg.PerformanceLabels(df)
+
         print(CourseOverview)
         f_all[len(f_all) - 1] = f_all[len(f_all) - 1] + '\n'
         # for i in range(1, len(f_all)):
@@ -83,7 +87,7 @@ def add_to_database(pat,username,course_id):
 #
 # print(tup(0))
 
-
+# @login_required
 def dashboard(request):
     form1 = file_class(request.POST, request.FILES or None)
     if request.method == 'POST':
@@ -92,21 +96,32 @@ def dashboard(request):
             print(request.FILES['req_file'])
             user = User.objects.get(username=request.user)
             profile = professor_profile.objects.get(professor=user)
-            file1 = str(request.FILES['req_file'],user.username,professor_profile.professor_course)
+
+            file1 = str(request.FILES['req_file'], user.username, professor_profile.professor_course)
             dashboard_stats = add_to_database(file1)
-            context = {'form':form1,'courseoverview':dashboard_stats[0],'examoverview':dashboard_stats[1],'needystudents':dashboard_stats[2],'username': user.username, 'photo': profile.professor_photo}
-            return render(request, "dashboard/dashboard.html",context)
+            context = {'form': form1, 'courseoverview': dashboard_stats[0], 'examoverview': dashboard_stats[1],
+                       'needystudents': dashboard_stats[2], 'username': user.username, 'photo': profile.professor_photo}
+            return render(request, "dashboard/dashboard.html", context)
+
         else:
             return HttpResponse("form is invalid")
     else:
-        user = User.objects.get(username=request.user)
+        # user = User.objects.get(username=request.user)
+        user = User.objects.get(username="vineet")
         profile = professor_profile.objects.get(professor=user)
         form1 = file_class()
-        p=course_dashboard.objects.get(professor=user)
-        course_values =(p.course_difficulty,p.course_risk,p.course_student_list,p.course_average,p.quartile_1,p.quartile_2,p.quartile_3)
-        last_exam_details = (p.exam_difficulty,p.exam_cheat_risk,p.exam_student_list,p.exam_average,p.quartile_1,p.quartile_2,p.quartile_3)
+        p = course_dashboard.objects.get(professor=user)
+        course_values = (
+        p.course_difficulty, p.course_risk, p.course_student_list, p.course_average, p.quartile_1, p.quartile_2,
+        p.quartile_3)
+        last_exam_details = (
+        p.exam_difficulty, p.exam_cheat_risk, p.exam_student_list, p.exam_average, p.quartile_1, p.quartile_2,
+        p.quartile_3)
         return render(request, "dashboard/dashboard.html",
-                      {'form': form1, 'username': user.username, 'photo': profile.professor_photo,'courseoverview':course_values,'examoverview':last_exam_details,'needystudents':[1,2,3,4,5]})
+
+                      {'form': form1, 'username': user.username, 'photo': profile.professor_photo,
+                       'courseoverview': course_values, 'examoverview': last_exam_details,
+                       'needystudents': [1, 2, 3, 4, 5]})
 
 
 # for student in students:
@@ -155,5 +170,5 @@ def return_tuple(line):
         for i in range(2, len(x)):
             y.append(int(x[i]))
         req_tuple += [y]
-    #print(req_tuple)
+    # print(req_tuple)
     return req_tuple
