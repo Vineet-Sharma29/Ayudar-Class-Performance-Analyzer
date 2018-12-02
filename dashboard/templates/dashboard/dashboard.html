@@ -41,10 +41,41 @@
                     <img class="col-4" src="{% static "dashboard/images/test.svg" %}" alt="test" width="32"
                          height="32"/>
                 </div>
-                <p class="text-black p-2 pt-3 display-4 text-right">{{ courseoverview.0 }}</p>
+
+                {% if courseoverview.0 == "Low" %}
+                    <h1><span class="badge badge-warning mt-4">{{ courseoverview.0 }}</span></h1>
+
+                {% elif courseoverview.0 == 'Moderate' %}
+                    <h1><span class="badge badge-success mt-4">{{ courseoverview.0 }}</span></h1>
+
+                {% else %}
+                    <h1><span class="badge badge-primary mt-4">{{ courseoverview.0 }}</span></h1>
+
+                {% endif %}
+                {#                <p class="text-black p-2 pt-3 display-4 text-right">{{ courseoverview.0 }}</p>#}
             </div>
         </div>
-        <div class="col-md-3 col-sm-12 col-md-3 col-xs-12 mx-auto rounded well-container p-2 w-25 bg-light">
+        {#        <div class="col-md-3 col-sm-12 col-md-3 col-xs-12 mx-auto rounded well-container p-2 w-25 bg-light">#}
+        {#            <div class="well">#}
+        {#                <div class="row">#}
+        {#                    <h5 class="text-black col-8"><!--<span class="label label-danger pull-right">- 9%</span>--> Overall#}
+        {#                        Risk</h5>#}
+        {#                    <img class="col-4" src="{% static "dashboard/images/risk.svg" %}" alt="test" width="32"#}
+        {#                         height="32"/>#}
+        {#                </div>#}
+        {#                {% if courseoverview.1 == "Low" %}#}
+        {#                    <h1><span class="badge badge-warning mt-4">{{ courseoverview.1 }}</span></h1>#}
+        {##}
+        {#                {% elif courseoverview.1 == 'Moderate' %}#}
+        {#                    <h1><span class="badge badge-success mt-4">{{ courseoverview.1 }}</span></h1>#}
+        {##}
+        {#                {% else %}#}
+        {#                    <h1><span class="badge badge-primary mt-4">{{ courseoverview.1 }}</span></h1>#}
+        {##}
+        {#                {% endif %}#}
+        {#            </div>#}
+        {#        </div>#}
+        <div class="col-md-3 col-sm-12 col-md-3 col-xs-12 mx-auto rounded well-container p-2 w-25 wildcard-color">
             <div class="well">
                 <div class="row">
                     <h5 class="text-black col-8"><!--<span class="label label-danger pull-right">- 9%</span>--> Overall
@@ -52,7 +83,16 @@
                     <img class="col-4" src="{% static "dashboard/images/risk.svg" %}" alt="test" width="32"
                          height="32"/>
                 </div>
-                <p class="text-black p-2 pt-3 display-4 text-right">{{ courseoverview.1 }}</p>
+                {% if courseoverview.1 == "Low" %}
+                    <h1><span class="badge mt-4 mx-5">{{ courseoverview.1 }}</span></h1>
+
+                {% elif courseoverview.1 == 'Moderate' %}
+                    <h1><span class="badge badge-success mt-4">{{ courseoverview.1 }}</span></h1>
+
+                {% else %}
+                    <h1><span class="badge badge-primary mt-4">{{ courseoverview.1 }}</span></h1>
+
+                {% endif %}
             </div>
         </div>
         <div class="col-md-3 col-sm-12 col-md-3 col-xs-12 mx-auto rounded well-container p-2 w-25 bg-light">
@@ -63,7 +103,7 @@
                     <img class="col-4" src="{% static "dashboard/images/graph.svg" %}" alt="test" width="32"
                          height="32"/>
                 </div>
-                <p class="text-black p-2 pt-3 display-4 text-right">{{ courseoverview.3 }}</p>
+                <h1><span class="badge badge-danger mt-4">{{ courseoverview.3 }}</span></h1>
             </div>
         </div>
 
@@ -111,17 +151,53 @@
 
                         <div id="collapseOne" class="collapse show fade" aria-labelledby="headingOne"
                              data-parent="#accordionExample">
-                            <div class="card-body">
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
-                                squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck
-                                quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it
-                                squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
-                                craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur
-                                butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth
-                                nesciunt you probably haven't heard of them accusamus labore sustainable VHS.<a
-                                    href="https://www.fiverr.com/sunlimetech/fix-your-bootstrap-html-and-css3-issues"
-                                    class="ml-3" target="_blank"><strong>View More designs <i
-                                    class="fa fa-angle-double-right"></i></strong></a>
+                            <div class="card-body m-2">
+                                <div class="chip m-2 w-100">
+                                    <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}"
+                                                      alt="Person"
+                                                      width="96"
+                                                      height="96">
+                                        John Doe
+                                        <span class="text-right badge badge-danger ml-5">Danger</span>
+                                        <span class="text-right badge badge-warning">Warning</span>
+                                    </a>
+                                </div>
+                                <div class="chip m-2 w-100">
+                                    <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}" alt="Person"
+                                                      width="96"
+                                                      height="96">
+                                        John Doe
+                                        <span class="text-right badge badge-danger ml-5">Danger</span>
+                                        <span class="text-right badge badge-warning">Warning</span>
+                                    </a>
+                                </div>
+                                <div class="chip m-2 w-100">
+                                    <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}" alt="Person"
+                                                      width="96"
+                                                      height="96">
+                                        John Doe
+                                        <span class="text-right badge badge-danger ml-5">Danger</span>
+                                        <span class="text-right badge badge-warning">Warning</span>
+                                    </a>
+                                </div>
+                                <div class="chip m-2 w-100">
+                                    <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}" alt="Person"
+                                                      width="96"
+                                                      height="96">
+                                        John Doe
+                                        <span class="text-right badge badge-danger ml-5">Danger</span>
+                                        <span class="text-right badge badge-warning">Warning</span>
+                                    </a>
+                                </div>
+                                <div class="chip m-2 w-100">
+                                    <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}" alt="Person"
+                                                      width="96"
+                                                      height="96">
+                                        John Doe
+                                        <span class="text-right badge badge-danger ml-5">Danger</span>
+                                        <span class="text-right badge badge-warning">Warning</span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -156,6 +232,7 @@
             </div>
         </div>
 
+
         <div class="col-6 mb-5 pb-5 w-100">
             <div class="col-12">
                 <div class="accordion" id="accordionExample">
@@ -164,12 +241,13 @@
                             <h5 class="mb-0">
                                 <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
                                         data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-                                    <i class="fa fa-amazon main"></i><i class="fa fa-angle-double-right mr-3"></i>Course Stats
+                                    <i class="fa fa-amazon main"></i><i class="fa fa-angle-double-right mr-3"></i>Course
+                                    Stats
                                 </button>
                             </h5>
                         </div>
 
-                        <div id="collapseThree" class="collapse show fade" aria-labelledby="headingOne"
+                        <div id="collapseThree" class="collapse show fade" aria-labelledby="headingTwo"
                              data-parent="#accordionExample">
                             <div class="card-body">
                                 Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
@@ -191,11 +269,12 @@
                                 <button class="btn btn-link collapsed btn-block text-left" type="button"
                                         data-toggle="collapse" data-target="#collapseFour" aria-expanded="false"
                                         aria-controls="collapseFour">
-                                    <i class="fa fa-plus main"></i><i class="fa fa-angle-double-right mr-3"></i>Exam Stats
+                                    <i class="fa fa-plus main"></i><i class="fa fa-angle-double-right mr-3"></i>Exam
+                                    Stats
                                 </button>
                             </h5>
                         </div>
-                        <div id="collapseFour" class="collapse fade" aria-labelledby="headingTwo"
+                        <div id="collapseFour" class="collapse fade" aria-labelledby="headingFour"
                              data-parent="#accordionExample">
                             <div class="card-body">
                                 Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
@@ -221,23 +300,25 @@
 
 {% block script %}
     <script>
-        var y0 = [], y1 = [];
-        for (i = 0; i < 50; i++) {
-            y0[i] = Math.random();
-            y1[i] = Math.random();
+        var y0 = [], i = 0;
+
+        for( i = 0 ; i<50 ; i++ ){
+            y0[i] = Math.random()
         }
+{#        {% for entry in tupleformarks %}#}
+{#            {% for j in entry %}#}
+{#                {% y[i] = j %}#}
+{#                i = i + 1#}
+{#            {% endfor %}#}
+{#        {% endfor %}#}
 
         var trace1 = {
             y: y0,
             type: 'box'
         };
 
-        var trace2 = {
-            y: y1,
-            type: 'box'
-        };
 
-        var data = [trace1, trace2];
+        var data = [trace1];
 
         Plotly.newPlot('myDiv', data);
     </script>
@@ -252,5 +333,6 @@
             $(this).siblings('span').text(val);
         })
     </script>
+
 
 {% endblock %}

@@ -11,6 +11,7 @@ from django.shortcuts import render
 import dashboard.algo as alg
 from django.contrib.auth.decorators import login_required
 
+
 def add_to_database(pat):
     path = 'media/media_/' + pat
     co_id = "ASE"
@@ -30,14 +31,16 @@ def add_to_database(pat):
 
         tuples = return_tuple(f_all)
         print(list(tuples))
-        headers =  ['RollNumber', 'Name', 'exam-mid-35', 'exam-end-50', 'lab-basic01-20','lab-basic02-20','lab-basic03-20','asgn-basic01-15','asgn-basic02-15','asgn-basic03-15','asgn-basic04-15','oth-quiz01-30', 'oth-quiz02-30', 'oth-quiz03-30']
+        headers = ['RollNumber', 'Name', 'exam-mid-35', 'exam-end-50', 'lab-basic01-20', 'lab-basic02-20',
+                   'lab-basic03-20', 'asgn-basic01-15', 'asgn-basic02-15', 'asgn-basic03-15', 'asgn-basic04-15',
+                   'oth-quiz01-30', 'oth-quiz02-30', 'oth-quiz03-30']
         df = alg.initialse(tuples, headers)
         # print(df.columns)
         NeedyList = alg.mainFunc(df)
         CourseOverview = alg.CourseStats(df)
         ExamOverview = alg.ExamStats(df)
-        #Persistent_Labels = alg.PersistentLabels(df)
-        #Performance_Labels = alg.PerformanceLabels(df)
+        # Persistent_Labels = alg.PersistentLabels(df)
+        # Performance_Labels = alg.PerformanceLabels(df)
         print(CourseOverview)
         f_all[len(f_all) - 1] = f_all[len(f_all) - 1] + '\n'
         # for i in range(1, len(f_all)):
@@ -95,8 +98,9 @@ def dashboard(request):
             dashboard_stats = add_to_database(file1)
             user = User.objects.get(username=request.user)
             profile = professor_profile.objects.get(professor=user)
-            context = {'form':form1,'courseoverview':dashboard_stats[0],'examoverview':dashboard_stats[1],'needystudents':dashboard_stats[2],'username': user.username, 'photo': profile.professor_photo}
-            return render(request, "dashboard/dashboard.html",context)
+            context = {'form': form1, 'courseoverview': dashboard_stats[0], 'examoverview': dashboard_stats[1],
+                       'needystudents': dashboard_stats[2], 'username': user.username, 'photo': profile.professor_photo}
+            return render(request, "dashboard/dashboard.html", context)
         else:
             return HttpResponse("form is invalidd")
     else:
@@ -105,7 +109,10 @@ def dashboard(request):
         profile = professor_profile.objects.get(professor=user)
         form1 = file_class()
         return render(request, "dashboard/dashboard.html",
-                      {'form': form1, 'username': user.username, 'photo': profile.professor_photo,'courseoverview':('Moderate','Low',[1,2,3,4,5],'46-47',60.09,90.08,50.08),'examoverview':('Medium','High',[1,2,3,4,5],'46-47',62.09,91.08,52.08),'needystudents':[1,2,3,4,5]})
+                      {'form': form1, 'username': user.username, 'photo': profile.professor_photo,
+                       'courseoverview': ('Moderate', 'Low', [1, 2, 3, 4, 5], '46-47', 60.09, 90.08, 50.08),
+                       'examoverview': ('Medium', 'High', [1, 2, 3, 4, 5], '46-47', 62.09, 91.08, 52.08),
+                       'needystudents': [1, 2, 3, 4, 5]})
 
 
 # for student in students:
@@ -154,5 +161,5 @@ def return_tuple(line):
         for i in range(2, len(x)):
             y.append(int(x[i]))
         req_tuple += [y]
-    #print(req_tuple)
+    # print(req_tuple)
     return req_tuple

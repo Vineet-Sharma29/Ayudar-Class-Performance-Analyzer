@@ -43,19 +43,19 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link text-primary" href="{% url 'landing_page:landing_page' %}">Home</a>
+                        <a class="nav-link text-light" href="{% url 'landing_page:landing_page' %}">Home</a>
                     </li>
                     {% if not user.is_authenticated %}
                         <li class="nav-item">
-                            <a class="nav-link text-primary" href="{% url 'registration:register' %}">Sign Up</a>
+                            <a class="nav-link text-light" href="{% url 'registration:register' %}">Sign Up</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link text-primary" href="{% url 'registration:login' %}">Log In</a>
+                            <a class="nav-link text-light" href="{% url 'registration:login' %}">Log In</a>
                         </li>
                     {% else %}
                         <li class="nav-item">
-                            <a class="nav-link text-primary" href="{% url 'dashboard:dashboard' %}">Dashboard</a>
+                            <a class="nav-link text-light" href="{% url 'dashboard:dashboard' %}">Dashboard</a>
                         </li>
 
                         <li class="nav-item">

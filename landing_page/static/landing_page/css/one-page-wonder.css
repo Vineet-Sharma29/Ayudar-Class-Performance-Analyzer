@@ -28,7 +28,7 @@ h1, h2, h3, h4, h5, h6 {
 .navbar-custom {
     padding-top: 1rem;
     padding-bottom: 1rem;
-    background-color: rgba(0, 0, 0, 1);
+    background-color: #231f20;
 }
 
 .navbar-custom .navbar-brand {
@@ -376,7 +376,11 @@ footer {
 
 
 
-
+.banner-heading{
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    word-spacing: 1rem;
+}
 
 
 
