@@ -226,9 +226,9 @@ def CourseStats(marks):
         cheat_risk,
         list(cheat_flagged),
         avg_marks,
-        quartile1,
-        quartile2,
-        quartile3,
+        [quartile1,
+         quartile2,
+         quartile3]
     )
 
 
@@ -314,9 +314,9 @@ def ExamStats(marks):
         cheat_flagged,
         avg_marks,
         CI(marks, 'overall')[1],
-        quartile1,
-        quartile2,
-        quartile3,
+        [quartile1,
+         quartile2,
+         quartile3],
     )
 
 

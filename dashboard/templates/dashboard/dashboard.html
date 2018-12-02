@@ -32,12 +32,12 @@
         </div>
     </div>
 
-    <div class="wildcards row mt-4">
+    <div class="wildcards row mt-4 mb-4">
         <div class="col-md-3 col-sm-12 col-md-3 col-xs-12 mx-auto rounded well-container p-2 w-25 bg-light">
             <div class="well">
                 <div class="row">
-                    <h5 class="text-sec col-8"><!--<span class="label label-danger pull-right">- 9%</span>--> Overall
-                        Difficulty</h5>
+                    <h5 class="text-black col-8"><!--<span class="label label-danger pull-right">- 9%</span>--> OVERALL
+                        DIFFICULTY</h5>
                     <img class="col-4" src="{% static "dashboard/images/test.svg" %}" alt="test" width="32"
                          height="32"/>
                 </div>
@@ -78,8 +78,8 @@
         <div class="col-md-3 col-sm-12 col-md-3 col-xs-12 mx-auto rounded well-container p-2 w-25 wildcard-color">
             <div class="well">
                 <div class="row">
-                    <h5 class="text-black col-8"><!--<span class="label label-danger pull-right">- 9%</span>--> Overall
-                        Risk</h5>
+                    <h5 class="text-black col-8"><!--<span class="label label-danger pull-right">- 9%</span>--> OVERALL
+                        RISK</h5>
                     <img class="col-4" src="{% static "dashboard/images/risk.svg" %}" alt="test" width="32"
                          height="32"/>
                 </div>
@@ -98,8 +98,8 @@
         <div class="col-md-3 col-sm-12 col-md-3 col-xs-12 mx-auto rounded well-container p-2 w-25 bg-light">
             <div class="well">
                 <div class="row">
-                    <h5 class="text-black col-8"><!--<span class="label label-danger pull-right">- 9%</span>--> Course
-                        Average</h5>
+                    <h5 class="text-black col-8"><!--<span class="label label-danger pull-right">- 9%</span>-->COURSE
+                        AVERAGE</h5>
                     <img class="col-4" src="{% static "dashboard/images/graph.svg" %}" alt="test" width="32"
                          height="32"/>
                 </div>
@@ -115,7 +115,7 @@
 
     {#    <h2 class="display-5 my-2">Boxplot</h2>#}
     <div class="row">
-        <div class="mx-4" id="myDiv"></div>
+        <div class="mx-5 mt-2" id="myDiv"></div>
     </div>
 
 
@@ -141,10 +141,11 @@
                     <div class="card">
                         <div class="card-header" id="headingOne">
                             <h5 class="mb-0">
-                                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
+                                <button class="btn btn-link btn-block text-left font-weight-bold" type="button"
+                                        data-toggle="collapse"
                                         data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                    <i class="fa fa-amazon main"></i><i class="fa fa-angle-double-right mr-3"></i>How to
-                                    pay amazon.
+                                    <i class="fas fa-search fa-2x mr-3 secondary-bg"></i>Cheat
+                                    Risk
                                 </button>
                             </h5>
                         </div>
@@ -152,79 +153,154 @@
                         <div id="collapseOne" class="collapse show fade" aria-labelledby="headingOne"
                              data-parent="#accordionExample">
                             <div class="card-body m-2">
-                                <div class="chip m-2 w-100">
-                                    <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}"
-                                                      alt="Person"
-                                                      width="96"
-                                                      height="96">
-                                        John Doe
-                                        <span class="text-right badge badge-danger ml-5">Danger</span>
-                                        <span class="text-right badge badge-warning">Warning</span>
-                                    </a>
-                                </div>
-                                <div class="chip m-2 w-100">
-                                    <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}" alt="Person"
-                                                      width="96"
-                                                      height="96">
-                                        John Doe
-                                        <span class="text-right badge badge-danger ml-5">Danger</span>
-                                        <span class="text-right badge badge-warning">Warning</span>
-                                    </a>
-                                </div>
-                                <div class="chip m-2 w-100">
-                                    <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}" alt="Person"
-                                                      width="96"
-                                                      height="96">
-                                        John Doe
-                                        <span class="text-right badge badge-danger ml-5">Danger</span>
-                                        <span class="text-right badge badge-warning">Warning</span>
-                                    </a>
-                                </div>
-                                <div class="chip m-2 w-100">
-                                    <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}" alt="Person"
-                                                      width="96"
-                                                      height="96">
-                                        John Doe
-                                        <span class="text-right badge badge-danger ml-5">Danger</span>
-                                        <span class="text-right badge badge-warning">Warning</span>
-                                    </a>
-                                </div>
-                                <div class="chip m-2 w-100">
-                                    <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}" alt="Person"
-                                                      width="96"
-                                                      height="96">
-                                        John Doe
-                                        <span class="text-right badge badge-danger ml-5">Danger</span>
-                                        <span class="text-right badge badge-warning">Warning</span>
-                                    </a>
-                                </div>
+
+                                {% for student in courseoverview.2 %}
+                                    <div class="chip m-2 w-100">
+                                        <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}"
+                                                          alt="Person"
+                                                          width="96"
+                                                          height="96">
+                                            {{ student }}
+                                            <span class="text-right badge badge-danger ml-5">Danger</span>
+                                            <span class="text-right badge badge-warning">Warning</span>
+                                        </a>
+                                    </div>
+                                    <hr class="hr-line"/>
+                                {% endfor %}
+
+                                {#                                <div class="chip m-2 w-100">#}
+                                {#                                    <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}"#}
+                                {#                                                      alt="Person"#}
+                                {#                                                      width="96"#}
+                                {#                                                      height="96">#}
+                                {#                                        John Doe#}
+                                {#                                        <span class="text-right badge badge-danger ml-5">Danger</span>#}
+                                {#                                        <span class="text-right badge badge-warning">Warning</span>#}
+                                {#                                    </a>#}
+                                {#                                </div>#}
+                                {#                                <hr class="hr-line"/>#}
+                                {#                                <div class="chip m-2 w-100">#}
+                                {#                                    <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}" alt="Person"#}
+                                {#                                                      width="96"#}
+                                {#                                                      height="96">#}
+                                {#                                        John Doe#}
+                                {#                                        <span class="text-right badge badge-danger ml-5">Danger</span>#}
+                                {#                                        <span class="text-right badge badge-warning">Warning</span>#}
+                                {#                                    </a>#}
+                                {#                                </div>#}
+                                {#                                <hr class="hr-line"/>#}
+                                {#                                <div class="chip m-2 w-100">#}
+                                {#                                    <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}" alt="Person"#}
+                                {#                                                      width="96"#}
+                                {#                                                      height="96">#}
+                                {#                                        John Doe#}
+                                {#                                        <span class="text-right badge badge-danger ml-5">Danger</span>#}
+                                {#                                        <span class="text-right badge badge-warning">Warning</span>#}
+                                {#                                    </a>#}
+                                {#                                </div>#}
+                                {#                                <hr class="hr-line"/>#}
+                                {#                                <div class="chip m-2 w-100">#}
+                                {#                                    <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}" alt="Person"#}
+                                {#                                                      width="96"#}
+                                {#                                                      height="96">#}
+                                {#                                        John Doe#}
+                                {#                                        <span class="text-right badge badge-danger ml-5">Danger</span>#}
+                                {#                                        <span class="text-right badge badge-warning">Warning</span>#}
+                                {#                                    </a>#}
+                                {#                                </div>#}
+                                {#                                <hr class="hr-line"/>#}
+                                {#                                <div class="chip m-2 w-100">#}
+                                {#                                    <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}" alt="Person"#}
+                                {#                                                      width="96"#}
+                                {#                                                      height="96">#}
+                                {#                                        John Doe#}
+                                {#                                        <span class="text-right badge badge-danger ml-5">Danger</span>#}
+                                {#                                        <span class="text-right badge badge-warning">Warning</span>#}
+                                {#                                    </a>#}
+                                {#                                </div>#}
                             </div>
                         </div>
                     </div>
-                    <div class="card">
+                    <div class="card mb-5">
                         <div class="card-header" id="headingTwo">
                             <h5 class="mb-0">
-                                <button class="btn btn-link collapsed btn-block text-left" type="button"
+                                <button class="btn btn-link collapsed btn-block text-left font-weight-bold"
+                                        type="button"
                                         data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
                                         aria-controls="collapseTwo">
-                                    <i class="fa fa-plus main"></i><i class="fa fa-angle-double-right mr-3"></i>There
-                                    are many more.
+                                    <img src="{% static "dashboard/images/scroll.png" %}" alt="icon" width="28"
+                                         height="28" class="mr-3"/>Course
+                                    Statistics
                                 </button>
                             </h5>
                         </div>
                         <div id="collapseTwo" class="collapse fade" aria-labelledby="headingTwo"
                              data-parent="#accordionExample">
                             <div class="card-body">
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
-                                squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck
-                                quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it
-                                squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
-                                craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur
-                                butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth
-                                nesciunt you probably haven't heard of them accusamus labore sustainable VHS.<a
-                                    href="https://www.fiverr.com/sunlimetech/design-and-fix-your-bootstrap-4-issues"
-                                    class="ml-3" target="_blank"><strong>View More designs <i
-                                    class="fa fa-angle-double-right"></i></strong></a>
+
+                                {% for quartile in courseoverview.4 %}
+                                    <div class="row">
+                                        <div class="w-100 pl-3"><h3 class="display-5 text-primary">
+                                            Quartile 1</h3></div>
+                                        <div class="row w-100 pl-3">
+                                            <div class="col-9 mt-2">
+                                                <div class="progress">
+                                                    <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                                         style="width:{{ quartile }}%"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-3">
+                                                <p class="display-5 text-success ml-3 text-left">{{ quartile }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr/>
+
+                                {% endfor %}
+                                {#                                <div class="row">#}
+                                {#                                    <div class="w-100 pl-3"><h3 class="display-5 text-primary">Quartile </h3></div>#}
+                                {#                                    <div class="row w-100 pl-3">#}
+                                {#                                        <div class="col-9 mt-2">#}
+                                {#                                            <div class="progress">#}
+                                {#                                                <div class="progress-bar progress-bar-striped progress-bar-animated"#}
+                                {#                                                     style="width:{{ quartile }}%"></div>#}
+                                {#                                            </div>#}
+                                {#                                        </div>#}
+                                {#                                        <div class="col-3">#}
+                                {#                                            <p class="display-5 text-success ml-3 text-left">{{ quartile }}</p>#}
+                                {#                                        </div>#}
+                                {#                                    </div>#}
+                                {#                                </div>#}
+                                {#                                <hr/>#}
+                                {#                                <div class="row">#}
+                                {#                                    <div class="w-100 pl-3"><h3 class="display-5 text-primary">Quartile 1</h3></div>#}
+                                {#                                    <div class="row w-100 pl-3">#}
+                                {#                                        <div class="col-9 mt-2">#}
+                                {#                                            <div class="progress">#}
+                                {#                                                <div class="progress-bar progress-bar-striped progress-bar-animated"#}
+                                {#                                                     style="width:{{ courseoverview.4 }}%"></div>#}
+                                {#                                            </div>#}
+                                {#                                        </div>#}
+                                {#                                        <div class="col-3">#}
+                                {#                                            <p class="display-5 text-success ml-3 text-left">{{ courseoverview.4 }}</p>#}
+                                {#                                        </div>#}
+                                {#                                    </div>#}
+                                {#                                </div>#}
+                                {#                                <hr/>#}
+                                {#                                <div class="row">#}
+                                {#                                    <div class="w-100 pl-3"><h3 class="display-5 text-primary">Quartile 1</h3></div>#}
+                                {#                                    <div class="row w-100 pl-3">#}
+                                {#                                        <div class="col-9 mt-2">#}
+                                {#                                            <div class="progress">#}
+                                {#                                                <div class="progress-bar progress-bar-striped progress-bar-animated"#}
+                                {#                                                     style="width:{{ courseoverview.4 }}%"></div>#}
+                                {#                                            </div>#}
+                                {#                                        </div>#}
+                                {#                                        <div class="col-3">#}
+                                {#                                            <p class="display-5 text-success ml-3 text-left">{{ courseoverview.4 }}</p>#}
+                                {#                                        </div>#}
+                                {#                                    </div>#}
+                                {#                                </div>#}
                             </div>
                         </div>
                     </div>
@@ -239,10 +315,11 @@
                     <div class="card">
                         <div class="card-header" id="headingOne">
                             <h5 class="mb-0">
-                                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
+                                <button class="btn btn-link btn-block text-left font-weight-bold" type="button"
+                                        data-toggle="collapse"
                                         data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-                                    <i class="fa fa-amazon main"></i><i class="fa fa-angle-double-right mr-3"></i>Course
-                                    Stats
+                                    <i class="fas fa-sticky-note fa-2x mr-3 secondary-bg"></i>Poor
+                                    Performers
                                 </button>
                             </h5>
                         </div>
@@ -250,43 +327,152 @@
                         <div id="collapseThree" class="collapse show fade" aria-labelledby="headingTwo"
                              data-parent="#accordionExample">
                             <div class="card-body">
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
-                                squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck
-                                quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it
-                                squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
-                                craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur
-                                butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth
-                                nesciunt you probably haven't heard of them accusamus labore sustainable VHS.<a
-                                    href="https://www.fiverr.com/sunlimetech/fix-your-bootstrap-html-and-css3-issues"
-                                    class="ml-3" target="_blank"><strong>View More designs <i
-                                    class="fa fa-angle-double-right"></i></strong></a>
+
+                                {% for student in examoverview.2 %}
+                                    <div class="chip m-2 w-100">
+                                        <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}"
+                                                          alt="Person"
+                                                          width="96"
+                                                          height="96">
+                                            {{ student }}
+                                            <span class="text-right badge badge-danger ml-5">Danger</span>
+                                            <span class="text-right badge badge-warning">Warning</span>
+                                        </a>
+                                    </div>
+                                    <hr class="hr-line"/>
+                                {% endfor %}
+
+
+                                {#                                <div class="chip m-2 w-100">#}
+                                {#                                    <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}"#}
+                                {#                                                      alt="Person"#}
+                                {#                                                      width="96"#}
+                                {#                                                      height="96">#}
+                                {#                                        John Doe#}
+                                {#                                        <span class="text-right badge badge-danger ml-5">Danger</span>#}
+                                {#                                        <span class="text-right badge badge-warning">Warning</span>#}
+                                {#                                    </a>#}
+                                {#                                </div>#}
+                                {#                                <hr class="hr-line"/>#}
+                                {##}
+                                {#                                <div class="chip m-2 w-100">#}
+                                {#                                    <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}"#}
+                                {#                                                      alt="Person"#}
+                                {#                                                      width="96"#}
+                                {#                                                      height="96">#}
+                                {#                                        John Doe#}
+                                {#                                        <span class="text-right badge badge-danger ml-5">Danger</span>#}
+                                {#                                        <span class="text-right badge badge-warning">Warning</span>#}
+                                {#                                    </a>#}
+                                {#                                </div>#}
+                                {#                                <hr class="hr-line"/>#}
+                                {##}
+                                {#                                <div class="chip m-2 w-100">#}
+                                {#                                    <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}"#}
+                                {#                                                      alt="Person"#}
+                                {#                                                      width="96"#}
+                                {#                                                      height="96">#}
+                                {#                                        John Doe#}
+                                {#                                        <span class="text-right badge badge-danger ml-5">Danger</span>#}
+                                {#                                        <span class="text-right badge badge-warning">Warning</span>#}
+                                {#                                    </a>#}
+                                {#                                </div>#}
+                                {#                                <hr class="hr-line"/>#}
+                                {##}
+                                {#                                <div class="chip m-2 w-100">#}
+                                {#                                    <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}"#}
+                                {#                                                      alt="Person"#}
+                                {#                                                      width="96"#}
+                                {#                                                      height="96">#}
+                                {#                                        John Doe#}
+                                {#                                        <span class="text-right badge badge-danger ml-5">Danger</span>#}
+                                {#                                        <span class="text-right badge badge-warning">Warning</span>#}
+                                {#                                    </a>#}
+                                {#                                </div>#}
+                                {#                                <hr class="hr-line"/>#}
+
                             </div>
                         </div>
                     </div>
-                    <div class="card">
+                    <div class="card mb-5">
                         <div class="card-header" id="headingTwo">
                             <h5 class="mb-0">
-                                <button class="btn btn-link collapsed btn-block text-left" type="button"
+                                <button class="btn btn-link collapsed btn-block text-left font-weight-bold"
+                                        type="button"
                                         data-toggle="collapse" data-target="#collapseFour" aria-expanded="false"
                                         aria-controls="collapseFour">
-                                    <i class="fa fa-plus main"></i><i class="fa fa-angle-double-right mr-3"></i>Exam
-                                    Stats
+                                    <img src="{% static "dashboard/images/scroll.png" %}" alt="icon" width="28"
+                                         height="28" class="mr-3"/>Exam
+                                    Statistics
                                 </button>
                             </h5>
                         </div>
                         <div id="collapseFour" class="collapse fade" aria-labelledby="headingFour"
                              data-parent="#accordionExample">
                             <div class="card-body">
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
-                                squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck
-                                quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it
-                                squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
-                                craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur
-                                butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth
-                                nesciunt you probably haven't heard of them accusamus labore sustainable VHS.<a
-                                    href="https://www.fiverr.com/sunlimetech/design-and-fix-your-bootstrap-4-issues"
-                                    class="ml-3" target="_blank"><strong>View More designs <i
-                                    class="fa fa-angle-double-right"></i></strong></a>
+
+                                {% for quartile in examoverview.4 %}
+                                    <div class="row">
+                                        <div class="w-100 pl-3"><h3 class="display-5 text-primary">
+                                            Quartile 1</h3></div>
+                                        <div class="row w-100 pl-3">
+                                            <div class="col-9 mt-2">
+
+                                                <div class="progress">
+                                                    <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                                         style="width:{{ quartile }}%"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-3">
+                                                <p class="display-5 text-success ml-3 text-left">{{ quartile }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr/>
+
+                                {% endfor %}
+{#                                <div class="row">#}
+{#                                    <div class="w-100 pl-3"><h3 class="display-5 text-primary">Quartile 1</h3></div>#}
+{#                                    <div class="w-100 pl-3">#}
+{#                                        <div class="col-3">#}
+{#                                            <p class="display-5 text-success ml-3 text-left">{{ examoverview.4 }}</p>#}
+{#                                        </div>#}
+{#                                        <div class="col-9">#}
+{#                                            <div class="progress-bar progress-bar-striped progress-bar-animated"#}
+{#                                                 style="width: 40%"></div>#}
+{#                                        </div>#}
+{#                                    </div>#}
+{##}
+{#                                </div>#}
+{#                                <hr/>#}
+{#                                <div class="row">#}
+{#                                    <div class="w-100 pl-3"><h3 class="display-5 text-primary">Quartile 2</h3></div>#}
+{#                                    <div class="w-100 pl-3">#}
+{#                                        <div class="col-3">#}
+{#                                            <p class="display-5 text-success ml-3 text-left">{{ examoverview.5 }}</p>#}
+{#                                        </div>#}
+{#                                        <div class="col-9">#}
+{#                                            <div class="progress-bar progress-bar-striped progress-bar-animated"#}
+{#                                                 style="width: 40%"></div>#}
+{#                                        </div>#}
+{#                                    </div>#}
+{##}
+{#                                </div>#}
+{#                                <hr/>#}
+{#                                <div class="row">#}
+{#                                    <div class="w-100 pl-3"><h3 class="display-5 text-primary">Quartile 3</h3></div>#}
+{#                                    <div class="w-100 pl-3">#}
+{#                                        <div class="col-3">#}
+{#                                            <p class="display-5 text-success ml-3 text-left">{{ examoverview.6 }}</p>#}
+{#                                        </div>#}
+{#                                        <div class="col-9">#}
+{#                                            <div class="progress-bar progress-bar-striped progress-bar-animated"#}
+{#                                                 style="width: 40%"></div>#}
+{#                                        </div>#}
+{#                                    </div>#}
+{##}
+{#                                </div>#}
+
                             </div>
                         </div>
                     </div>
@@ -302,15 +488,15 @@
     <script>
         var y0 = [], i = 0;
 
-        for( i = 0 ; i<50 ; i++ ){
+        for (i = 0; i < 50; i++) {
             y0[i] = Math.random()
         }
-{#        {% for entry in tupleformarks %}#}
-{#            {% for j in entry %}#}
-{#                {% y[i] = j %}#}
-{#                i = i + 1#}
-{#            {% endfor %}#}
-{#        {% endfor %}#}
+        {#        {% for entry in tupleformarks %}#}
+        {#            {% for j in entry %}#}
+        {#                {% y[i] = j %}#}
+        {#                i = i + 1#}
+        {#            {% endfor %}#}
+        {#        {% endfor %}#}
 
         var trace1 = {
             y: y0,
