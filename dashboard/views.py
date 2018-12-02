@@ -1,9 +1,8 @@
 from django.contrib.auth.models import User
 from django.shortcuts import render
-
 from registration.models import professor_profile
 from .models import Marks
-from .models import csvfile, Enrollments
+from .models import Enrollments, course_dashboard
 from django.http import HttpResponse
 from .forms import file_class
 
@@ -12,10 +11,10 @@ import dashboard.algo as alg
 from django.contrib.auth.decorators import login_required
 
 
-def add_to_database(pat):
+def add_to_database(pat, username, course_id):
     path = 'media/media_/' + pat
-    co_id = "ASE"
-    pr_id = "SUBU"
+    co_id = course_id
+    pr_id = username
 
     Marks.objects.filter(course_id=co_id).delete()
     Enrollments.objects.filter(course_id=co_id).delete()
@@ -39,8 +38,9 @@ def add_to_database(pat):
         NeedyList = alg.mainFunc(df)
         CourseOverview = alg.CourseStats(df)
         ExamOverview = alg.ExamStats(df)
-        # Persistent_Labels = alg.PersistentLabels(df)
-        # Performance_Labels = alg.PerformanceLabels(df)
+        Persistent_Labels = alg.PersistentLabels(df)
+        Performance_Labels = alg.PerformanceLabels(df)
+
         print(CourseOverview)
         f_all[len(f_all) - 1] = f_all[len(f_all) - 1] + '\n'
         # for i in range(1, len(f_all)):
@@ -94,24 +94,33 @@ def dashboard(request):
         if form1.is_valid():
             form1.save()
             print(request.FILES['req_file'])
-            file1 = str(request.FILES['req_file'])
-            dashboard_stats = add_to_database(file1)
             user = User.objects.get(username=request.user)
             profile = professor_profile.objects.get(professor=user)
+
+            file1 = str(request.FILES['req_file'], user.username, professor_profile.professor_course)
+            dashboard_stats = add_to_database(file1)
             context = {'form': form1, 'courseoverview': dashboard_stats[0], 'examoverview': dashboard_stats[1],
                        'needystudents': dashboard_stats[2], 'username': user.username, 'photo': profile.professor_photo}
             return render(request, "dashboard/dashboard.html", context)
+
         else:
-            return HttpResponse("form is invalidd")
+            return HttpResponse("form is invalid")
     else:
-        # user = User.objects.get(username=request.user)
-        user = User.objects.get(username="vineet")
+        user = User.objects.get(username=request.user)
+        #user = User.objects.get(username="vineet")
         profile = professor_profile.objects.get(professor=user)
         form1 = file_class()
+        p = course_dashboard.objects.get(professor=user)
+        course_values = (
+        p.course_difficulty, p.course_risk, p.course_student_list, p.course_average, p.quartile_1, p.quartile_2,
+        p.quartile_3)
+        last_exam_details = (
+        p.exam_difficulty, p.exam_cheat_risk, p.exam_student_list, p.exam_average, p.quartile_1, p.quartile_2,
+        p.quartile_3)
         return render(request, "dashboard/dashboard.html",
+
                       {'form': form1, 'username': user.username, 'photo': profile.professor_photo,
-                       'courseoverview': ('Moderate', 'Low', [1, 2, 3, 4, 5], '46-47', 60.09, 90.08, 50.08),
-                       'examoverview': ('Medium', 'High', [1, 2, 3, 4, 5], '46-47', 62.09, 91.08, 52.08),
+                       'courseoverview': course_values, 'examoverview': last_exam_details,
                        'needystudents': [1, 2, 3, 4, 5]})
 
 

@@ -83,11 +83,20 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model=professor_profile
         fields=('professor_description',
-                'professor_photo')
+                'professor_photo','professor_course')
     def clean_professor_description(self):
         cleaned_data =super().clean()
         professor_description = cleaned_data.get('professor_description')
         return professor_description
+    def clean_professor_course(self):
+        cleaned_data = super().clean()
+        course_id = str(cleaned_data.get('course_id'))
+        course_id = course_id.upper()
+        courselist = course.objects.filter(course_id=course_id)
+        if not courselist.exists():
+            raise forms.ValidationError('course does not exist')
+        return course_id
+
 
 class ResetForm(forms.ModelForm):
     email = forms.EmailField(widget=forms.TextInput(attrs={'autocomplete':'off'}))
@@ -112,7 +121,7 @@ class CourseForm(forms.Form):
         courselist = course.objects.filter(course_id=course_id)
         if not courselist.exists():
             raise forms.ValidationError('course does not exist')
-            return course_id
+        return course_id
 
 class ResetPasswordForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput)

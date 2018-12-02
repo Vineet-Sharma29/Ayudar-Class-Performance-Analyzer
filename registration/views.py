@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import professor_profile, course, User
+from .models import professor_profile, User
 from django.core.mail import send_mail
 from django.shortcuts import HttpResponse
 from .forms import RegisterForm, LoginForm, ResetForm, ProfileForm, CourseForm
@@ -11,6 +11,7 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from .tokens import account_activation_token
 from .forms import ResetPasswordForm
+from dashboard.models import course_dashboard
 
 # login
 
@@ -148,26 +149,27 @@ def save_password(request):
     else:
         form1 = ResetPasswordForm()
     return render(request,'login/reset_password.html',{'form':form1})
+
+
 def editprofile(request):
     if request.method == 'POST':
         user = User.objects.get(username=request.user)
         print(user)
         form = ProfileForm(request.POST, request.FILES, instance=professor_profile.objects.get(professor=user))
         if form.is_valid():
-            course_id = form.cleaned_data['professor_course']
             profile = form.save(commit=False)
             profile.professor_description = form.cleaned_data['professor_description']
+            profile.professor_course = form.cleaned_data['professor_course']
             profile.save()
             return HttpResponse('saved <a href="view-profiles">here</a>')
 
     else:
         user = User.objects.get(username=request.user)
-        profile = professor_profile.objects.get(professor=user
-                                                )
-        form1 = ProfileForm(initial={'professor_description': profile.professor_description,
-                                     'professor_photo': profile.professor_photo})
-        context = {'form': form1}
-        return render(request, 'login/profile.html', context)
+        profile = professor_profile.objects.get(professor=user)
+        form = ProfileForm(initial={'professor_description': profile.professor_description,
+                                     'professor_photo': profile.professor_photo,'professor_course':profile.professor_course})
+
+    return render(request, 'login/profile.html', {'form':form})
 
 
 def show_profile(request):
@@ -185,7 +187,8 @@ def course_selection(request):
             profile = professor_profile.objects.get(professor=user)
             profile.professor_course = str(form.cleaned_data['course_id']).upper()
             profile.save()
-            return redirect('http://127.0.0.1:8000/dashboard')
+            course_dashboard.objects.create(professor=user)
+            return redirect('dashboard:dashboard')
     else:
         form = CourseForm()
     return render(request, 'login/course.html', {'form': form})
@@ -201,9 +204,8 @@ def activate(request, uidb64, token):
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.save()
-        login(request, user, backend='django.contrib.auth.backends.ModelBackend')
-        # return redirect('home')
-        return HttpResponse('Thank you')
+        login(request, user)
+        return redirect('registration:course_selection')
 
     else:
         return HttpResponse('Activation link is invalid!')

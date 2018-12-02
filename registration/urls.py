@@ -26,8 +26,6 @@ urlpatterns = [
     path('login/reset_password/', views.reset_password, name='reset'),
     url(r'display_reset_password/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/',
         views.display_reset_password, name='display_reset_password'),
-    path('dashboard/edit_profile/', views.editprofile, name='edit_profile'),
-    path('dashboard/my_profile/', views.show_profile, name='show_profile'),
     path('course/', views.course_selection, name='course_selection'),
     url(r'activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/',
         views.activate, name='activate'),
