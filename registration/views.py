@@ -191,20 +191,17 @@ def show_profile(request):
 @login_required()
 def course_selection(request):
     if request.method == 'POST':
-        form = CourseForm(request.POST)
-        if form.is_valid():
-            user = User.objects.get(username=request.user)
-            profile = professor_profile.objects.get(professor=user)
-            profile.professor_course = str(form.cleaned_data['course_id']).upper()
-            profile.save()
-            return redirect('dashboard:dashboard')
+        user = User.objects.get(username=request.user)
+        profile = professor_profile.objects.get(professor=user)
+        profile.professor_course = str(request.POST.get('radio'))
+        profile.save()
+        return redirect('dashboard:dashboard')
     else:
-        form = CourseForm()
         courselist = course.objects.all()
         courseList = []
         for i in courselist:
             courseList.append([i.course_id,i.course_name,i.credits])
-    return render(request, 'login/course.html', {'form': form,'courseList':courseList})
+    return render(request, 'login/course.html', {'courseList':courseList})
 
 
 def activate(request, uidb64, token):
