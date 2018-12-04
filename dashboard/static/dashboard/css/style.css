@@ -530,16 +530,14 @@ footer.bg-dark {
     clip-path: polygon(0 36%, 100% 0, 100% 100%, 0% 100%);
 }
 
-.image-upload > input {
-    display: none;
-}
 
 .fa-upload {
-    transition: transform 0.4s;
+    transition: color 0.4s;
 }
 
-.fa-upload:hover {
-    transform: scale(1.2);
+.fa-upload:hover, .fa-download:hover {
+    cursor: pointer;
+    color: blue;
 }
 
 .dashboard-body {
@@ -555,16 +553,7 @@ footer.bg-dark {
     display: none;
 }
 
-.image-upload img {
-    width: 80px;
-    cursor: pointer;
-}
 
-.fa-download:hover {
-    cursor: pointer;
-    color: blue;
-    transition: color 0.3s;
-}
 
 /***************************  ACCORDION ***************************/
 
@@ -708,13 +697,22 @@ footer.bg-dark {
 }
 
 
+.progress{
+    height:7px!important;
+}
 
-
-
-
-
-
-
-
-
+.stats-heading:after{
+    content: ' ';
+    position: absolute;
+    display: block;
+    width: 20px;
+    margin: -2px 1%;
+    border: 2px solid #000;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+}
 
