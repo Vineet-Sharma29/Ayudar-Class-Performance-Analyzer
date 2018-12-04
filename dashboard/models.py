@@ -10,10 +10,10 @@ class Enrollments(models.Model):
     student_id = models.CharField(max_length=15)
     student_name = models.CharField(max_length=15)
     prof_id = models.CharField(max_length=15)
-    status = models.CharField(max_length=15)
-    performance = models.CharField(max_length=15,default='-')
-    persistance = models.CharField(max_length=15,default='-')
-    label = models.CharField(max_length=15,default='-')
+    status = models.CharField(max_length=20)
+    performance = models.CharField(max_length=20,default='-')
+    persistance = models.CharField(max_length=20,default='-')
+    label = models.CharField(max_length=90,default='-')
 class csvfile(models.Model):
     req_file = models.FileField(upload_to='media_')
 

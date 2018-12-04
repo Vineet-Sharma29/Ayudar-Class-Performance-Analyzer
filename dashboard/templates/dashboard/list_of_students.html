@@ -16,57 +16,72 @@
 
 
         <ul class="list">
-            <li >
-                <div class="chip my-2 w-100">
-                    <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}"
-                                      alt="Person"
-                                      width="96"
-                                      height="96">
-                        <span class="name">Jonny Stromber</span>
-                        <span class="text-right badge badge-danger ml-5">Danger</span>
-                        <span class="text-right badge badge-warning">Warning</span>
-                    </a>
-                </div>
-            </li>
+            {% for student in allstudents %}
 
-            <li >
-                <div class="chip my-2 w-100">
-                    <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}"
-                                      alt="Person"
-                                      width="96"
-                                      height="96">
-                        <span class="name">SS Bharadwaja</span>
-                        <span class="text-right badge badge-danger ml-5">Danger</span>
-                        <span class="text-right badge badge-warning">Warning</span>
-                    </a>
-                </div>
-            </li>
+                <li>
+                    <div class="row">
+                        <div class="col-2">
+                            <img class="rounded-circle mx-3" src="{% static 'dashboard/images/st6.jpg' %}"
+                                 alt="Person"
+                                 width="96"
+                                 height="96">
+                        </div>
 
-            <li >
-                <div class="chip my-2 w-100">
-                    <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}"
-                                      alt="Person"
-                                      width="96"
-                                      height="96">
-                        <span class="name">Tanay Rathore</span>
-                        <span class="text-right badge badge-danger ml-5">Danger</span>
-                        <span class="text-right badge badge-warning">Warning</span>
-                    </a>
-                </div>
-            </li>
+                        <div class="col-10">
+                            <div class="row chip my-2 w-100">
+                                <a href="#">
+                                    <span class="name pt-2 pl-3">{{ student.1 }}</span>
+                                    <span class="text-right badge badge-danger ml-5">{{ student.2 }}</span>
+                                    <span class="text-right badge badge-warning">{{ student.3 }}</span>
+                                </a>
+                                <button type="button" class="btn btn-info">See Report</button>
+                            </div>
+                        </div>
 
-            <li >
-                <div class="chip my-2 w-100">
-                    <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}"
-                                      alt="Person"
-                                      width="96"
-                                      height="96">
-                        <span class="name">Vineet Sharma</span>
-                        <span class="text-right badge badge-danger ml-5">Danger</span>
-                        <span class="text-right badge badge-warning">Warning</span>
-                    </a>
-                </div>
-            </li>
+                    </div>
+                <hr/>
+                </li>
+
+            {% endfor %}
+            {##}
+            {#            <li >#}
+            {#                <div class="chip my-2 w-100">#}
+            {#                    <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}"#}
+            {#                                      alt="Person"#}
+            {#                                      width="96"#}
+            {#                                      height="96">#}
+            {#                        <span class="name">SS Bharadwaja</span>#}
+            {#                        <span class="text-right badge badge-danger ml-5">Danger</span>#}
+            {#                        <span class="text-right badge badge-warning">Warning</span>#}
+            {#                    </a>#}
+            {#                </div>#}
+            {#            </li>#}
+            {##}
+            {#            <li >#}
+            {#                <div class="chip my-2 w-100">#}
+            {#                    <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}"#}
+            {#                                      alt="Person"#}
+            {#                                      width="96"#}
+            {#                                      height="96">#}
+            {#                        <span class="name">Tanay Rathore</span>#}
+            {#                        <span class="text-right badge badge-danger ml-5">Danger</span>#}
+            {#                        <span class="text-right badge badge-warning">Warning</span>#}
+            {#                    </a>#}
+            {#                </div>#}
+            {#            </li>#}
+            {##}
+            {#            <li >#}
+            {#                <div class="chip my-2 w-100">#}
+            {#                    <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}"#}
+            {#                                      alt="Person"#}
+            {#                                      width="96"#}
+            {#                                      height="96">#}
+            {#                        <span class="name">Vineet Sharma</span>#}
+            {#                        <span class="text-right badge badge-danger ml-5">Danger</span>#}
+            {#                        <span class="text-right badge badge-warning">Warning</span>#}
+            {#                    </a>#}
+            {#                </div>#}
+            {#            </li>#}
         </ul>
     </div>
 {% endblock %}

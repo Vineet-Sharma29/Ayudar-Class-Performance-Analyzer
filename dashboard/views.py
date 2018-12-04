@@ -8,6 +8,7 @@ from .forms import file_class
 from django.shortcuts import render
 import dashboard.algo as alg
 from django.contrib.auth.decorators import login_required
+import pdfkit
 
 def add_to_database(pat, username, course_id):
     path = 'media/media_/' + pat
@@ -37,7 +38,7 @@ def add_to_database(pat, username, course_id):
         ExamOverview = alg.ExamStats(df)
         Persistent_Labels = alg.PersistentLabels(df)
         Performance_Labels = alg.PerformanceLabels(df)
-
+        print("Persistence label : ",Persistent_Labels)
         print(ExamOverview)
         f_all[len(f_all) - 1] = f_all[len(f_all) - 1] + '\n'
         for i in range(1, len(f_all)):
@@ -45,8 +46,24 @@ def add_to_database(pat, username, course_id):
             if f_all[i]!='':
                 f2 = f_all[i].split(',')
                 #print(f2)
+                if str(f2[0]) in Persistent_Labels[0]:
+                    per_value='Consistent'
+                elif str(f2[0]) in Persistent_Labels[1]:
+                    per_value='Moderately Varying'
+                else:
+                    per_value='Highly Varying'
+
+                if str(f2[0]) in Performance_Labels[0]:
+                    performance_value = 'Exceptional'
+                elif str(f2[0]) in Performance_Labels[1]:
+                    performance_value = 'Promising'
+                elif str(f2[0]) in Performance_Labels[2]:
+                    performance_value = 'Average'
+                else:
+                    performance_value = 'Needy'
+
                 Enrollments.objects.create(course_id=co_id, student_id=f2[0], student_name=f2[1], prof_id=pr_id,
-                                           status="not_needy")
+                                           status="not_needy",persistance=per_value,performance=performance_value)
                 for j in range(0, len(f2) - 2):
                     marks = f2[j + 2]
                     qname = f1[j + 2]
@@ -182,7 +199,12 @@ def needy_list(request):
 def list_of_students(request):
     user = User.objects.get(username=request.user)
     profile = professor_profile.objects.get(professor=user)
-    return render(request, "dashboard/list_of_students.html",{'username':user.username,'photo':profile.professor_photo})
+    allstudents = []
+    j = Enrollments.objects.filter(course_id=profile.professor_course,prof_id=user)
+    for i in j:
+        allstudents.append([i.student_id,i.student_name,i.persistance,i.performance])
+    print(allstudents)
+    return render(request, "dashboard/list_of_students.html",{'username':user.username,'photo':profile.professor_photo,'allstudents':allstudents})
 
 
 def custom_404(request):

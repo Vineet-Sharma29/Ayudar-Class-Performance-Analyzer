@@ -535,7 +535,7 @@ footer.bg-dark {
     transition: color 0.4s;
 }
 
-.fa-upload:hover, .fa-download:hover {
+.fa-upload:hover {
     cursor: pointer;
     color: blue;
 }
@@ -716,3 +716,7 @@ footer.bg-dark {
     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
 }
 
+
+.name{
+    font-size:1.5rem;
+}
