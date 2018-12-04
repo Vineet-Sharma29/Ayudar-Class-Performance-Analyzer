@@ -12,7 +12,7 @@ from django.template.loader import render_to_string
 from .tokens import account_activation_token
 from .forms import ResetPasswordForm
 from dashboard.models import course_dashboard
-
+from .models import course
 # login
 
 def login_display(request):
@@ -200,7 +200,11 @@ def course_selection(request):
             return redirect('dashboard:dashboard')
     else:
         form = CourseForm()
-    return render(request, 'login/course.html', {'form': form})
+        courselist = course.objects.all()
+        courseList = []
+        for i in courselist:
+            courseList.append([i.course_id,i.course_name,i.credits])
+    return render(request, 'login/course.html', {'form': form,'courseList':courseList})
 
 
 def activate(request, uidb64, token):
