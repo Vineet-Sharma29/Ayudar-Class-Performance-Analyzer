@@ -55,7 +55,8 @@ def register_display(request):
             user.last_name = form.cleaned_data["last_name"]
 
             user.save()
-            p = professor_profile.objects.create(professor=user)
+            professor_profile.objects.create(professor=user)
+            course_dashboard.objects.create(professor=user)
             mail = form.cleaned_data.get('email')
             print(mail)
             current_site = get_current_site(request)
@@ -89,7 +90,7 @@ logout
 @login_required
 def logout_view(request):
     logout(request)
-    return redirect('http://127.0.0.1:8000/')
+    return redirect('registration:login')
 
 
 '''
@@ -196,7 +197,6 @@ def course_selection(request):
             profile = professor_profile.objects.get(professor=user)
             profile.professor_course = str(form.cleaned_data['course_id']).upper()
             profile.save()
-            course_dashboard.objects.create(professor=user)
             return redirect('dashboard:dashboard')
     else:
         form = CourseForm()

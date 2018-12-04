@@ -5,12 +5,11 @@ from .models import Marks
 from .models import Enrollments, course_dashboard
 from django.http import HttpResponse
 from .forms import file_class
-#from background_task import background
 from django.shortcuts import render
 import dashboard.algo as alg
 from django.contrib.auth.decorators import login_required
+from background_task import background
 
-#@background()
 def add_to_database(pat, username, course_id):
     path = 'media/media_/' + pat
     co_id = course_id
@@ -34,33 +33,30 @@ def add_to_database(pat, username, course_id):
                    'lab-basic03-20', 'asgn-basic01-15', 'asgn-basic02-15', 'asgn-basic03-15', 'asgn-basic04-15',
                    'oth-quiz01-30', 'oth-quiz02-30', 'oth-quiz03-30']
         df = alg.initialse(tuples, headers)
-        # print(df.columns)
         NeedyList = alg.mainFunc(df)
         CourseOverview = alg.CourseStats(df)
         ExamOverview = alg.ExamStats(df)
         Persistent_Labels = alg.PersistentLabels(df)
         Performance_Labels = alg.PerformanceLabels(df)
 
-        print(CourseOverview)
-    #     f_all[len(f_all) - 1] = f_all[len(f_all) - 1] + '\n'
-    #     for i in range(1, len(f_all)):
-    #         f_all[i] = f_all[i].rstrip()
-    #         f2 = f_all[i].split(',')
-    #
-    #         Enrollments.objects.create(course_id=co_id, student_id=f2[0], student_name=f2[1], prof_id=pr_id,
-    #                                    status="not_needy")
-    #
-    #         for j in range(0, len(f2) - 2):
-    #             sid = f2[0]
-    #             sname = f2[1]
-    #             marks = f2[j + 2]
-    #             qname = f1[j + 2]
-    #
-    #             Marks.objects.create(student_name=sname, student_id=sid, marks=marks, q_name=qname, course_id=co_id,
-    #                                  prof_id=pr_id)
-    #
+        print(ExamOverview)
+        f_all[len(f_all) - 1] = f_all[len(f_all) - 1] + '\n'
+        # for i in range(1, len(f_all)):
+        #     f_all[i] = f_all[i].rstrip()
+        #     if f_all[i]!='':
+        #         f2 = f_all[i].split(',')
+        #         #print(f2)
+        #         Enrollments.objects.create(course_id=co_id, student_id=f2[0], student_name=f2[1], prof_id=pr_id,
+        #                                    status="not_needy")
+        #         for j in range(0, len(f2) - 2):
+        #             marks = f2[j + 2]
+        #             qname = f1[j + 2]
+        #
+        #             Marks.objects.create(student_name=f2[1], student_id=f2[0], marks=f2[j+2], q_name=f1[j+2], course_id=co_id,
+        #                                  prof_id=pr_id)
+
     # all_quiz_marks_in_a_course()
-    # # all_quiz_marks_in_all_courses()
+    # all_quiz_marks_in_all_courses()
     return [CourseOverview, ExamOverview, NeedyList]
 
 
@@ -87,7 +83,7 @@ def add_to_database(pat, username, course_id):
 #
 # print(tup(0))
 
-# @login_required
+#@login_required()
 def dashboard(request):
     form1 = file_class(request.POST, request.FILES or None)
     if request.method == 'POST':
@@ -177,7 +173,7 @@ def needy_list(request):
     profile = professor_profile.objects.get(professor=user)
     p = course_dashboard.objects.get(professor=user)
     needystudents = p.needy_student_list.split('-')
-    return render(request, "dashboard/needy_list.html",{'username':user.username,'photo':profile.professor_photo})
+    return render(request, "dashboard/needy_list.html",{'username':user.username,'photo':profile.professor_photo,'needyList':needystudents})
 
 
 def list_of_students(request):
