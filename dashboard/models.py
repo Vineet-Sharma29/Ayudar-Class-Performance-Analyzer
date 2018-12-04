@@ -6,13 +6,14 @@ from django.contrib.auth.models import User
 
 
 class Enrollments(models.Model):
-
     course_id = models.CharField(max_length=15)
     student_id = models.CharField(max_length=15)
     student_name = models.CharField(max_length=15)
     prof_id = models.CharField(max_length=15)
     status = models.CharField(max_length=15)
-
+    performance = models.CharField(max_length=15,default='-')
+    persistance = models.CharField(max_length=15,default='-')
+    label = models.CharField(max_length=15,default='-')
 class csvfile(models.Model):
     req_file = models.FileField(upload_to='media_')
 

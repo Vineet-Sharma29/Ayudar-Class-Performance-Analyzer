@@ -1,8 +1,15 @@
 <!DOCTYPE HTML>
 <html>
         <body>
-        {% for pl in professor_details %}
     <div style="min-height: 200px;">
+        <form action="dashboard:editprofile">
+
+
+        </form>
+    <div>
+
+        {% for pl in professor_details %}
+    <div style="min-height: 200px;border:solid">
     <h1> Professor Name : {{ pl.0 }}</h1>
     <div>
         <img src="{{ pl.1.url }}" alt="" height="100px" width="100px;" style="float: left;">

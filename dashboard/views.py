@@ -41,19 +41,19 @@ def add_to_database(pat, username, course_id):
 
         print(ExamOverview)
         f_all[len(f_all) - 1] = f_all[len(f_all) - 1] + '\n'
-        # for i in range(1, len(f_all)):
-        #     f_all[i] = f_all[i].rstrip()
-        #     if f_all[i]!='':
-        #         f2 = f_all[i].split(',')
-        #         #print(f2)
-        #         Enrollments.objects.create(course_id=co_id, student_id=f2[0], student_name=f2[1], prof_id=pr_id,
-        #                                    status="not_needy")
-        #         for j in range(0, len(f2) - 2):
-        #             marks = f2[j + 2]
-        #             qname = f1[j + 2]
-        #
-        #             Marks.objects.create(student_name=f2[1], student_id=f2[0], marks=f2[j+2], q_name=f1[j+2], course_id=co_id,
-        #                                  prof_id=pr_id)
+        for i in range(1, len(f_all)):
+            f_all[i] = f_all[i].rstrip()
+            if f_all[i]!='':
+                f2 = f_all[i].split(',')
+                #print(f2)
+                Enrollments.objects.create(course_id=co_id, student_id=f2[0], student_name=f2[1], prof_id=pr_id,
+                                           status="not_needy")
+                for j in range(0, len(f2) - 2):
+                    marks = f2[j + 2]
+                    qname = f1[j + 2]
+
+                    Marks.objects.create(student_name=f2[1], student_id=f2[0], marks=f2[j+2], q_name=f1[j+2], course_id=co_id,
+                                         prof_id=pr_id)
 
     # all_quiz_marks_in_a_course()
     # all_quiz_marks_in_all_courses()
@@ -173,7 +173,11 @@ def needy_list(request):
     profile = professor_profile.objects.get(professor=user)
     p = course_dashboard.objects.get(professor=user)
     needystudents = p.needy_student_list.split('-')
-    return render(request, "dashboard/needy_list.html",{'username':user.username,'photo':profile.professor_photo,'needyList':needystudents})
+    needystudentdetails = []
+    for i in needystudents:
+        j=Enrollments.objects.get(course_id=profile.professor_course,prof_id=user,student_id=i)
+        needystudentdetails.append([j.student_name,j.student_id,j.performance,j.persistance])
+    return render(request, "dashboard/needy_list.html",{'username':user.username,'photo':profile.professor_photo,'needyList':needystudentdetails})
 
 
 def list_of_students(request):
