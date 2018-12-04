@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html>
+        <body>
+        {% for pl in professor_details %}
+    <div style="min-height: 200px;">
+    <h1> Professor Name : {{ pl.0 }}</h1>
+    <div>
+        <img src="{{ pl.1.url }}" alt="" height="100px" width="100px;" style="float: left;">
+    </div>
+    <span style="margin-left: 10px;">
+
+            <ul style="margin-left: 100px;">
+      <li> Course Taken :  {{ pl.2 }}</li>
+      <li>Professor Description : {{ pl.3 }} </li>
+            </ul>
+</div>
+{% endfor %}
+
+        </body>
+</html>

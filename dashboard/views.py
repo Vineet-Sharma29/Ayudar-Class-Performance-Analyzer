@@ -5,12 +5,12 @@ from .models import Marks
 from .models import Enrollments, course_dashboard
 from django.http import HttpResponse
 from .forms import file_class
-
+#from background_task import background
 from django.shortcuts import render
 import dashboard.algo as alg
 from django.contrib.auth.decorators import login_required
 
-
+#@background()
 def add_to_database(pat, username, course_id):
     path = 'media/media_/' + pat
     co_id = course_id
@@ -42,25 +42,25 @@ def add_to_database(pat, username, course_id):
         Performance_Labels = alg.PerformanceLabels(df)
 
         print(CourseOverview)
-        f_all[len(f_all) - 1] = f_all[len(f_all) - 1] + '\n'
-        # for i in range(1, len(f_all)):
-        #     f_all[i] = f_all[i].rstrip()
-        #     f2 = f_all[i].split(',')
-        #
-        #     Enrollments.objects.create(course_id=co_id, student_id=f2[0], student_name=f2[1], prof_id=pr_id,
-        #                                status="not_needy")
-        #
-        #     for j in range(0, len(f2) - 2):
-        #         sid = f2[0]
-        #         sname = f2[1]
-        #         marks = f2[j + 2]
-        #         qname = f1[j + 2]
-        #
-        #         Marks.objects.create(student_name=sname, student_id=sid, marks=marks, q_name=qname, course_id=co_id,
-        #                              prof_id=pr_id)
+    #     f_all[len(f_all) - 1] = f_all[len(f_all) - 1] + '\n'
+    #     for i in range(1, len(f_all)):
+    #         f_all[i] = f_all[i].rstrip()
+    #         f2 = f_all[i].split(',')
+    #
+    #         Enrollments.objects.create(course_id=co_id, student_id=f2[0], student_name=f2[1], prof_id=pr_id,
+    #                                    status="not_needy")
+    #
+    #         for j in range(0, len(f2) - 2):
+    #             sid = f2[0]
+    #             sname = f2[1]
+    #             marks = f2[j + 2]
+    #             qname = f1[j + 2]
+    #
+    #             Marks.objects.create(student_name=sname, student_id=sid, marks=marks, q_name=qname, course_id=co_id,
+    #                                  prof_id=pr_id)
     #
     # all_quiz_marks_in_a_course()
-    # all_quiz_marks_in_all_courses()
+    # # all_quiz_marks_in_all_courses()
     return [CourseOverview, ExamOverview, NeedyList]
 
 
@@ -94,10 +94,10 @@ def dashboard(request):
         if form1.is_valid():
             form1.save()
             print(request.FILES['req_file'])
-            user = User.objects.get(username='vineet')
-            profile = professor_profile.objects.get(professor='vineet')
-            file1 = str(request.FILES['req_file'], user.username, professor_profile.professor_course)
-            dashboard_stats = add_to_database(file1)
+            user = User.objects.get(username=request.user)
+            profile = professor_profile.objects.get(professor=user)
+            file1 = str(request.FILES['req_file'])
+            dashboard_stats = add_to_database(file1, user.username, profile.professor_course)
             context = {'form': form1, 'courseoverview': dashboard_stats[0], 'examoverview': dashboard_stats[1],
                        'needystudents': dashboard_stats[2], 'username': user.username, 'photo': profile.professor_photo}
             return render(request, "dashboard/dashboard.html", context)
@@ -105,8 +105,8 @@ def dashboard(request):
         else:
             return HttpResponse("form is invalid")
     else:
-        # user = User.objects.get(username=request.user)
-        user = User.objects.get(username="vineet")
+        user = User.objects.get(username=request.user)
+        #user = User.objects.get(username="vineet")
         profile = professor_profile.objects.get(professor=user)
         form1 = file_class()
         p = course_dashboard.objects.get(professor=user)
@@ -119,8 +119,8 @@ def dashboard(request):
         return render(request, "dashboard/dashboard.html",
 
                       {'form': form1, 'username': user.username, 'photo': profile.professor_photo,
-                       'courseoverview': course_values, 'examoverview': last_exam_details
-                       # 'needystudents': [1, 2, 3, 4, 5]
+                       'courseoverview': course_values, 'examoverview': last_exam_details,
+                       'needystudents': [1, 2, 3, 4, 5]
                        }
                       )
 
@@ -171,5 +171,4 @@ def return_tuple(line):
         for i in range(2, len(x)):
             y.append(int(x[i]))
         req_tuple += [y]
-    # print(req_tuple)
     return req_tuple

@@ -29,5 +29,6 @@ urlpatterns = [
     path('course/', views.course_selection, name='course_selection'),
     url(r'activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/',
         views.activate, name='activate'),
-    path('save_password',views.save_password,name='save_password')
+    path('save_password/',views.save_password,name='save_password'),
+    path('all_profiles/',views.allprofiles,name='allprofiles')
     ]
