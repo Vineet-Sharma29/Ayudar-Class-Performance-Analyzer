@@ -8,36 +8,41 @@
 
 {% block content %}
     <div class="row mt-3">
-        <div class="col-6">
-            <div class="image-upload">
-
+        <div class="row w-100 align-bottom">
+            <div class="col-4 text-center">
+                <i class="fa fa-download fa-2x text-left" aria-hidden="true" data-toggle="tooltip"
+                   title="Download Report"></i>
             </div>
-        </div>
-        <div class="col-6 text-right align-bottom">
-            <label for="file-input">
-                <form method="POST" enctype="multipart/form-data">
-                    {% csrf_token %}
 
-                    <div class="d-inline-block image-upload">
-                        <label for="file-input">
-                            <i class="fa fa-download fa-2x" aria-hidden="true"></i>
-                        </label>
+            <div class="col-8 text-right">
+                <label for="file-input">
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
 
-                        {{ form.req_file }}
-                    </div>
-                    <button type="submit" class="d-inline-block ml-5 btn btn-primary align-top">Generate Result</button>
-                </form>
-            </label>
+                        <div class="d-inline-block image-upload">
+                            <label for="file-input">
+                                <i class="fa fa-upload fa-2x" aria-hidden="true" data-toggle="tooltip"
+                                   title="Upload File"></i>
+                            </label>
+
+                            {{ form.req_file }}
+                        </div>
+                        <button type="submit" class="d-inline-block ml-5 btn btn-primary align-top">Generate Result
+                        </button>
+                    </form>
+                </label>
+            </div>
 
         </div>
     </div>
 
     <div class="wildcards row mt-4 mb-4">
-        <div class="col-md-3 col-sm-12 col-md-3 col-xs-12 mx-auto rounded well-container p-2 w-25 bg-light">
+        <div class="mx-auto rounded well-container p-2 w-25 bg-light">
             <div class="well">
                 <div class="row">
-                    <h5 class="text-black col-8"><!--<span class="label label-danger pull-right">- 9%</span>--> OVERALL
-                        DIFFICULTY</h5>
+                    <h6 class="text-black col-8 font-weight-bold stats-heading">
+                        <!--<span class="label label-danger pull-right">- 9%</span>--> OVERALL
+                        DIFFICULTY</h6>
                     <img class="col-4" src="{% static "dashboard/images/test.svg" %}" alt="test" width="32"
                          height="32"/>
                 </div>
@@ -55,36 +60,18 @@
                 {#                <p class="text-black p-2 pt-3 display-4 text-right">{{ courseoverview.0 }}</p>#}
             </div>
         </div>
-        {#        <div class="col-md-3 col-sm-12 col-md-3 col-xs-12 mx-auto rounded well-container p-2 w-25 bg-light">#}
-        {#            <div class="well">#}
-        {#                <div class="row">#}
-        {#                    <h5 class="text-black col-8"><!--<span class="label label-danger pull-right">- 9%</span>--> Overall#}
-        {#                        Risk</h5>#}
-        {#                    <img class="col-4" src="{% static "dashboard/images/risk.svg" %}" alt="test" width="32"#}
-        {#                         height="32"/>#}
-        {#                </div>#}
-        {#                {% if courseoverview.1 == "Low" %}#}
-        {#                    <h1><span class="badge badge-warning mt-4">{{ courseoverview.1 }}</span></h1>#}
-        {##}
-        {#                {% elif courseoverview.1 == 'Moderate' %}#}
-        {#                    <h1><span class="badge badge-success mt-4">{{ courseoverview.1 }}</span></h1>#}
-        {##}
-        {#                {% else %}#}
-        {#                    <h1><span class="badge badge-primary mt-4">{{ courseoverview.1 }}</span></h1>#}
-        {##}
-        {#                {% endif %}#}
-        {#            </div>#}
-        {#        </div>#}
-        <div class="col-md-3 col-sm-12 col-md-3 col-xs-12 mx-auto rounded well-container p-2 w-25 wildcard-color">
+        <div class="col-md-3 col-sm-12 col-md-3 col-xs-12 mx-auto rounded well-container p-2 w-25 bg-light">
             <div class="well">
                 <div class="row">
-                    <h5 class="text-black col-8"><!--<span class="label label-danger pull-right">- 9%</span>--> OVERALL
-                        RISK</h5>
+                    <h6 class="text-black col-8 font-weight-bold stats-heading">
+                        <!--<span class="label label-danger pull-right">- 9%</span>--> OVERALL<br/>
+                        Risk</h6>
+
                     <img class="col-4" src="{% static "dashboard/images/risk.svg" %}" alt="test" width="32"
                          height="32"/>
                 </div>
                 {% if courseoverview.1 == "Low" %}
-                    <h1><span class="badge mt-4 mx-5">{{ courseoverview.1 }}</span></h1>
+                    <h1><span class="badge badge-warning mt-4">{{ courseoverview.1 }}</span></h1>
 
                 {% elif courseoverview.1 == 'Moderate' %}
                     <h1><span class="badge badge-success mt-4">{{ courseoverview.1 }}</span></h1>
@@ -95,11 +82,30 @@
                 {% endif %}
             </div>
         </div>
-        <div class="col-md-3 col-sm-12 col-md-3 col-xs-12 mx-auto rounded well-container p-2 w-25 bg-light">
+        {#        <div class="mx-auto rounded well-container p-2 w-25 wildcard-color">#}
+        {#            <div class="well">#}
+        {#                <div class="row">#}
+        {#                    <h5 class="text-black col-8"><!--<span class="label label-danger pull-right">- 9%</span>--> OVERALL#}
+        {#                        RISK</h5>#}
+        {#                    <img class="col-4" src="{% static "dashboard/images/risk.svg" %}" alt="test" width="32"#}
+        {#                         height="32"/>#}
+        {#                </div>#}
+        {#                {% if courseoverview.1 == "Low" %}#}
+        {#                    <h1><span class="badge mt-4 mx-5">{{ courseoverview.1 }}</span></h1>#}
+        {##}
+        {#                {% elif courseoverview.1 == 'Moderate' %}#}
+        {#                    <h1><span class="badge badge-success mt-4">{{ courseoverview.1 }}</span></h1>#}
+        {##}
+        {#                {% else %}#}
+        {#                    <h1><span class="badge badge-primary mt-4">{{ courseoverview.1 }}</span></h1>#}
+        {##}
+        {#                {% endif %}#}
+        {#            </div>#}
+        {#        </div>#}
+        <div class="mx-auto rounded well-container p-2 w-25 bg-light">
             <div class="well">
                 <div class="row">
-                    <h5 class="text-black col-8"><!--<span class="label label-danger pull-right">- 9%</span>-->COURSE
-                        AVERAGE</h5>
+                     <h6 class="text-black col-8 font-weight-bold stats-heading"><!--<span class="label label-danger pull-right">- 9%</span>--> Cousrse<br/>Average</h6>
                     <img class="col-4" src="{% static "dashboard/images/graph.svg" %}" alt="test" width="32"
                          height="32"/>
                 </div>
@@ -109,10 +115,6 @@
 
     </div><!--/row-->
 
-    <div class="container">
-
-    </div>
-
     {#    <h2 class="display-5 my-2">Boxplot</h2>#}
     <div class="row">
         <div class="mx-5 mt-2" id="myDiv"></div>
@@ -120,21 +122,6 @@
 
 
     <div class="row mt-5">
-        {#        <div class="row my-5 ">#}
-        {#            <div class="col-6">#}
-        {#                <div class="jumbotron w-100 h-100">#}
-        {#                    <h5 class="text-black mt-0">Cheat Risk</h5>#}
-        {#                    <div class="row w-100 h-75 bg-primary mx-auto mt-3"></div>#}
-        {##}
-        {##}
-        {#                </div>#}
-        {#            </div>#}
-        {#            <div class="col-6">#}
-        {#                <div class="jumbotron w-100 h-100">#}
-        {#                    <h5 class="text-black mt-0">Course Poor Performers</h5>#}
-        {#                </div>#}
-        {#            </div>#}
-        {#        </div>#}
         <div class="col-6 mb-5 pb-5 w-100">
             <div class="col-12">
                 <div class="accordion" id="accordionExample">
@@ -145,7 +132,8 @@
                                         data-toggle="collapse"
                                         data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                     <i class="fas fa-search fa-2x mr-3 secondary-bg"></i>Cheat
-                                    Risk
+                                    Filter
+                                    <i class="ml-5 fas fa-caret-down"></i>
                                 </button>
                             </h5>
                         </div>
@@ -167,70 +155,21 @@
                                     </div>
                                     <hr class="hr-line"/>
                                 {% endfor %}
-
-                                {#                                <div class="chip m-2 w-100">#}
-                                {#                                    <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}"#}
-                                {#                                                      alt="Person"#}
-                                {#                                                      width="96"#}
-                                {#                                                      height="96">#}
-                                {#                                        John Doe#}
-                                {#                                        <span class="text-right badge badge-danger ml-5">Danger</span>#}
-                                {#                                        <span class="text-right badge badge-warning">Warning</span>#}
-                                {#                                    </a>#}
-                                {#                                </div>#}
-                                {#                                <hr class="hr-line"/>#}
-                                {#                                <div class="chip m-2 w-100">#}
-                                {#                                    <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}" alt="Person"#}
-                                {#                                                      width="96"#}
-                                {#                                                      height="96">#}
-                                {#                                        John Doe#}
-                                {#                                        <span class="text-right badge badge-danger ml-5">Danger</span>#}
-                                {#                                        <span class="text-right badge badge-warning">Warning</span>#}
-                                {#                                    </a>#}
-                                {#                                </div>#}
-                                {#                                <hr class="hr-line"/>#}
-                                {#                                <div class="chip m-2 w-100">#}
-                                {#                                    <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}" alt="Person"#}
-                                {#                                                      width="96"#}
-                                {#                                                      height="96">#}
-                                {#                                        John Doe#}
-                                {#                                        <span class="text-right badge badge-danger ml-5">Danger</span>#}
-                                {#                                        <span class="text-right badge badge-warning">Warning</span>#}
-                                {#                                    </a>#}
-                                {#                                </div>#}
-                                {#                                <hr class="hr-line"/>#}
-                                {#                                <div class="chip m-2 w-100">#}
-                                {#                                    <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}" alt="Person"#}
-                                {#                                                      width="96"#}
-                                {#                                                      height="96">#}
-                                {#                                        John Doe#}
-                                {#                                        <span class="text-right badge badge-danger ml-5">Danger</span>#}
-                                {#                                        <span class="text-right badge badge-warning">Warning</span>#}
-                                {#                                    </a>#}
-                                {#                                </div>#}
-                                {#                                <hr class="hr-line"/>#}
-                                {#                                <div class="chip m-2 w-100">#}
-                                {#                                    <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}" alt="Person"#}
-                                {#                                                      width="96"#}
-                                {#                                                      height="96">#}
-                                {#                                        John Doe#}
-                                {#                                        <span class="text-right badge badge-danger ml-5">Danger</span>#}
-                                {#                                        <span class="text-right badge badge-warning">Warning</span>#}
-                                {#                                    </a>#}
-                                {#                                </div>#}
                             </div>
                         </div>
                     </div>
-                    <div class="card mb-5">
+
+
+                    <div class="card">
                         <div class="card-header" id="headingTwo">
                             <h5 class="mb-0">
                                 <button class="btn btn-link collapsed btn-block text-left font-weight-bold"
                                         type="button"
                                         data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
                                         aria-controls="collapseTwo">
-                                    <img src="{% static "dashboard/images/scroll.png" %}" alt="icon" width="28"
-                                         height="28" class="mr-3"/>Course
-                                    Statistics
+                                    <i class="fas fa-sliders-h secondary-bg mr-3 fa-2x"></i>Course
+                                    Quartiles
+                                    <i class="ml-2 fas fa-caret-down"></i>
                                 </button>
                             </h5>
                         </div>
@@ -240,8 +179,8 @@
 
                                 {% for quartile in courseoverview.4 %}
                                     <div class="row">
-                                        <div class="w-100 pl-3"><h3 class="display-5 text-primary">
-                                            Quartile 1</h3></div>
+                                        <div class="w-100 pl-3"><h3 class="stats-heading display-5 text-primary">
+                                            Quartile {{ forloop.counter }}</h3></div>
                                         <div class="row w-100 pl-3">
                                             <div class="col-9 mt-2">
                                                 <div class="progress">
@@ -249,61 +188,62 @@
                                                          style="width:{{ quartile }}%"></div>
                                                 </div>
                                             </div>
-                                            <div class="col-3">
-                                                <p class="display-5 text-success ml-3 text-left">{{ quartile }}</p>
+                                            <div>
+                                                <p class="text-success ml-3 text-left font-weight-bold display-4"><span
+                                                        class="font-weight-light">+</span>{{ quartile }}</p>
                                             </div>
                                         </div>
                                     </div>
                                     <hr/>
 
                                 {% endfor %}
-                                {#                                <div class="row">#}
-                                {#                                    <div class="w-100 pl-3"><h3 class="display-5 text-primary">Quartile </h3></div>#}
-                                {#                                    <div class="row w-100 pl-3">#}
-                                {#                                        <div class="col-9 mt-2">#}
-                                {#                                            <div class="progress">#}
-                                {#                                                <div class="progress-bar progress-bar-striped progress-bar-animated"#}
-                                {#                                                     style="width:{{ quartile }}%"></div>#}
-                                {#                                            </div>#}
-                                {#                                        </div>#}
-                                {#                                        <div class="col-3">#}
-                                {#                                            <p class="display-5 text-success ml-3 text-left">{{ quartile }}</p>#}
-                                {#                                        </div>#}
-                                {#                                    </div>#}
-                                {#                                </div>#}
-                                {#                                <hr/>#}
-                                {#                                <div class="row">#}
-                                {#                                    <div class="w-100 pl-3"><h3 class="display-5 text-primary">Quartile 1</h3></div>#}
-                                {#                                    <div class="row w-100 pl-3">#}
-                                {#                                        <div class="col-9 mt-2">#}
-                                {#                                            <div class="progress">#}
-                                {#                                                <div class="progress-bar progress-bar-striped progress-bar-animated"#}
-                                {#                                                     style="width:{{ courseoverview.4 }}%"></div>#}
-                                {#                                            </div>#}
-                                {#                                        </div>#}
-                                {#                                        <div class="col-3">#}
-                                {#                                            <p class="display-5 text-success ml-3 text-left">{{ courseoverview.4 }}</p>#}
-                                {#                                        </div>#}
-                                {#                                    </div>#}
-                                {#                                </div>#}
-                                {#                                <hr/>#}
-                                {#                                <div class="row">#}
-                                {#                                    <div class="w-100 pl-3"><h3 class="display-5 text-primary">Quartile 1</h3></div>#}
-                                {#                                    <div class="row w-100 pl-3">#}
-                                {#                                        <div class="col-9 mt-2">#}
-                                {#                                            <div class="progress">#}
-                                {#                                                <div class="progress-bar progress-bar-striped progress-bar-animated"#}
-                                {#                                                     style="width:{{ courseoverview.4 }}%"></div>#}
-                                {#                                            </div>#}
-                                {#                                        </div>#}
-                                {#                                        <div class="col-3">#}
-                                {#                                            <p class="display-5 text-success ml-3 text-left">{{ courseoverview.4 }}</p>#}
-                                {#                                        </div>#}
-                                {#                                    </div>#}
-                                {#                                </div>#}
                             </div>
                         </div>
                     </div>
+
+
+                    <div class="card mb-5">
+                        <div class="card-header" id="headingFive">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed btn-block text-left font-weight-bold"
+                                        type="button"
+                                        data-toggle="collapse" data-target="#collapseFive" aria-expanded="false"
+                                        aria-controls="collapseFive">
+                                    <img src="{% static "dashboard/images/scroll.png" %}" alt="icon" width="28"
+                                         height="28" class="mr-3"/>Course
+                                    Overview
+                                    <i class="ml-3 fas fa-caret-down"></i>
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseFive" class="collapse fade" aria-labelledby="headingFive"
+                             data-parent="#accordionExample">
+                            <div class="card-body">
+
+                                {% for quartile in courseoverview.4 %}
+                                    <div class="row">
+                                        <div class="w-100 pl-3"><h3 class="stats-heading display-5 text-primary">
+                                            Quartile {{ forloop.counter }}</h3></div>
+                                        <div class="row w-100 pl-3">
+                                            <div class="col-9 mt-2">
+                                                <div class="progress">
+                                                    <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                                         style="width:{{ quartile }}%"></div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <p class="text-success ml-3 text-left font-weight-bold display-4"><span
+                                                        class="font-weight-light">+</span>{{ quartile }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr/>
+
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -320,7 +260,9 @@
                                         data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
                                     <i class="fas fa-sticky-note fa-2x mr-3 secondary-bg"></i>Poor
                                     Performers
+                                    <i class="ml-2 fas fa-caret-down"></i>
                                 </button>
+
                             </h5>
                         </div>
 
@@ -341,69 +283,20 @@
                                     </div>
                                     <hr class="hr-line"/>
                                 {% endfor %}
-
-
-                                {#                                <div class="chip m-2 w-100">#}
-                                {#                                    <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}"#}
-                                {#                                                      alt="Person"#}
-                                {#                                                      width="96"#}
-                                {#                                                      height="96">#}
-                                {#                                        John Doe#}
-                                {#                                        <span class="text-right badge badge-danger ml-5">Danger</span>#}
-                                {#                                        <span class="text-right badge badge-warning">Warning</span>#}
-                                {#                                    </a>#}
-                                {#                                </div>#}
-                                {#                                <hr class="hr-line"/>#}
-                                {##}
-                                {#                                <div class="chip m-2 w-100">#}
-                                {#                                    <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}"#}
-                                {#                                                      alt="Person"#}
-                                {#                                                      width="96"#}
-                                {#                                                      height="96">#}
-                                {#                                        John Doe#}
-                                {#                                        <span class="text-right badge badge-danger ml-5">Danger</span>#}
-                                {#                                        <span class="text-right badge badge-warning">Warning</span>#}
-                                {#                                    </a>#}
-                                {#                                </div>#}
-                                {#                                <hr class="hr-line"/>#}
-                                {##}
-                                {#                                <div class="chip m-2 w-100">#}
-                                {#                                    <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}"#}
-                                {#                                                      alt="Person"#}
-                                {#                                                      width="96"#}
-                                {#                                                      height="96">#}
-                                {#                                        John Doe#}
-                                {#                                        <span class="text-right badge badge-danger ml-5">Danger</span>#}
-                                {#                                        <span class="text-right badge badge-warning">Warning</span>#}
-                                {#                                    </a>#}
-                                {#                                </div>#}
-                                {#                                <hr class="hr-line"/>#}
-                                {##}
-                                {#                                <div class="chip m-2 w-100">#}
-                                {#                                    <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}"#}
-                                {#                                                      alt="Person"#}
-                                {#                                                      width="96"#}
-                                {#                                                      height="96">#}
-                                {#                                        John Doe#}
-                                {#                                        <span class="text-right badge badge-danger ml-5">Danger</span>#}
-                                {#                                        <span class="text-right badge badge-warning">Warning</span>#}
-                                {#                                    </a>#}
-                                {#                                </div>#}
-                                {#                                <hr class="hr-line"/>#}
-
                             </div>
                         </div>
                     </div>
-                    <div class="card mb-5">
+
+
+                    <div class="card">
                         <div class="card-header" id="headingTwo">
                             <h5 class="mb-0">
                                 <button class="btn btn-link collapsed btn-block text-left font-weight-bold"
                                         type="button"
                                         data-toggle="collapse" data-target="#collapseFour" aria-expanded="false"
                                         aria-controls="collapseFour">
-                                    <img src="{% static "dashboard/images/scroll.png" %}" alt="icon" width="28"
-                                         height="28" class="mr-3"/>Exam
-                                    Statistics
+                                    <i class="fas fa-sliders-h mr-3 fa-2x secondary-bg"></i>Exam Quartiles
+                                    <i class="ml-3 fas fa-caret-down"></i>
                                 </button>
                             </h5>
                         </div>
@@ -413,66 +306,65 @@
 
                                 {% for quartile in examoverview.4 %}
                                     <div class="row">
-                                        <div class="w-100 pl-3"><h3 class="display-5 text-primary">
-                                            Quartile 1</h3></div>
+                                        <div class="w-100 pl-3"><h3 class="stats-heading display-5 text-primary">
+                                            Quartile {{ forloop.counter }}</h3></div>
                                         <div class="row w-100 pl-3">
                                             <div class="col-9 mt-2">
-
                                                 <div class="progress">
                                                     <div class="progress-bar progress-bar-striped progress-bar-animated"
                                                          style="width:{{ quartile }}%"></div>
                                                 </div>
                                             </div>
-                                            <div class="col-3">
-                                                <p class="display-5 text-success ml-3 text-left">{{ quartile }}</p>
+                                            <div>
+                                                <p class="text-success ml-3 text-left font-weight-bold display-4"><span
+                                                        class="font-weight-light">+</span>{{ quartile }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr/>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mb-5">
+                        <div class="card-header" id="headingSix">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed btn-block text-left font-weight-bold"
+                                        type="button"
+                                        data-toggle="collapse" data-target="#collapseSix" aria-expanded="false"
+                                        aria-controls="collapseSix">
+                                    <img src="{% static "dashboard/images/scroll.png" %}" alt="icon" width="28"
+                                         height="28" class="mr-3"/>Exam
+                                    Overview
+                                    <i class="ml-3 fas fa-caret-down"></i>
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseSix" class="collapse fade" aria-labelledby="headingSix"
+                             data-parent="#accordionExample">
+                            <div class="card-body">
+
+                                {% for quartile in courseoverview.4 %}
+                                    <div class="row">
+                                        <div class="w-100 pl-3"><h3 class="stats-heading display-5 text-primary">
+                                            Quartile {{ forloop.counter }}</h3></div>
+                                        <div class="row w-100 pl-3">
+                                            <div class="col-9 mt-2">
+                                                <div class="progress">
+                                                    <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                                         style="width:{{ quartile }}%"></div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <p class="text-success ml-3 text-left font-weight-bold display-4"><span
+                                                        class="font-weight-light">+</span>{{ quartile }}</p>
                                             </div>
                                         </div>
                                     </div>
                                     <hr/>
 
                                 {% endfor %}
-{#                                <div class="row">#}
-{#                                    <div class="w-100 pl-3"><h3 class="display-5 text-primary">Quartile 1</h3></div>#}
-{#                                    <div class="w-100 pl-3">#}
-{#                                        <div class="col-3">#}
-{#                                            <p class="display-5 text-success ml-3 text-left">{{ examoverview.4 }}</p>#}
-{#                                        </div>#}
-{#                                        <div class="col-9">#}
-{#                                            <div class="progress-bar progress-bar-striped progress-bar-animated"#}
-{#                                                 style="width: 40%"></div>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{##}
-{#                                </div>#}
-{#                                <hr/>#}
-{#                                <div class="row">#}
-{#                                    <div class="w-100 pl-3"><h3 class="display-5 text-primary">Quartile 2</h3></div>#}
-{#                                    <div class="w-100 pl-3">#}
-{#                                        <div class="col-3">#}
-{#                                            <p class="display-5 text-success ml-3 text-left">{{ examoverview.5 }}</p>#}
-{#                                        </div>#}
-{#                                        <div class="col-9">#}
-{#                                            <div class="progress-bar progress-bar-striped progress-bar-animated"#}
-{#                                                 style="width: 40%"></div>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{##}
-{#                                </div>#}
-{#                                <hr/>#}
-{#                                <div class="row">#}
-{#                                    <div class="w-100 pl-3"><h3 class="display-5 text-primary">Quartile 3</h3></div>#}
-{#                                    <div class="w-100 pl-3">#}
-{#                                        <div class="col-3">#}
-{#                                            <p class="display-5 text-success ml-3 text-left">{{ examoverview.6 }}</p>#}
-{#                                        </div>#}
-{#                                        <div class="col-9">#}
-{#                                            <div class="progress-bar progress-bar-striped progress-bar-animated"#}
-{#                                                 style="width: 40%"></div>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{##}
-{#                                </div>#}
-
                             </div>
                         </div>
                     </div>
@@ -519,9 +411,5 @@
             $(this).siblings('span').text(val);
         })
     </script>
-    <script>
-    console.log(typeof courseoverview)
-    </script>
-
 
 {% endblock %}
