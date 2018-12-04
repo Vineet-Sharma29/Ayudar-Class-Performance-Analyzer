@@ -305,11 +305,14 @@ span {
     padding: 10px;
     font-size: 1.1em;
     display: block;
+    border-radius: 2rem;
+    transition: background 0.4s;
 }
 
 #sidebar ul li a:hover {
     color: #7386D5;
     background: #efefef;
+    border-radius: 2rem;
 }
 
 #sidebar ul li a i {
@@ -667,18 +670,18 @@ footer.bg-dark {
 .chip {
     display: inline-block;
     padding: 0 25px;
-    height: 50px;
+    height: 70px;
     font-size: 16px;
     line-height: 50px;
-    border-radius: 25px;
+    border-radius: 35px;
     background-color: #f1f1f1;
 }
 
 .chip img {
     float: left;
     margin: 0 10px 0 -25px;
-    height: 50px;
-    width: 50px;
+    height: 70px;
+    width: 70px;
     border-radius: 50%;
 }
 
@@ -703,3 +706,15 @@ footer.bg-dark {
 .no-underline{
     text-decoration: none ! important;
 }
+
+
+
+
+
+
+
+
+
+
+
+
