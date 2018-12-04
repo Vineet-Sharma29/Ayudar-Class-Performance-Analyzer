@@ -5,12 +5,11 @@ from .models import Marks
 from .models import Enrollments, course_dashboard
 from django.http import HttpResponse
 from .forms import file_class
-#from background_task import background
 from django.shortcuts import render
 import dashboard.algo as alg
 from django.contrib.auth.decorators import login_required
+from background_task import background
 
-#@background()
 def add_to_database(pat, username, course_id):
     path = 'media/media_/' + pat
     co_id = course_id
@@ -34,33 +33,30 @@ def add_to_database(pat, username, course_id):
                    'lab-basic03-20', 'asgn-basic01-15', 'asgn-basic02-15', 'asgn-basic03-15', 'asgn-basic04-15',
                    'oth-quiz01-30', 'oth-quiz02-30', 'oth-quiz03-30']
         df = alg.initialse(tuples, headers)
-        # print(df.columns)
         NeedyList = alg.mainFunc(df)
         CourseOverview = alg.CourseStats(df)
         ExamOverview = alg.ExamStats(df)
         Persistent_Labels = alg.PersistentLabels(df)
         Performance_Labels = alg.PerformanceLabels(df)
 
-        print(CourseOverview)
-    #     f_all[len(f_all) - 1] = f_all[len(f_all) - 1] + '\n'
-    #     for i in range(1, len(f_all)):
-    #         f_all[i] = f_all[i].rstrip()
-    #         f2 = f_all[i].split(',')
-    #
-    #         Enrollments.objects.create(course_id=co_id, student_id=f2[0], student_name=f2[1], prof_id=pr_id,
-    #                                    status="not_needy")
-    #
-    #         for j in range(0, len(f2) - 2):
-    #             sid = f2[0]
-    #             sname = f2[1]
-    #             marks = f2[j + 2]
-    #             qname = f1[j + 2]
-    #
-    #             Marks.objects.create(student_name=sname, student_id=sid, marks=marks, q_name=qname, course_id=co_id,
-    #                                  prof_id=pr_id)
-    #
+        print(ExamOverview)
+        f_all[len(f_all) - 1] = f_all[len(f_all) - 1] + '\n'
+        # for i in range(1, len(f_all)):
+        #     f_all[i] = f_all[i].rstrip()
+        #     if f_all[i]!='':
+        #         f2 = f_all[i].split(',')
+        #         #print(f2)
+        #         Enrollments.objects.create(course_id=co_id, student_id=f2[0], student_name=f2[1], prof_id=pr_id,
+        #                                    status="not_needy")
+        #         for j in range(0, len(f2) - 2):
+        #             marks = f2[j + 2]
+        #             qname = f1[j + 2]
+        #
+        #             Marks.objects.create(student_name=f2[1], student_id=f2[0], marks=f2[j+2], q_name=f1[j+2], course_id=co_id,
+        #                                  prof_id=pr_id)
+
     # all_quiz_marks_in_a_course()
-    # # all_quiz_marks_in_all_courses()
+    # all_quiz_marks_in_all_courses()
     return [CourseOverview, ExamOverview, NeedyList]
 
 
@@ -87,7 +83,7 @@ def add_to_database(pat, username, course_id):
 #
 # print(tup(0))
 
-# @login_required
+#@login_required()
 def dashboard(request):
     form1 = file_class(request.POST, request.FILES or None)
     if request.method == 'POST':
@@ -98,6 +94,38 @@ def dashboard(request):
             profile = professor_profile.objects.get(professor=user)
             file1 = str(request.FILES['req_file'])
             dashboard_stats = add_to_database(file1, user.username, profile.professor_course)
+            p = course_dashboard.objects.get(professor=user)
+            p.course_difficulty = dashboard_stats[0][0]
+            p.course_risk = dashboard_stats[0][1]
+            p.course_average = dashboard_stats[0][3]
+            p.exam_difficulty = dashboard_stats[1][0]
+            p.exam_cheat_risk = dashboard_stats[1][1]
+            p.exam_average = dashboard_stats[1][3]
+            p.quartile_1 = dashboard_stats[0][4][0]
+            p.quartile_2 = dashboard_stats[0][4][1]
+            p.quartile_3 = dashboard_stats[0][4][2]
+            value = ''
+            for j, i in enumerate(dashboard_stats[0][2]):
+                if j == 0:
+                    value = value + str(i)
+                else:
+                    value = value + '-' + str(i)
+            p.course_student_list = value
+            value = ''
+            for j, i in enumerate(dashboard_stats[1][2]):
+                if j == 0:
+                    value = value + str(i)
+                else:
+                    value = value + '-' + str(i)
+            p.exam_student_list = value
+            value=''
+            for j,i in enumerate(dashboard_stats[2]):
+                if j==0:
+                    value = value+str(i)
+                else:
+                    value = value +'-'+str(i)
+            p.needy_student_list = value
+            p.save()
             context = {'form': form1, 'courseoverview': dashboard_stats[0], 'examoverview': dashboard_stats[1],
                        'needystudents': dashboard_stats[2], 'username': user.username, 'photo': profile.professor_photo}
             return render(request, "dashboard/dashboard.html", context)
@@ -110,17 +138,23 @@ def dashboard(request):
         profile = professor_profile.objects.get(professor=user)
         form1 = file_class()
         p = course_dashboard.objects.get(professor=user)
+        coursestudents1 = p.course_student_list.split('-')
+        course_student_list = []
+
         course_values = (
-            p.course_difficulty, p.course_risk, p.course_student_list, p.course_average, [p.quartile_1, p.quartile_2,
+            p.course_difficulty, p.course_risk, coursestudents1, p.course_average, [p.quartile_1, p.quartile_2,
             p.quartile_3])
+        examstudents1 = p.exam_student_list.split('-')
+
         last_exam_details = (
-            p.exam_difficulty, p.exam_cheat_risk, p.exam_student_list, p.exam_average,[p.quartile_1, p.quartile_2,
+            p.exam_difficulty, p.exam_cheat_risk, examstudents1, p.exam_average,[p.quartile_1, p.quartile_2,
             p.quartile_3])
+        needystudents1=p.needy_student_list.split('-')
         return render(request, "dashboard/dashboard.html",
 
                       {'form': form1, 'username': user.username, 'photo': profile.professor_photo,
                        'courseoverview': course_values, 'examoverview': last_exam_details,
-                       'needystudents': [1, 2, 3, 4, 5]
+                       'needystudents': needystudents1
                        }
                       )
 
@@ -135,11 +169,17 @@ def dashboard(request):
 
 
 def needy_list(request):
-    return render(request, "dashboard/needy_list.html")
+    user =User.objects.get(username=request.user)
+    profile = professor_profile.objects.get(professor=user)
+    p = course_dashboard.objects.get(professor=user)
+    needystudents = p.needy_student_list.split('-')
+    return render(request, "dashboard/needy_list.html",{'username':user.username,'photo':profile.professor_photo,'needyList':needystudents})
 
 
 def list_of_students(request):
-    return render(request, "dashboard/list_of_students.html")
+    user = User.objects.get(username=request.user)
+    profile = professor_profile.objects.get(professor=user)
+    return render(request, "dashboard/list_of_students.html",{'username':user.username,'photo':profile.professor_photo})
 
 
 def custom_404(request):

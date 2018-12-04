@@ -1,3 +1,8 @@
+import random
+import numpy as np
+import pandas as pd
+
+
 def makeDF(tuples, header):
     '''Assumes tuples as Python tuples both empty or non empty; header as a tuple with a convention
        as (RollNumber, Name, Exam-[name]-[max-marks], ..., Lab-[name]-[max-marks], ...,
@@ -295,7 +300,7 @@ def ExamStats(marks):
 
     # Calculate the range of marks for most students
 
-    avg_marks = str(round(CI(marks, location)[0], 2)) + '-' + str(round(CI(marks, location)[1],2))
+    avg_marks = str(round(CI(marks, location)[0], 2)) + '-' + str(round(CI(marks, location)[1], 2))
 
     # Calculate quartile scores for exam marks
 
@@ -365,139 +370,155 @@ def mainFunc(df):
     df['temp'] = 1 / df['overall'] + df['var']
     return list((df.sort_values('temp', ascending=False)['RollNumber'])[0:5])
 
+
 def getRank(df, exam):
     '''Assumes df as a Pandas dataframe, amd exam as a string.
     
        Returns a dataframe with ranks according to roll number.'''
-    
-    #Sort values according to the particular exam on Roll number column. 
-    examRank = df.sort_values(exam, ascending = False)['RollNumber']
-    
-    #initialise a dummy column later to be used as the rank.
+
+    # Sort values according to the particular exam on Roll number column.
+    examRank = df.sort_values(exam, ascending=False)['RollNumber']
+
+    # initialise a dummy column later to be used as the rank.
     temp = [int(i) + 1 for i in range(len(df['RollNumber']))]
-    
-    #join the two columns in a dataframe and sort according to Roll number. 
-    df1 = pd.DataFrame({exam : temp, 'RollNumber' : examRank})
+
+    # join the two columns in a dataframe and sort according to Roll number.
+    df1 = pd.DataFrame({exam: temp, 'RollNumber': examRank})
     df1.sort_values('RollNumber', inplace=True)
-    
+
     return df1
+
 
 def getRankMatrix(df):
     '''Assumes df as a Pandas DataFrame.
     
         Returns a tuple of tuples with individual type of exam ranks.'''
-    
-    #find individual ranks for classes of exams
+
+    # find individual ranks for classes of exams
     df1 = getRank(df, 'avgExam')
     df2 = getRank(df, 'avgLab')
     df3 = getRank(df, 'avgAsgn')
     df4 = getRank(df, 'avgOth')
     df5 = getRank(df, 'overall')
-    
-    #make the combines dataframe
+
+    # make the combines dataframe
     temp = df['RollNumber']
-    dfRank = pd.DataFrame({'RollNumber' : temp, 'ClassRank' : df5['overall'], 'ExamRank' : df1['avgExam'], 'LabRank' : df2['avgLab'], 'AsgnRank' : df3['avgAsgn'], 'OthRank' : df4['avgOth']})
+    dfRank = pd.DataFrame(
+        {'RollNumber': temp, 'ClassRank': df5['overall'], 'ExamRank': df1['avgExam'], 'LabRank': df2['avgLab'],
+         'AsgnRank': df3['avgAsgn'], 'OthRank': df4['avgOth']})
 
     return tuple([tuple(x) for x in dfRank.to_records(index=False)])
+
 
 def ExamDetails(df):
     '''Assumes df as a Pandas DataFrame.
     
     Returns a listof lists with individual exam analysis'''
-    
+
     details = []
-    
-    #for all the exams entered, find CI, max marks and exam name.
+
+    # for all the exams entered, find CI, max marks and exam name.
     for exam in df.columns:
         if len(exam.split('-')) > 2:
             avgCI = str(round(CI(df, exam)[0], 2)) + '-' + str(round(CI(df, exam)[1], 2))
             examName = exam.split('-')[1]
-            maxMarks = round(max(df[exam]), 2) 
+            maxMarks = round(max(df[exam]), 2)
             details.append([examName, avgCI, maxMarks])
-    
+
     return details
 
-def findBestExam(i):
+
+def findBestExam(df, i):
     '''Assumes i as an int.
     
        Returns a string with the value as the exam with maximum marks in any Dataframe record'''
-    
-    #find exams
+
+    # find exams
     evals = []
     for exam in df.columns:
         if len(exam.split('-')) > 2:
             evals.append(exam)
-    
-    #Boolean Series with True at the desired location
+
+    # Boolean Series with True at the desired location
     check = df[evals].iloc[i] == df.iloc[i]['best']
-    
-    #list of all conducted exam columns
+
+    # list of all conducted exam columns
     temp = df[evals].columns
-    
-    #find the name of exam, as per the faculty
+
+    # find the name of exam, as per the faculty
     for seek in range(len(temp)):
         if check[seek] == True:
             exam = temp[seek].split('-')[1]
-    
+
     return exam
 
-def findWorstExam(i):
+
+def findWorstExam(df, i):
     '''Assumes i as an int.
     
        Returns a string with the value as the exam with minimum marks in any Dataframe record'''
-    
-    #find exams
+
+    # find exams
     evals = []
     for exam in df.columns:
         if len(exam.split('-')) > 2:
             evals.append(exam)
-    
-    #Boolean Series with True at the desired location
+
+    # Boolean Series with True at the desired location
     check = df[evals].iloc[i] == df.iloc[i]['worst']
-    
-    #list of all conducted exam columns
+
+    # list of all conducted exam columns
     temp = df[evals].columns
-    
-    #find the name of exam, as per the faculty
+
+    # find the name of exam, as per the faculty
     for seek in range(len(temp)):
         if check[seek] == True:
             exam = temp[seek].split('-')[1]
-    
+
     return exam
+
 
 def studentMarks(df):
     '''Assumes df as a Pandas DataFrame.
     
        Returns a tuple of tuples, with best exam and worst exam performances.'''
-    
-    #find all the exam names
+
+    # find all the exam names
     evals = []
     for exam in df.columns:
         if len(exam.split('-')) > 2:
             evals.append(exam)
-    #initialise new attributes with their iterative location index to use the power of lambda functions.
+    # initialise new attributes with their iterative location index to use the power of lambda functions.
     df['best'] = [i for i in range(len(df['RollNumber']))]
     df['worst'] = [i for i in range(len(df['RollNumber']))]
     df['bestExam'] = [i for i in range(len(df['RollNumber']))]
     df['worstExam'] = [i for i in range(len(df['RollNumber']))]
 
-    #Find the max or min oerformance of the record.
-    df['best'] = df['best'].apply(lambda x : max(df[evals].iloc[x]))
-    df['worst'] = df['worst'].apply(lambda x : min(df[evals].iloc[x]))
-    
-    #Find the best or worst exam name.
+    # Find the max or min oerformance of the record.
+    df['best'] = df['best'].apply(lambda x: max(df[evals].iloc[x]))
+    df['worst'] = df['worst'].apply(lambda x: min(df[evals].iloc[x]))
+
+    # Find the best or worst exam name.
     df['bestExam'] = df['bestExam'].apply(findBestExam)
     df['worstExam'] = df['worstExam'].apply(findWorstExam)
-    
-    #rounding off
-    df['best'] = df['best'].apply(lambda x : round(x, 2))
-    df['worst'] = df['worst'].apply(lambda x : round(x, 2))
-    
-    #Make new dataframe
+
+    # rounding off
+    df['best'] = df['best'].apply(lambda x: round(x, 2))
+    df['worst'] = df['worst'].apply(lambda x: round(x, 2))
+
+    # Make new dataframe
     df1 = df[['RollNumber', 'best', 'worst', 'bestExam', 'worstExam']]
 
-    #Coercion
-    ret  = tuple([tuple(x) for x in df1.to_records(index=False)])
-    
+    # Coercion
+    ret = tuple([tuple(x) for x in df1.to_records(index=False)])
+
     return ret
 
+
+def initialse(tuples, headers):
+    df = makeDF(tuples, headers)
+    df = scaleMarks(df)
+    df = createAvg(df)
+    df = createChMarks(df)
+    df = variance(df)
+    return df
