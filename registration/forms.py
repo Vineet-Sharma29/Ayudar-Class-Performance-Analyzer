@@ -3,7 +3,7 @@ from .models import professor_profile,course
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.core.exceptions import ValidationError
-
+from .evilPwdCheck import check_pass
 
 class RegisterForm(forms.ModelForm):
     username = forms.CharField(max_length=100,widget=forms.TextInput(attrs={'autocomplete':'off','class':'form-control'}))
@@ -34,15 +34,6 @@ class RegisterForm(forms.ModelForm):
             raise forms.ValidationError('Email is taken already')
         return email
 
-    def clean_confirm_password(self):
-        cleaned_data = super().clean()
-        password = cleaned_data.get("password")
-        confirm_password = cleaned_data.get('confirm_password')
-
-        if password!=confirm_password:
-            raise forms.ValidationError('Passwords did not match')
-        return confirm_password
-
     def clean_username(self):
         cleaned_data = super().clean()
         username = cleaned_data.get("username")
@@ -52,6 +43,19 @@ class RegisterForm(forms.ModelForm):
         if user_qset.exists() :
             raise forms.ValidationError('User name is taken already')
         return username
+
+
+    def clean_confirm_password(self):
+        cleaned_data = super().clean()
+        password = cleaned_data.get("password")
+        confirm_password = cleaned_data.get('confirm_password')
+
+        if password!=confirm_password:
+            raise forms.ValidationError('Passwords did not match')
+        return confirm_password
+        # error=check_pass(str(password),str(cleaned_data['email']),str(cleaned_data['username']))
+        # raise forms.ValidationError(error)
+        #
 
 class LoginForm(forms.Form):
     emailid = forms.EmailField(widget=forms.TextInput(attrs={'autocomplete':'off','class':"input100",'placeholder':'Email Id'}))
@@ -64,6 +68,10 @@ class LoginForm(forms.Form):
 
         if not email_set.exists():
             raise forms.ValidationError('Email is not registered')
+        else:
+            user= User.objects.get(email=emailid)
+            if not user.is_active:
+                raise forms.ValidationError('User not authenticated')
         return emailid
     def clean_password(self):
         cleaned_data = super().clean()

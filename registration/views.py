@@ -53,7 +53,7 @@ def register_display(request):
 
             user.first_name = form.cleaned_data["first_name"]
             user.last_name = form.cleaned_data["last_name"]
-
+            user.is_active=False
             user.save()
             professor_profile.objects.create(professor=user)
             course_dashboard.objects.create(professor=user)
