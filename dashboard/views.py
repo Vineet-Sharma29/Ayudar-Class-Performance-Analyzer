@@ -98,6 +98,38 @@ def dashboard(request):
             profile = professor_profile.objects.get(professor=user)
             file1 = str(request.FILES['req_file'])
             dashboard_stats = add_to_database(file1, user.username, profile.professor_course)
+            p = course_dashboard.objects.get(professor=user)
+            p.course_difficulty = dashboard_stats[0][0]
+            p.course_risk = dashboard_stats[0][1]
+            p.course_average = dashboard_stats[0][3]
+            p.exam_difficulty = dashboard_stats[1][0]
+            p.exam_cheat_risk = dashboard_stats[1][1]
+            p.exam_average = dashboard_stats[1][3]
+            p.quartile_1 = dashboard_stats[0][4][0]
+            p.quartile_2 = dashboard_stats[0][4][1]
+            p.quartile_3 = dashboard_stats[0][4][2]
+            value = ''
+            for j, i in enumerate(dashboard_stats[0][2]):
+                if j == 0:
+                    value = value + str(i)
+                else:
+                    value = value + '-' + str(i)
+            p.course_student_list = value
+            value = ''
+            for j, i in enumerate(dashboard_stats[1][2]):
+                if j == 0:
+                    value = value + str(i)
+                else:
+                    value = value + '-' + str(i)
+            p.exam_student_list = value
+            value=''
+            for j,i in enumerate(dashboard_stats[2]):
+                if j==0:
+                    value = value+str(i)
+                else:
+                    value = value +'-'+str(i)
+            p.needy_student_list = value
+            p.save()
             context = {'form': form1, 'courseoverview': dashboard_stats[0], 'examoverview': dashboard_stats[1],
                        'needystudents': dashboard_stats[2], 'username': user.username, 'photo': profile.professor_photo}
             return render(request, "dashboard/dashboard.html", context)
@@ -110,17 +142,23 @@ def dashboard(request):
         profile = professor_profile.objects.get(professor=user)
         form1 = file_class()
         p = course_dashboard.objects.get(professor=user)
+        coursestudents1 = p.course_student_list.split('-')
+        course_student_list = []
+
         course_values = (
-            p.course_difficulty, p.course_risk, p.course_student_list, p.course_average, [p.quartile_1, p.quartile_2,
+            p.course_difficulty, p.course_risk, coursestudents1, p.course_average, [p.quartile_1, p.quartile_2,
             p.quartile_3])
+        examstudents1 = p.exam_student_list.split('-')
+
         last_exam_details = (
-            p.exam_difficulty, p.exam_cheat_risk, p.exam_student_list, p.exam_average,[p.quartile_1, p.quartile_2,
+            p.exam_difficulty, p.exam_cheat_risk, examstudents1, p.exam_average,[p.quartile_1, p.quartile_2,
             p.quartile_3])
+        needystudents1=p.needy_student_list.split('-')
         return render(request, "dashboard/dashboard.html",
 
                       {'form': form1, 'username': user.username, 'photo': profile.professor_photo,
                        'courseoverview': course_values, 'examoverview': last_exam_details,
-                       'needystudents': [1, 2, 3, 4, 5]
+                       'needystudents': needystudents1
                        }
                       )
 
@@ -135,11 +173,17 @@ def dashboard(request):
 
 
 def needy_list(request):
-    return render(request, "dashboard/needy_list.html")
+    user =User.objects.get(username=request.user)
+    profile = professor_profile.objects.get(professor=user)
+    p = course_dashboard.objects.get(professor=user)
+    needystudents = p.needy_student_list.split('-')
+    return render(request, "dashboard/needy_list.html",{'username':user.username,'photo':profile.professor_photo})
 
 
 def list_of_students(request):
-    return render(request, "dashboard/list_of_students.html")
+    user = User.objects.get(username=request.user)
+    profile = professor_profile.objects.get(professor=user)
+    return render(request, "dashboard/list_of_students.html",{'username':user.username,'photo':profile.professor_photo})
 
 
 def custom_404(request):
