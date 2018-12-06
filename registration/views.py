@@ -146,7 +146,7 @@ def save_password(request):
             mail = request.session['email']
             user = User.objects.get(email=mail)
             print(user)
-            user.set_password(form1.cleaned_data.get('password'))
+            user.set_password(form1.cleaned_data.get('new_password'))
             user.save()
             return HttpResponse(
                 "Password has been reset Please login<a href='{{ url 'registrartion:login' }}'>here</a>")

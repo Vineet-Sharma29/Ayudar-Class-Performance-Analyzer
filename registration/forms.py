@@ -150,13 +150,13 @@ class CourseForm(forms.Form):
 
 
 class ResetPasswordForm(forms.Form):
-    password = forms.CharField(widget=forms.PasswordInput)
-    confirm_password = forms.CharField(widget=forms.PasswordInput)
+    new_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+    confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
 
     def clean_confirm_password(self):
         cleaned_data = super().clean()
-        password = cleaned_data.get('password')
+        new_password = cleaned_data.get('new_password')
         confirm_password = cleaned_data.get('confirm_password')
-        if password != confirm_password:
+        if new_password != confirm_password:
             raise forms.ValidationError('Passwords did not match')
         return confirm_password
