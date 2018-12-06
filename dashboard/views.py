@@ -160,8 +160,23 @@ def dashboard(request):
                     value = value +'-'+str(i)
             p.needy_student_list = value
             p.save()
+            dashboard_marks = {}
+            total_marks = Marks.objects.filter(prof_id=user,course_id=profile.professor_course).all()
+            marks = [i.marks for i in total_marks if i.q_name[:4] == 'exam']
+            dashboard_marks['exam_marks']=marks
+
+            marks = [i.marks for i in total_marks if i.q_name[:3] == 'lab']
+            dashboard_marks['lab_marks'] = marks
+
+            marks = [i.marks for i in total_marks if i.q_name[:4] == 'asgn']
+            dashboard_marks['asgn_marks'] = marks
+
+            marks = [i.marks for i in total_marks if i.q_name[:3] == 'oth']
+            dashboard_marks['oth_marks'] = marks
+
             context = {'form': form1, 'courseoverview': dashboard_stats[0], 'examoverview': dashboard_stats[1],
-                       'needystudents': dashboard_stats[2], 'username': user.username, 'photo': profile.professor_photo}
+                       'needystudents': dashboard_stats[2], 'username': user.username, 'photo': profile.professor_photo,'dashboard_marks'
+                       :dashboard_marks}
             return render(request, "dashboard/dashboard.html", context)
 
         else:
@@ -184,11 +199,40 @@ def dashboard(request):
             p.exam_difficulty, p.exam_cheat_risk, examstudents1, p.exam_average,[p.quartile_1, p.quartile_2,
             p.quartile_3])
         needystudents1=p.needy_student_list.split('-')
-        return render(request, "dashboard/dashboard.html",
+        dashboard_marks = {}
+        total_marks = Marks.objects.filter(prof_id=user, course_id=profile.professor_course).all()
+        if len(total_marks)==0:
+            marks = [0]
+            dashboard_marks['exam_marks'] = marks
+            dashboard_marks['lab_marks'] = marks
+            dashboard_marks['asgn_marks'] = marks
+            dashboard_marks['oth_marks'] = marks
+
+            return render(request, "dashboard/dashboard.html",
+
+                          {'form': form1, 'username': user.username, 'photo': profile.professor_photo,
+                           'courseoverview': course_values, 'examoverview': last_exam_details,
+                           'needystudents': needystudents1, 'dashboard_marks': dashboard_marks
+                           }
+                          )
+
+        marks = [i.marks for i in total_marks if i.q_name[:4] == 'exam']
+        dashboard_marks['exam_marks'] = marks
+
+        marks = [i.marks for i in total_marks if i.q_name[:3] == 'lab']
+        dashboard_marks['lab_marks'] = marks
+
+        marks = [i.marks for i in total_marks if i.q_name[:4] == 'asgn']
+        dashboard_marks['asgn_marks'] = marks
+
+        marks = [i.marks for i in total_marks if i.q_name[:3] == 'oth']
+        dashboard_marks['oth_marks'] = marks
+
+    return render(request, "dashboard/dashboard.html",
 
                       {'form': form1, 'username': user.username, 'photo': profile.professor_photo,
                        'courseoverview': course_values, 'examoverview': last_exam_details,
-                       'needystudents': needystudents1
+                       'needystudents': needystudents1,'dashboard_marks':dashboard_marks
                        }
                       )
 
