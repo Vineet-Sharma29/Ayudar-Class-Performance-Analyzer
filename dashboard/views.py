@@ -219,8 +219,8 @@ def list_of_students(request):
     profile = professor_profile.objects.get(professor=user)
     allstudents = []
     j = Enrollments.objects.filter(course_id=profile.professor_course,prof_id=user)
-    if j==[]:
-        allstudents.append([-90, 'None', 'None', 'None'])
+    if len(j)==0:
+        allstudents.append([0, 'None', 'None', 'None'])
         return render(request, "dashboard/list_of_students.html",
                       {'username': user.username, 'photo': profile.professor_photo, 'allstudents': allstudents})
 

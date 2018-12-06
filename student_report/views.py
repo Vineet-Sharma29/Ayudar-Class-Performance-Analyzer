@@ -3,8 +3,8 @@ from dashboard.models import Marks,Enrollments,User,student_ranks
 from registration.models import professor_profile
 from django.shortcuts import HttpResponse
 def student_report(request,id):
-    if id == -90:
-        return HttpResponse('No  reposrts to show')
+    if id == 0:
+        return HttpResponse('No  reports to show')
     user = User.objects.get(username=request.user)
     profile = professor_profile.objects.get(professor=user)
     student_quizzes = Marks.objects.filter(prof_id=user,course_id=profile.professor_course,student_id=id)
