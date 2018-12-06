@@ -449,7 +449,6 @@ def findBestExam(df, i):
     for seek in range(len(temp)):
         if check[seek] == True:
             exam = temp[seek].split('-')[1]
-
     return exam
 
 

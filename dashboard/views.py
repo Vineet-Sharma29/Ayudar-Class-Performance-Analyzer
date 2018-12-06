@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import render
 from registration.models import professor_profile
 from .models import Marks
-from .models import Enrollments, course_dashboard
+from .models import Enrollments, course_dashboard,student_ranks
 from django.http import HttpResponse
 from .forms import file_class
 from django.shortcuts import render
@@ -38,6 +38,12 @@ def add_to_database(pat, username, course_id):
         ExamOverview = alg.ExamStats(df)
         Persistent_Labels = alg.PersistentLabels(df)
         Performance_Labels = alg.PerformanceLabels(df)
+        student_report_details = alg.getRankMatrix(df)
+
+        for i in range(len(student_report_details)):
+            student_ranks.objects.create(student_id=student_report_details[i][0],class_rank=student_report_details[i][1],
+        exam_rank=student_report_details[i][2],lab_rank=student_report_details[i][3],asgn_rank=student_report_details[i][4]
+                                         ,oth_rank=student_report_details[i][5])
         print("Persistence label : ",Persistent_Labels)
         print(ExamOverview)
         f_all[len(f_all) - 1] = f_all[len(f_all) - 1] + '\n'
@@ -201,6 +207,11 @@ def list_of_students(request):
     profile = professor_profile.objects.get(professor=user)
     allstudents = []
     j = Enrollments.objects.filter(course_id=profile.professor_course,prof_id=user)
+    if j==[]:
+        allstudents.append([-90, 'None', 'None', 'None'])
+        return render(request, "dashboard/list_of_students.html",
+                      {'username': user.username, 'photo': profile.professor_photo, 'allstudents': allstudents})
+
     for i in j:
         allstudents.append([i.student_id,i.student_name,i.persistance,i.performance])
     print(allstudents)

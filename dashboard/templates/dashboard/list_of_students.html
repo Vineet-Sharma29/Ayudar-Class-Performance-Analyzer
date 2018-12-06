@@ -29,12 +29,12 @@
 
                         <div class="col-10">
                             <div class="row chip my-2 w-100">
-                                <a href="#">
+                                <a href="{% url 'student_report:student_report' student.0 %}">
                                     <span class="name pt-2 pl-3">{{ student.1 }}</span>
                                     <span class="text-right badge badge-danger ml-5">{{ student.2 }}</span>
                                     <span class="text-right badge badge-warning">{{ student.3 }}</span>
                                 </a>
-                                <button type="button" class="btn btn-info">See Report</button>
+
                             </div>
                         </div>
 

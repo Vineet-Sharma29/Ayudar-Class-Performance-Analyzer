@@ -68,9 +68,9 @@
 
                             <a href="#">
                                 <img class="img-responsive rounded mx-5 mt-3 border"
-                                     src="http://placehold.it/250x150" alt="Professor Name" width="120" height="120"/>
+                                     src="{% static 'dashboard/images/st6.jpg' %}" alt="Professor Name" width="120" height="120"/>
                                 <div class="page-header mx-4 my-4 text-center">
-                                    <h1>Shashwat<br/>Gupta</h1>
+                                    <h1>{{ student }}</h1>
                                 </div>
                             </a>
 
@@ -79,7 +79,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'student_report:student_report' %}">
+                    <a class="nav-link" href="{% url 'student_report:student_report'  sid   %}">
                         <i class="menu-icon mdi mdi-television"></i>
                         <span class="menu-title">Dashboard</span>
                     </a>
@@ -135,6 +135,9 @@
 <!-- Custom js for this page-->
 <script src="{% static "student_report/js/dashboard.js" %}"></script>
 <!-- End custom js for this page-->
+<script src="{% static "student_report/js/chart.js" %}"></script>
+{% block script %}
+{% endblock %}
 
-</body>
++</body>
 </html>
