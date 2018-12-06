@@ -1,20 +1,6 @@
 /*//////////////////////////////////////////////////////////////////
 [ FONT ]*/
 
-@font-face {
-    font-family: Ubuntu-Regular;
-    src: url('../fonts/ubuntu/Ubuntu-Regular.ttf');
-}
-
-@font-face {
-    font-family: Ubuntu-Bold;
-    src: url('../fonts/ubuntu/Ubuntu-Bold.ttf');
-}
-
-@font-face {
-    font-family: JosefinSans-Bold;
-    src: url('../fonts/JosefinSans/JosefinSans-Bold.ttf');
-}
 
 /*//////////////////////////////////////////////////////////////////
 [ RESTYLE TAG ]*/
@@ -23,7 +9,6 @@
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
-    font-family:
 }
 
 body, html {
@@ -214,7 +199,7 @@ iframe {
 }
 
 .login100-form-title {
-    font: 'Catamaran';
+
     font-weight: bold;
     font-size: 30px;
     color: #000;

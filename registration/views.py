@@ -13,6 +13,8 @@ from .tokens import account_activation_token
 from .forms import ResetPasswordForm
 from dashboard.models import course_dashboard
 from .models import course
+
+
 # login
 
 def login_display(request):
@@ -53,7 +55,7 @@ def register_display(request):
 
             user.first_name = form.cleaned_data["first_name"]
             user.last_name = form.cleaned_data["last_name"]
-            user.is_active=False
+            user.is_active = False
             user.save()
             professor_profile.objects.create(professor=user)
             course_dashboard.objects.create(professor=user)
@@ -69,7 +71,7 @@ def register_display(request):
             })
 
             send_mail(mail_subject, message, 'iiits2021@gmail.com', [mail])
-            return HttpResponse('email has been sent')
+            return render(request, 'login/email_confirmation.html')
 
     else:
         form = RegisterForm()
@@ -77,7 +79,6 @@ def register_display(request):
         'form': form,
     }
     return render(request, 'login/register1.html', context)
-
 
 
 '''
@@ -105,7 +106,7 @@ def reset_password(request):
         form1 = ResetForm(request.POST)
         if form1.is_valid():
             mail = form1.cleaned_data.get('email')
-            user=  User.objects.get(email=mail)
+            user = User.objects.get(email=mail)
             current_site = get_current_site(request)
             mail_subject = 'Password Reset Link.'
             message = render_to_string('login/reset_confirm_email.html', {
@@ -130,26 +131,28 @@ def display_reset_password(request, uidb64, token):
     except(TypeError, ValueError, OverflowError, User.DoesNotExist):
         user = None
     if user is not None and account_activation_token.check_token(user, token):
-        #login(request, user)
-        request.session['email']=user.email
+        # login(request, user)
+        request.session['email'] = user.email
         return redirect('registration:save_password')
 
     else:
         return HttpResponse('Activation link is invalid!')
 
+
 def save_password(request):
-    if request.method=="POST":
+    if request.method == "POST":
         form1 = ResetPasswordForm(request.POST)
         if form1.is_valid():
             mail = request.session['email']
             user = User.objects.get(email=mail)
             print(user)
-            user.set_password(form1.cleaned_data.get('password'))
+            user.set_password(form1.cleaned_data.get('new_password'))
             user.save()
-            return HttpResponse("Password has been reset Please login<a href='{{ url 'registrartion:login' }}'>here</a>")
+            return HttpResponse(
+                "Password has been reset Please login<a href='{{ url 'registrartion:login' }}'>here</a>")
     else:
         form1 = ResetPasswordForm()
-    return render(request,'login/reset_password.html',{'form':form1})
+    return render(request, 'login/reset_password.html', {'form': form1})
 
 
 def editprofile(request):
@@ -168,9 +171,11 @@ def editprofile(request):
         user = User.objects.get(username=request.user)
         profile = professor_profile.objects.get(professor=user)
         form = ProfileForm(initial={'professor_description': profile.professor_description,
-                                     'professor_photo': profile.professor_photo,'professor_course':profile.professor_course})
+                                    'professor_photo': profile.professor_photo,
+                                    'professor_course': profile.professor_course})
 
-    return render(request, 'login/profile.html', {'form':form})
+    return render(request, 'login/profile.html', {'form': form})
+
 
 def allprofiles(request):
     professors_details = []
@@ -179,9 +184,13 @@ def allprofiles(request):
         if not i.is_superuser:
             professor = User.objects.get(username=i)
             profile = professor_profile.objects.get(professor=professor)
-            details = (str(professor.first_name+' '+professor.last_name),profile.professor_photo,profile.professor_course,profile.professor_description)
+            details = (
+            str(professor.first_name + ' ' + professor.last_name), profile.professor_photo, profile.professor_course,
+            profile.professor_description)
             professors_details.append(details)
-    return render(request,'login/all_profiles.html',{'professor_details':professors_details})
+    return render(request, 'login/all_profiles.html', {'professor_details': professors_details})
+
+
 def show_profile(request):
     user1 = User.objects.get(username=request.user)
     profile1 = professor_profile.objects.get(professor=user1)
@@ -200,8 +209,8 @@ def course_selection(request):
         courselist = course.objects.all()
         courseList = []
         for i in courselist:
-            courseList.append([i.course_id,i.course_name,i.credits])
-    return render(request, 'login/course.html', {'courseList':courseList})
+            courseList.append([i.course_id, i.course_name, i.credits])
+    return render(request, 'login/course.html', {'courseList': courseList})
 
 
 def activate(request, uidb64, token):

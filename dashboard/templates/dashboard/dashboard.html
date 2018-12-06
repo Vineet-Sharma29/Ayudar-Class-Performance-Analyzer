@@ -60,7 +60,7 @@
                 <div class="row">
                     <h6 class="text-black col-8 font-weight-bold stats-heading">
                         <!--<span class="label label-danger pull-right">- 9%</span>--> OVERALL<br/>
-                        Risk</h6>
+                        RISK</h6>
 
                     <img class="col-4" src="{% static "dashboard/images/risk.svg" %}" alt="test" width="32"
                          height="32"/>
@@ -100,7 +100,8 @@
         <div class="mx-auto rounded well-container p-2 w-25 bg-light">
             <div class="well">
                 <div class="row">
-                     <h6 class="text-black col-8 font-weight-bold stats-heading"><!--<span class="label label-danger pull-right">- 9%</span>--> Cousrse<br/>Average</h6>
+                    <h6 class="text-black col-8 font-weight-bold stats-heading">
+                        <!--<span class="label label-danger pull-right">- 9%</span>--> COURSE<br/>AVERAGE</h6>
                     <img class="col-4" src="{% static "dashboard/images/graph.svg" %}" alt="test" width="32"
                          height="32"/>
                 </div>
@@ -215,26 +216,76 @@
                              data-parent="#accordionExample">
                             <div class="card-body">
 
-                                {% for quartile in courseoverview.4 %}
-                                    <div class="row">
-                                        <div class="w-100 pl-3"><h3 class="stats-heading display-5 text-primary">
-                                            Quartile {{ forloop.counter }}</h3></div>
-                                        <div class="row w-100 pl-3">
-                                            <div class="col-9 mt-2">
-                                                <div class="progress">
-                                                    <div class="progress-bar progress-bar-striped progress-bar-animated"
-                                                         style="width:{{ quartile }}%"></div>
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <p class="text-success ml-3 text-left font-weight-bold display-4"><span
-                                                        class="font-weight-light">+</span>{{ quartile }}</p>
-                                            </div>
+
+                                <div class="row">
+                                    <div class="row pl-3">
+                                        <div class="col-7">
+                                            <h3
+                                                    class="stats-heading display-5 text-primary">
+                                                Course Difficulty</h3>
+                                        </div>
+                                        <div class="col-5">
+                                             <img class="col-4" src="{% static "dashboard/images/test.svg" %}" alt="test"
+                                             width="32"
+                                             height="32"
+                                             class="d-inline-block"/>
                                         </div>
                                     </div>
-                                    <hr/>
 
-                                {% endfor %}
+                                    <div class="row w-100 pl-3">
+
+                                        <div>
+                                            <p class="text-success ml-3 text-left font-weight-bold display-6">{{ courseoverview.0 }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr/>
+
+                                <div class="row">
+                                    <div class="w-100 pl-3"><h3 class="stats-heading display-5 text-primary">
+                                        Course Risk</h3></div>
+                                    <div class="row w-100 pl-3">
+
+                                        <div>
+                                            <p class="text-success ml-3 text-left font-weight-bold display-6">{{ courseoverview.1 }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr/>
+
+                                <div class="row">
+                                    <div class="w-100 pl-3"><h3 class="stats-heading display-5 text-primary">
+                                        Course Average</h3></div>
+                                    <div class="row w-100 pl-3">
+
+                                        <div>
+                                            <p class="text-success ml-3 text-left font-weight-bold display-6">{{ courseoverview.3 }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr/>
+
+
+                                {#                                {% for quartile in courseoverview.4 %}#}
+                                {#                                    <div class="row">#}
+                                {#                                        <div class="w-100 pl-3"><h3 class="stats-heading display-5 text-primary">#}
+                                {#                                            Quartile {{ forloop.counter }}</h3></div>#}
+                                {#                                        <div class="row w-100 pl-3">#}
+                                {#                                            <div class="col-9 mt-2">#}
+                                {#                                                <div class="progress">#}
+                                {#                                                    <div class="progress-bar progress-bar-striped progress-bar-animated"#}
+                                {#                                                         style="width:{{ quartile }}%"></div>#}
+                                {#                                                </div>#}
+                                {#                                            </div>#}
+                                {#                                            <div>#}
+                                {#                                                <p class="text-success ml-3 text-left font-weight-bold display-4"><span#}
+                                {#                                                        class="font-weight-light">+</span>{{ quartile }}</p>#}
+                                {#                                            </div>#}
+                                {#                                        </div>#}
+                                {#                                    </div>#}
+                                {#                                    <hr/>#}
+                                {##}
+                                {#                                {% endfor %}#}
                             </div>
                         </div>
                     </div>
@@ -340,26 +391,53 @@
                              data-parent="#accordionExample">
                             <div class="card-body">
 
-                                {% for quartile in courseoverview.4 %}
-                                    <div class="row">
-                                        <div class="w-100 pl-3"><h3 class="stats-heading display-5 text-primary">
-                                            Quartile {{ forloop.counter }}</h3></div>
-                                        <div class="row w-100 pl-3">
-                                            <div class="col-9 mt-2">
-                                                <div class="progress">
-                                                    <div class="progress-bar progress-bar-striped progress-bar-animated"
-                                                         style="width:{{ quartile }}%"></div>
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <p class="text-success ml-3 text-left font-weight-bold display-4"><span
-                                                        class="font-weight-light">+</span>{{ quartile }}</p>
-                                            </div>
+                                <div class="row">
+                                    <div class="row pl-3">
+                                        <div class="col-7">
+                                            <h3
+                                                    class="stats-heading display-5 text-primary">
+                                                Exam Difficulty</h3>
+                                        </div>
+                                        <div class="col-5">
+                                             <img class="col-4" src="{% static "dashboard/images/test.svg" %}" alt="test"
+                                             width="32"
+                                             height="32"
+                                             class="d-inline-block"/>
                                         </div>
                                     </div>
-                                    <hr/>
 
-                                {% endfor %}
+                                    <div class="row w-100 pl-3">
+
+                                        <div>
+                                            <p class="text-success ml-3 text-left font-weight-bold display-6">{{ examoverview.0 }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr/>
+
+                                <div class="row">
+                                    <div class="w-100 pl-3"><h3 class="stats-heading display-5 text-primary">
+                                        Exam Risk</h3></div>
+                                    <div class="row w-100 pl-3">
+
+                                        <div>
+                                            <p class="text-success ml-3 text-left font-weight-bold display-6">{{ examoverview.1 }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr/>
+
+                                <div class="row">
+                                    <div class="w-100 pl-3"><h3 class="stats-heading display-5 text-primary">
+                                        Exam Average</h3></div>
+                                    <div class="row w-100 pl-3">
+
+                                        <div>
+                                            <p class="text-success ml-3 text-left font-weight-bold display-6">{{ examoverview.3 }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr/>
                             </div>
                         </div>
                     </div>
