@@ -41,9 +41,21 @@ def add_to_database(pat, username, course_id):
         student_report_details = alg.getRankMatrix(df)
 
         for i in range(len(student_report_details)):
-            student_ranks.objects.create(student_id=student_report_details[i][0],class_rank=student_report_details[i][1],
-        exam_rank=student_report_details[i][2],lab_rank=student_report_details[i][3],asgn_rank=student_report_details[i][4]
-                                         ,oth_rank=student_report_details[i][5])
+            if len(student_ranks.objects.filter(student_id=student_report_details[i][0]))<=0:
+                student_ranks.objects.create(student_id=student_report_details[i][0],
+                                             class_rank=student_report_details[i][1],
+                                             exam_rank=student_report_details[i][2],
+                                             lab_rank=student_report_details[i][3],
+                                             asgn_rank=student_report_details[i][4]
+                                             , oth_rank=student_report_details[i][5])
+            else:
+                p = student_ranks.objects.get(student_id=student_report_details[i][0])
+                p.class_rank=student_report_details[i][1]
+                p.exam_rank=student_report_details[i][2]
+                p.lab_rank=student_report_details[i][3]
+                p.asgn_rank=student_report_details[i][4]
+                p.oth_rank=student_report_details[i][5]
+                p.save()
         print("Persistence label : ",Persistent_Labels)
         print(ExamOverview)
         f_all[len(f_all) - 1] = f_all[len(f_all) - 1] + '\n'

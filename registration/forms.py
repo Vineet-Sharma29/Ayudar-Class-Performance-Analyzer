@@ -3,7 +3,7 @@ from .models import professor_profile, course
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.core.exceptions import ValidationError
-from .evilPwdCheck import check_pass
+#from .evilPwdCheck import check_pass
 
 
 class RegisterForm(forms.ModelForm):
