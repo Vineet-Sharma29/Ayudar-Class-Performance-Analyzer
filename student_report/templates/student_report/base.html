@@ -47,14 +47,12 @@
                 {% else %}
                     <li class="nav-item">
                         <div class="btn-group">
-                            <a class="nav-link text-light border-0" href="{% url 'dashboard:dashboard' %}" data-toggle="dropdown"
+                            <a class="nav-link text-light" href="{% url 'dashboard:dashboard' %}" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">Dashboard</a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Separated link</a>
+                                <a class="dropdown-item" href="{% url 'dashboard:dashboard' %}">Dashboard</a>
+                                <a class="dropdown-item" href="{% url 'dashboard:needy_list' %}">Needy List</a>
+                                <a class="dropdown-item" href="{% url 'dashboard:list_of_students' %}">List of All Students</a>
                             </div>
                         </div>
 
