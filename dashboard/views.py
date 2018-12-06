@@ -8,7 +8,7 @@ from .forms import file_class
 from django.shortcuts import render
 import dashboard.algo as alg
 from django.contrib.auth.decorators import login_required
-import pdfkit
+# import pdfkit
 
 def add_to_database(pat, username, course_id):
     path = 'media/media_/' + pat
