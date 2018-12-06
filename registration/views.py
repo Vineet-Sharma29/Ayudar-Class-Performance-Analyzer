@@ -69,7 +69,7 @@ def register_display(request):
             })
 
             send_mail(mail_subject, message, 'iiits2021@gmail.com', [mail])
-            return HttpResponse('email has been sent')
+            return render(request, 'login/email_confirmation.html')
 
     else:
         form = RegisterForm()
@@ -116,10 +116,10 @@ def reset_password(request):
             })
 
             send_mail(mail_subject, message, 'iiits2021@gmail.com', [mail])
-            return HttpResponse('Link has been sent to your email')
+            return render(request, 'login/email_confirmation.html')
     else:
         form1 = ResetForm()
-    return render(request, 'login/reset_email.html', {'form': form1})
+    return render(request, 'login/email_confirmation.html')
 
 
 def display_reset_password(request, uidb64, token):
