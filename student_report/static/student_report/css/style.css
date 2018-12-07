@@ -9584,11 +9584,11 @@ tbody.collapse.show {
   .dropdown-item:hover, .dropdown-item:focus {
     color: #16181b;
     text-decoration: none;
-    background-color: #f8f9fa; }
+    background-color: #4373a2; }
   .dropdown-item.active, .dropdown-item:active {
     color: #fff;
     text-decoration: none;
-    background-color: #007bff; }
+    background-color: red; }
   .dropdown-item.disabled, .dropdown-item:disabled {
     color: #6c757d;
     background-color: transparent; }
@@ -14382,7 +14382,6 @@ pre {
 
 .ellipsis {
   max-width: 95%;
-  white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden; }
 

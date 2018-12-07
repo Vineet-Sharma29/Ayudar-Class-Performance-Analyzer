@@ -8,3 +8,4 @@ class file_class(forms.ModelForm):
     class Meta:
         model = csvfile
         fields = ('req_file',)
+

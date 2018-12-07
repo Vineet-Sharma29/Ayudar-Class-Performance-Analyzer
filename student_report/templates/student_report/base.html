@@ -46,13 +46,13 @@
                     </li>
                 {% else %}
                     <li class="nav-item">
-                        <div class="btn-group">
+                        <div class="btn-group" style="border:0px;background: #231f20;">
                             <a class="nav-link text-light" href="{% url 'dashboard:dashboard' %}" data-toggle="dropdown"
-                           aria-haspopup="true" aria-expanded="false">Dashboard</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="{% url 'dashboard:dashboard' %}">Dashboard</a>
-                                <a class="dropdown-item" href="{% url 'dashboard:needy_list' %}">Needy List</a>
-                                <a class="dropdown-item" href="{% url 'dashboard:list_of_students' %}">List of All Students</a>
+                           aria-haspopup="true" aria-expanded="false">Dashboard<i class="fas fa-caret-down"></i></a>
+                            <div class="dropdown-menu" style="background: #231f20;border:0px;color:white;">
+                                <a class="dropdown-item" href="{% url 'dashboard:dashboard' %}" style="color:white;">Dashboard</a>
+                                <a class="dropdown-item" href="{% url 'dashboard:needy_list' %}" style="color:white;">Needy List</a>
+                                <a class="dropdown-item" href="{% url 'dashboard:list_of_students' %}" style="color:white;">List of All Students</a>
                             </div>
                         </div>
 
