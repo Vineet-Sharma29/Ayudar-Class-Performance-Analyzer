@@ -39,6 +39,7 @@ class student_ranks(models.Model):
     worst_marks = models.IntegerField(default=0)
     best_exam  = models.CharField(max_length=50,default='-')
     worst_exam = models.CharField(max_length=50, default='-')
+    overall  = models.IntegerField(default=0)
 class course_dashboard(models.Model):
     professor = models.OneToOneField(User,on_delete=models.CASCADE)
     course_difficulty = models.CharField(max_length=15,default='-')

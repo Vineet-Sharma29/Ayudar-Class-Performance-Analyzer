@@ -370,6 +370,14 @@ def mainFunc(df):
     df['temp'] = 1 / df['overall'] + df['var']
     return list((df.sort_values('temp', ascending=False)['RollNumber'])[0:5])
 
+def initialse(tuples, headers):
+    df = makeDF(tuples, headers)
+    df = scaleMarks(df)
+    df = createAvg(df)
+    df = createChMarks(df)
+    df = variance(df)
+    return df
+
 def OverallMarks(df):
     '''Assumes df as a Pamdas DataFrame.
 
@@ -435,7 +443,7 @@ def ExamDetails(df):
     return details
 
 
-def findBestExam(df, i):
+def findBestExam(i):
     '''Assumes i as an int.
     
        Returns a string with the value as the exam with maximum marks in any Dataframe record'''
@@ -459,7 +467,7 @@ def findBestExam(df, i):
     return exam
 
 
-def findWorstExam(df, i):
+def findWorstExam(i):
     '''Assumes i as an int.
     
        Returns a string with the value as the exam with minimum marks in any Dataframe record'''
@@ -484,47 +492,43 @@ def findWorstExam(df, i):
     return exam
 
 
-def studentMarks(df):
-    '''Assumes df as a Pandas DataFrame.
-    
+def studentMarks(dfArg):
+    '''Assumes dfArg as a Pandas DataFrame.
+
        Returns a tuple of tuples, with best exam and worst exam performances.'''
 
     # find all the exam names
+    global df
+    df = dfArg
     evals = []
-    for exam in df.columns:
+    for exam in dfArg.columns:
         if len(exam.split('-')) > 2:
             evals.append(exam)
     # initialise new attributes with their iterative location index to use the power of lambda functions.
-    df['best'] = [i for i in range(len(df['RollNumber']))]
-    df['worst'] = [i for i in range(len(df['RollNumber']))]
-    df['bestExam'] = [i for i in range(len(df['RollNumber']))]
-    df['worstExam'] = [i for i in range(len(df['RollNumber']))]
+    dfArg['best'] = [i for i in range(len(dfArg['RollNumber']))]
+    dfArg['worst'] = [i for i in range(len(dfArg['RollNumber']))]
+    dfArg['bestExam'] = [i for i in range(len(dfArg['RollNumber']))]
+    dfArg['worstExam'] = [i for i in range(len(dfArg['RollNumber']))]
 
     # Find the max or min oerformance of the record.
-    df['best'] = df['best'].apply(lambda x: max(df[evals].iloc[x]))
-    df['worst'] = df['worst'].apply(lambda x: min(df[evals].iloc[x]))
+    dfArg['best'] = dfArg['best'].apply(lambda x: max(dfArg[evals].iloc[x]))
+    dfArg['worst'] = dfArg['worst'].apply(lambda x: min(dfArg[evals].iloc[x]))
 
     # Find the best or worst exam name.
-    df['bestExam'] = df['bestExam'].apply(findBestExam)
-    df['worstExam'] = df['worstExam'].apply(findWorstExam)
+    dfArg['bestExam'] = dfArg['bestExam'].apply(findBestExam)
+    dfArg['worstExam'] = dfArg['worstExam'].apply(findWorstExam)
 
     # rounding off
-    df['best'] = df['best'].apply(lambda x: round(x, 2))
-    df['worst'] = df['worst'].apply(lambda x: round(x, 2))
+    dfArg['best'] = dfArg['best'].apply(lambda x: round(x, 2))
+    dfArg['worst'] = dfArg['worst'].apply(lambda x: round(x, 2))
 
     # Make new dataframe
-    df1 = df[['RollNumber', 'best', 'worst', 'bestExam', 'worstExam']]
+    dfArg1 = dfArg[['RollNumber', 'best', 'worst', 'bestExam', 'worstExam']]
 
     # Coercion
-    ret = tuple([tuple(x) for x in df1.to_records(index=False)])
+    ret = tuple([tuple(x) for x in dfArg1.to_records(index=False)])
 
     return ret
 
 
-def initialse(tuples, headers):
-    df = makeDF(tuples, headers)
-    df = scaleMarks(df)
-    df = createAvg(df)
-    df = createChMarks(df)
-    df = variance(df)
-    return df
+
