@@ -1,4 +1,3 @@
-
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -6,16 +5,17 @@ from django.contrib.auth.models import User
 
 
 class Enrollments(models.Model):
-
     course_id = models.CharField(max_length=15)
     student_id = models.CharField(max_length=15)
-    student_name = models.CharField(max_length=15)
+    student_name = models.CharField(max_length=60)
     prof_id = models.CharField(max_length=15)
-    status = models.CharField(max_length=15)
+    status = models.CharField(max_length=20)
+    performance = models.CharField(max_length=20,default='-')
+    persistance = models.CharField(max_length=20,default='-')
+    label = models.CharField(max_length=90,default='-')
 
 class csvfile(models.Model):
     req_file = models.FileField(upload_to='media_')
-
 
 class Marks(models.Model):
     student_name = models.CharField(max_length=15)
@@ -28,17 +28,22 @@ class Marks(models.Model):
     class Meta:
         unique_together = ('student_id', 'course_id','prof_id','q_name','student_name')
 
-
-
+class student_ranks(models.Model):
+    student_id = models.CharField(max_length=15)
+    class_rank = models.IntegerField(default=0)
+    exam_rank = models.IntegerField(default=0)
+    lab_rank = models.IntegerField(default=0)
+    asgn_rank = models.IntegerField(default=0)
+    oth_rank = models.IntegerField(default=0)
 
 class course_dashboard(models.Model):
     professor = models.OneToOneField(User,on_delete=models.CASCADE)
     course_difficulty = models.CharField(max_length=15,default='-')
     course_risk = models.CharField(max_length=15,default='-')
-    course_average = models.FloatField(default=0)
+    course_average = models.CharField(max_length=15,default='-')
     exam_difficulty = models.CharField(max_length=15,default='-')
     exam_cheat_risk = models.CharField(max_length=15,default='-')
-    exam_average = models.FloatField(default=0)
+    exam_average = models.CharField(max_length=15,default='-')
     quartile_1 = models.FloatField(default=0)
     quartile_2 = models.FloatField(default=0)
     quartile_3 = models.FloatField(default=0)

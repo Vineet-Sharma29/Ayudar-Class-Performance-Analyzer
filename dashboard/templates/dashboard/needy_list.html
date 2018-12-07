@@ -6,94 +6,23 @@
 
 {% block content %}
 
-    <div class="row">
+
+    <div class="row justify-content-center">
+    {% for student in needyList %}
         <div class="col-xs-12 col-md-6 col-lg-4 mx-auto">
             <div class="card d-inline-block my-5">
               <img class="card-img-top" src="http://placehold.it/250x150" alt="Card image cap">
               <div class="card-block p-2">
-                <h4 class="card-title">Card title</h4>
-                  <span class="badge badge-primary">Needy</span>
-                  <span class="badge badge-secondary">Persepective</span>
-                <p class="card-text">S20170010179</p>
-                  <a href="#" class="btn btn-primary m-2">See Report</a>
-              </div>
+                <h4 class="card-title">{{ student.0 }}</h4>
+                  <span class="badge badge-primary">{{ student.2 }}</span>
+                  <span class="badge badge-secondary">{{ student.3 }}</span>
+                <p class="card-text">{{ student.1 }}</p>
 
-              </div>
-        </div>
-
-        <div class="col-xs-12 col-md-6 col-lg-4 mx-auto">
-            <div class="card d-inline-block my-5">
-              <img class="card-img-top" src="http://placehold.it/250x150" alt="Card image cap">
-              <div class="card-block p-2">
-                <h4 class="card-title">Card title</h4>
-                  <span class="badge badge-primary">Needy</span>
-                  <span class="badge badge-secondary">Persepective</span>
-                <p class="card-text">S20170010179</p>
-                  <a href="#" class="btn btn-primary m-2">See Report</a>
               </div>
 
               </div>
         </div>
-
-        <div class="col-xs-12 col-md-6 col-lg-4 mx-auto">
-            <div class="card d-inline-block my-5">
-              <img class="card-img-top" src="http://placehold.it/250x150" alt="Card image cap">
-              <div class="card-block p-2">
-                <h4 class="card-title">Card title</h4>
-                  <span class="badge badge-primary">Needy</span>
-                  <span class="badge badge-secondary">Persepective</span>
-                <p class="card-text">S20170010179</p>
-                  <a href="#" class="btn btn-primary m-2">See Report</a>
-              </div>
-
-              </div>
-        </div>
-
-    </div>
-
-
-    <div class="row">
-        <div class="col-xs-12 col-md-6 col-lg-4 mx-auto">
-            <div class="card d-inline-block my-5">
-              <img class="card-img-top" src="http://placehold.it/250x150" alt="Card image cap">
-              <div class="card-block p-2">
-                <h4 class="card-title">Card title</h4>
-                  <span class="badge badge-primary">Needy</span>
-                  <span class="badge badge-secondary">Persepective</span>
-                <p class="card-text">S20170010179</p>
-                  <a href="#" class="btn btn-primary m-2">See Report</a>
-              </div>
-
-              </div>
-        </div>
-
-        <div class="col-xs-12 col-md-6 col-lg-4 mx-auto">
-            <div class="card d-inline-block my-5">
-              <img class="card-img-top" src="http://placehold.it/250x150" alt="Card image cap">
-              <div class="card-block p-2">
-                <h4 class="card-title">Card title</h4>
-                  <span class="badge badge-primary">Needy</span>
-                  <span class="badge badge-secondary">Persepective</span>
-                <p class="card-text">S20170010179</p>
-                  <a href="#" class="btn btn-primary m-2">See Report</a>
-              </div>
-
-              </div>
-        </div>
-
-        <div class="col-xs-12 col-md-6 col-lg-4 mx-auto">
-            <div class="card d-inline-block my-5">
-              <img class="card-img-top" src="http://placehold.it/250x150" alt="Card image cap">
-              <div class="card-block p-2">
-                <h4 class="card-title">Card title</h4>
-                  <span class="badge badge-primary">Needy</span>
-                  <span class="badge badge-secondary">Persepective</span>
-                <p class="card-text">S20170010179</p>
-                  <a href="#" class="btn btn-primary m-2">See Report</a>
-              </div>
-
-              </div>
-        </div>
+    {% endfor %}
     </div>
 
 

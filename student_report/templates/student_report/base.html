@@ -9,12 +9,15 @@
     <link rel="stylesheet" href="{% static "student_report/css/vendor.bundle.base.css" %}">
     <link rel="stylesheet" href="{% static "student_report/css/vendor.bundle.addons.css" %}">
     <link rel="stylesheet" href="{% static "student_report/css/style.css" %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+          integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link href="{% static "landing_page/css/one-page-wonder.css" %}" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="{% static "landing_page/css/one-page-wonder.css" %}" rel="stylesheet">
     {% block head %}
         {% load static %}
     {% endblock %}
+
 </head>
 <body>
 
@@ -31,23 +34,32 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link text-primary" href="{% url 'landing_page:landing_page' %}">Home</a>
+                    <a class="nav-link text-light" href="{% url 'landing_page:landing_page' %}">Home</a>
                 </li>
                 {% if not user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link text-primary" href="{% url 'registration:register' %}">Sign Up</a>
+                        <a class="nav-link text-light" href="{% url 'registration:register' %}">Sign Up</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link text-primary" href="{% url 'registration:login' %}">Log In</a>
+                        <a class="nav-link text-light" href="{% url 'registration:login' %}">Log In</a>
                     </li>
                 {% else %}
                     <li class="nav-item">
-                        <a class="nav-link text-primary" href="{% url 'dashboard:dashboard' %}">Dashboard</a>
+                        <div class="btn-group">
+                            <a class="nav-link text-light" href="{% url 'dashboard:dashboard' %}" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">Dashboard</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="{% url 'dashboard:dashboard' %}">Dashboard</a>
+                                <a class="dropdown-item" href="{% url 'dashboard:needy_list' %}">Needy List</a>
+                                <a class="dropdown-item" href="{% url 'dashboard:list_of_students' %}">List of All Students</a>
+                            </div>
+                        </div>
+
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link text-primary" href="{% url 'registration:logout' %}">Logout</a>
+                        <a class="nav-link text-light" href="{% url 'registration:logout' %}">Logout</a>
                     </li>
                 {% endif %}
 
@@ -66,9 +78,9 @@
 
                             <a href="#">
                                 <img class="img-responsive rounded mx-5 mt-3 border"
-                                     src="http://placehold.it/250x150" alt="Professor Name" width="120" height="120"/>
+                                     src="{% static 'dashboard/images/st6.jpg' %}" alt="Professor Name" width="120" height="120"/>
                                 <div class="page-header mx-4 my-4 text-center">
-                                    <h1>Shashwat<br/>Gupta</h1>
+                                    <h1>{{ student }}</h1>
                                 </div>
                             </a>
 
@@ -77,7 +89,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'student_report:student_report' %}">
+                    <a class="nav-link" href="{% url 'student_report:student_report'  sid   %}">
                         <i class="menu-icon mdi mdi-television"></i>
                         <span class="menu-title">Dashboard</span>
                     </a>
@@ -133,6 +145,9 @@
 <!-- Custom js for this page-->
 <script src="{% static "student_report/js/dashboard.js" %}"></script>
 <!-- End custom js for this page-->
+<script src="{% static "student_report/js/chart.js" %}"></script>
+{% block script %}
+{% endblock %}
 
-</body>
++</body>
 </html>
