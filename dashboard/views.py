@@ -39,7 +39,7 @@ def add_to_database(pat, username, course_id):
         Persistent_Labels = alg.PersistentLabels(df)
         Performance_Labels = alg.PerformanceLabels(df)
         student_report_details = alg.getRankMatrix(df)
-
+        student_marks = alg.studentMarks(df)
         for i in range(len(student_report_details)):
             if len(student_ranks.objects.filter(student_id=student_report_details[i][0]))<=0:
                 student_ranks.objects.create(student_id=student_report_details[i][0],
@@ -47,7 +47,7 @@ def add_to_database(pat, username, course_id):
                                              exam_rank=student_report_details[i][2],
                                              lab_rank=student_report_details[i][3],
                                              asgn_rank=student_report_details[i][4]
-                                             , oth_rank=student_report_details[i][5])
+                                             ,oth_rank=student_report_details[i][5])
             else:
                 p = student_ranks.objects.get(student_id=student_report_details[i][0])
                 p.class_rank=student_report_details[i][1]
@@ -56,6 +56,14 @@ def add_to_database(pat, username, course_id):
                 p.asgn_rank=student_report_details[i][4]
                 p.oth_rank=student_report_details[i][5]
                 p.save()
+        for i in range(student_marks):
+            p = student_marks[i][0]
+            student = student_ranks.objects.get(student_id=p)
+            student.best_marks = student_marks[i][1]
+            student.worst_marks = student_marks[i][2]
+            student.best_exam = student_marks[i][3]
+            student.worst_exam = student_marks[i][4]
+            student.save()
         print("Persistence label : ",Persistent_Labels)
         print(ExamOverview)
         f_all[len(f_all) - 1] = f_all[len(f_all) - 1] + '\n'

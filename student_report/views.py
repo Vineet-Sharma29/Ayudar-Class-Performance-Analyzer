@@ -21,7 +21,8 @@ def student_report(request,id):
     name = Enrollments.objects.get(prof_id=user,course_id=profile.professor_course,student_id=id)
     rank = student_ranks.objects.get(student_id=id)
     ranks =[rank.class_rank,rank.exam_rank,rank.lab_rank,rank.asgn_rank,rank.oth_rank]
-    return render(request, "student_report/student_report.html",{'quizzes':quizzes,'sid':id,'student':name.student_name,'ranks':ranks})
+    student_marks = [rank.best_exam,rank.best_marks,rank.worst_exam,rank.worst_marks]
+    return render(request, "student_report/student_report.html",{'quizzes':quizzes,'sid':id,'student':name.student_name,'ranks':ranks,'Marks':student_marks})
 
 
 def charts(request):

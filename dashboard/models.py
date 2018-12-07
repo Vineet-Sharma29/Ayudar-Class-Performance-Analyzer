@@ -23,7 +23,7 @@ class Marks(models.Model):
     course_id = models.CharField(default=0,max_length=15)
     prof_id = models.CharField(default=0,max_length=15)
     marks = models.FloatField(default=0)
-    q_name = models.CharField(max_length=15)
+    q_name = models.CharField(max_length=50)
 
     class Meta:
         unique_together = ('student_id', 'course_id','prof_id','q_name','student_name')
@@ -35,7 +35,10 @@ class student_ranks(models.Model):
     lab_rank = models.IntegerField(default=0)
     asgn_rank = models.IntegerField(default=0)
     oth_rank = models.IntegerField(default=0)
-
+    best_marks = models.IntegerField(default=0)
+    worst_marks = models.IntegerField(default=0)
+    best_exam  = models.CharField(max_length=50,default='-')
+    worst_exam = models.CharField(max_length=50, default='-')
 class course_dashboard(models.Model):
     professor = models.OneToOneField(User,on_delete=models.CASCADE)
     course_difficulty = models.CharField(max_length=15,default='-')
