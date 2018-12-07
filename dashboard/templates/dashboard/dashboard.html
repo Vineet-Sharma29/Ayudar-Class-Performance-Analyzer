@@ -452,23 +452,34 @@
     <script>
         var y0 = [], i = 0;
 
-        for (i = 0; i < 50; i++) {
-            y0[i] = Math.random()
-        }
-        {#        {% for entry in tupleformarks %}#}
-        {#            {% for j in entry %}#}
-        {#                {% y[i] = j %}#}
-        {#                i = i + 1#}
-        {#            {% endfor %}#}
-        {#        {% endfor %}#}
 
         var trace1 = {
-            y: y0,
-            type: 'box'
+            y:{{ dashboard_marks.exam_marks }},
+            type: 'box',
+            name:'Exam'
+        };
+
+        var trace2 = {
+            y: {{ dashboard_marks.lab_marks }},
+            type: 'box',
+            name:'Lab'
         };
 
 
-        var data = [trace1];
+        var trace3 = {
+            y: {{ dashboard_marks.asgn_marks }},
+            type: 'box',
+            name:'Assignment'
+        };
+
+        var trace4 = {
+            y: {{ dashboard_marks.oth_marks }},
+            type: 'box',
+            name:'Other'
+        };
+
+
+        var data = [trace1,trace2,trace3,trace4];
 
         Plotly.newPlot('myDiv', data);
     </script>
