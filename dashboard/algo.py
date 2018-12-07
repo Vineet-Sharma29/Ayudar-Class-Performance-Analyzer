@@ -370,6 +370,13 @@ def mainFunc(df):
     df['temp'] = 1 / df['overall'] + df['var']
     return list((df.sort_values('temp', ascending=False)['RollNumber'])[0:5])
 
+def OverallMarks(df):
+    '''Assumes df as a Pamdas DataFrame.
+
+       Returns overall weighted marks of students as a list.'''
+
+    return list(df['overall'])
+
 
 def getRank(df, exam):
     '''Assumes df as a Pandas dataframe, amd exam as a string.
