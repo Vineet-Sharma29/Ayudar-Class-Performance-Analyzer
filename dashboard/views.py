@@ -345,12 +345,12 @@ def list_of_students(request):
     allstudents = []
     j = Enrollments.objects.filter(course_id=profile.professor_course, prof_id=user)
     if len(j) == 0:
-        allstudents.append([0, 'None', 'None', 'None'])
+        allstudents.append([0, 'None', 'None', 'None','None'])
         return render(request, "dashboard/list_of_students.html",
                       {'username': user.username, 'photo': profile.professor_photo, 'allstudents': allstudents})
 
     for i in j:
-        allstudents.append([i.student_id, i.student_name, i.persistance, i.performance])
+        allstudents.append([i.student_id, i.student_name, i.persistance, i.performance,i.label])
     print(allstudents)
 
     paginator = Paginator(allstudents,10)
