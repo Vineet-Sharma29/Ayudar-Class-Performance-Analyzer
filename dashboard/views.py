@@ -310,6 +310,10 @@ def list_of_students(request):
                   {'username': user.username, 'photo': profile.professor_photo, 'allstudents': allstudents})
 
 
+def graph(request):
+    return render(request, "dashboard/graph.html")
+
+
 def custom_404(request):
     return render(request, "dashboard/404.html")
 
