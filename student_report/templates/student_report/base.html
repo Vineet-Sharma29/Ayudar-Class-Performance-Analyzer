@@ -14,6 +14,12 @@
     <link href="{% static "landing_page/css/one-page-wonder.css" %}" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="{% static "landing_page/css/one-page-wonder.css" %}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <style>
+        *{
+            font-family: 'Montserrat', sans-serif;
+        }
+    </style>
     {% block head %}
         {% load static %}
     {% endblock %}
@@ -77,11 +83,11 @@
                     <div class="nav-link">
                         <div class="user-wrapper">
 
-                            <a href="#">
+                            <a href="#" style="text-decoration: none;">
                                 <img class="img-responsive rounded mx-5 mt-3 border"
                                      src="{% static 'dashboard/images/st6.jpg' %}" alt="Professor Name" width="120" height="120"/>
                                 <div class="page-header mx-4 my-4 text-center">
-                                    <h1>{{ student }}</h1>
+                                    <h1 style="font-family: 'Montserrat', sans-serif;">{{ student }}</h1>
                                 </div>
                             </a>
 
