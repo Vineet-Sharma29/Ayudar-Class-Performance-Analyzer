@@ -29,9 +29,9 @@
                     <tr>
                       <td>{{  student.0 }}</td>
                       <td>{{ student.1 }}</td>
-                      <td>{{ student.2 }}</td>
+                        <td><label class="badge badge-warning">{{ student.2 }}</label></td>
                       <td>
-                        <label class="badge badge-danger">{{ student.3 }}</label>
+                        <label>{{ student.3 }}</label>
                       </td>
                     </tr>
                     {% endfor %}
@@ -46,7 +46,7 @@
             <div class="card-body">
               <h4 class="card-title">This Course</h4>
               <p class="card-description">
-               Your Course
+               {{ course }}
 {#                <code>.table-hover</code>#}
               </p>
               <div class="table-responsive">

@@ -17,4 +17,5 @@ class courselogserializer(serializers.ModelSerializer):
             'course_average',
             'course',
             'needy_student_list',
+            'course_student_list'
         )

@@ -56,11 +56,11 @@ class RegisterForm(forms.ModelForm):
 
         if password != confirm_password:
             raise forms.ValidationError('Passwords did not match')
-        #     return confirm_password
-        # error=check_pass(str(password),str(cleaned_data['email']),str(cleaned_data['username']))
-        # print(error)
-        # if error:
-        #     raise forms.ValidationError(error)
+            return confirm_password
+        error=check_pass(str(password),str(cleaned_data['email']),str(cleaned_data['username']))
+        print(error)
+        if error:
+            raise forms.ValidationError(error)
         return confirm_password
 
 
