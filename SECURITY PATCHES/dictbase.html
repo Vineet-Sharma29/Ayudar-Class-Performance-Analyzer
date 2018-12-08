@@ -16,7 +16,7 @@
 			.strength5   { background-color: #99FF99; } 
 		</style>
 
-		<script type="text/javascript" src="./dictbase_files/zxcvbn.js"></script>
+		<script type="text/javascript" src="./zxcvbn.js"></script>
 
 		<script type="text/javascript">
 			function objectDump(obj)
@@ -77,10 +77,10 @@
 					}
 
 				   
-					output.innerHTML = 'Approx time to crack: '+ret.crack_time_display+"\n";
-					output.innerHTML += '(in seconds): '+ret.crack_time+"\n";
+					output.innerHTML = '';
+					output.innerHTML += '';
 					output.innerHTML += 'Strength score (1-5): '+(ret.score+1)+"\n";
-					output.innerHTML += 'Entropy estimate (bits): '+(ret.entropy)+"\n";
+					output.innerHTML += '';
 					//output.innerHTML += 'Caculation time (msecs): '+(ret.calc_time)+"\n";
 					output.className = 'strength'+(ret.score+1);
 				}
@@ -98,9 +98,9 @@
     	<input type="text" name="password" id="password" onchange="checkPassword(document.getElementById(&#39;password&#39;).value, false); return true;" onkeypress="this.onchange();" oninput="this.onkeypress();" style="font-family:monospace; width: 250px;">
     
     <!-- onpaste defined -->
-    	<button type="button" onclick="checkPassword(document.getElementById(&#39;password&#39;).value, true);">Break it down!</button>
+    	
 		<pre id="output" class="strength1"></pre>
-		<pre id="explanation" style="background-color:#ddddff"></pre>
+		
 
 	</body>
 </html>
