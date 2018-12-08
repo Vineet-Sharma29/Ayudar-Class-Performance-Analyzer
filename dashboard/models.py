@@ -14,6 +14,10 @@ class Enrollments(models.Model):
     persistance = models.CharField(max_length=20,default='-')
     label = models.CharField(max_length=90,default='-')
 
+
+    def __str__(self):
+        return self.student_name
+
 class csvfile(models.Model):
     req_file = models.FileField(upload_to='media_')
 

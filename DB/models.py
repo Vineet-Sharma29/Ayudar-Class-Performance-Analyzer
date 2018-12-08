@@ -31,10 +31,5 @@ class Marks(models.Model):
 
 
 
-"""class Marks(models.Model):
-    student_id = models.ForeignKey(Enrollments,on_delete=models.PROTECT)
-    course_id = models.ForeignKey(Enrollments, on_delete=models.PROTECT)
-    marks = models.FloatField(null=False)
-    q_name = models.CharField(max_length=15)"""
 
 
