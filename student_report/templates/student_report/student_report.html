@@ -85,7 +85,7 @@
     </div>
 
     <div class="row">
-        <div class="col-lg-7 grid-margin stretch-card">
+        <div class="col-lg-9 grid-margin stretch-card">
             <div class="col-md-12 grid-margin">
                 <div class="card">
                     <div class="card-body">
@@ -104,13 +104,13 @@
                             </div>
                         </div>
                         <div class="chart-container">
-                            <canvas id="myChart" height="90"></canvas>
+                            <canvas id="myChart" height="190"></canvas>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-lg-5 grid-margin stretch-card">
+        <div class="col-lg-3 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
                     <h2 class="card-title text-primary mb-5">Performance History</h2>
@@ -122,30 +122,41 @@
                       </div>
                     <div class="wrapper d-flex justify-content-between">
                         <div class="side-left">
+                            <p class="mb-2">Best performance</p>
+                            <p class="display-3 mb-5 font-weight-light">{{ Marks.1 }}</p>
+                        </div>
+                        <div class="side-right">
+                      <small class="text-muted">{{ Marks.0 }}</small>
+                    </div>
+                    </div>
+                    <div class="wrapper d-flex justify-content-between">
+                        <div class="side-left">
                             <p class="mb-2">Worst performance</p>
-                            <p class="display-3 mb-5 font-weight-light">-35.3%</p>
+                            <p class="display-3 mb-5 font-weight-light">{{ Marks.3 }}</p>
                         </div>
-
+                        <div class="side-right">
+                      <small class="text-muted">{{ Marks.2 }}</small>
                     </div>
-                    <div class="wrapper">
-                        <div class="d-flex justify-content-between">
-                            <p class="mb-2">Sales</p>
-                            <p class="mb-2 text-primary">88%</p>
-                        </div>
-                        <div class="progress">
-                            <div class="progress-bar bg-primary progress-bar-striped progress-bar-animated"
-                                 role="progressbar" style="width: 88%" aria-valuenow="88"
-                                 aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
                     </div>
-                    <div class="wrapper mt-4">
+{#                    <div class="wrapper">#}
+{#                        <div class="d-flex justify-content-between">#}
+{#                            <p class="mb-2">Sales</p>#}
+{#                            <p class="mb-2 text-primary">88%</p>#}
+{#                        </div>#}
+{#                        <div class="progress">#}
+{#                            <div class="progress-bar bg-primary progress-bar-striped progress-bar-animated"#}
+{#                                 role="progressbar" style="width: 88%" aria-valuenow="88"#}
+{#                                 aria-valuemin="0" aria-valuemax="100"></div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="wrapper mt-4">#}
                         <div class="d-flex justify-content-between">
-                            <p class="mb-2">Visits</p>
-                            <p class="mb-2 text-success">56%</p>
+                            <p class="mb-2">Overall</p>
+                            <p class="mb-2 text-success display-4 font-weight-bold">{{ Marks.4 }}%</p>
                         </div>
                         <div class="progress">
                             <div class="progress-bar bg-success progress-bar-striped progress-bar-animated"
-                                 role="progressbar" style="width: 56%" aria-valuenow="56"
+                                 role="progressbar" style="width: {{ Marks.4 }}%" aria-valuenow="56"
                                  aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                     </div>
@@ -156,7 +167,6 @@
 {% endblock %}
 
 {% block script %}
-    <script src="{% static 'student_report/js/Chart.bundle.js' %}"></script>
     <script>
         var ctx = document.getElementById("myChart").getContext('2d');
         var myChart = new Chart(ctx, {
@@ -178,9 +188,9 @@
                     yAxes: [{
                         ticks: {
                             beginAtZero: true,
-                            steps: 20,
+                            steps: 10,
                             stepValue: 5,
-                            max: 100
+                            max: 30
                         }
                     }]
                 }

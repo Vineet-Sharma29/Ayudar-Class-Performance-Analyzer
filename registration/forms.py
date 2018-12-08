@@ -3,8 +3,7 @@ from .models import professor_profile, course
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.core.exceptions import ValidationError
-#from .evilPwdCheck import check_pass
-
+from .passCheck import check_pass
 
 class RegisterForm(forms.ModelForm):
     username = forms.CharField(max_length=100,
@@ -56,15 +55,17 @@ class RegisterForm(forms.ModelForm):
 
         if password != confirm_password:
             raise forms.ValidationError('Passwords did not match')
-        return confirm_password
-        # error=check_pass(str(password),str(cleaned_data['email']),str(cleaned_data['username']))
-        # raise forms.ValidationError(error)
-        #
+            #     return confirm_password
+            # error=check_pass(str(password),str(cleaned_data['email']),str(cleaned_data['username']))
+            # print(error)
+            # if error:
+            #     raise forms.ValidationError(error)
+            # return confirm_password
 
 
 class LoginForm(forms.Form):
     emailid = forms.EmailField(
-        widget=forms.TextInput(attrs={'autocomplete': 'off', 'class': "input100", 'placeholder': 'Email Id'}))
+        widget=forms.TextInput(attrs={'autocomplete': 'on', 'class': "input100", 'placeholder': 'Email Id'}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class': "input100", 'placeholder': 'Password'}))
 
     def clean_emailid(self):

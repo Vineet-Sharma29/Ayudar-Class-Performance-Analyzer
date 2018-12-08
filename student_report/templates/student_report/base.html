@@ -46,13 +46,13 @@
                     </li>
                 {% else %}
                     <li class="nav-item">
-                        <div class="btn-group">
+                        <div class="btn-group" style="border:0px;background: #231f20;">
                             <a class="nav-link text-light" href="{% url 'dashboard:dashboard' %}" data-toggle="dropdown"
-                           aria-haspopup="true" aria-expanded="false">Dashboard</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="{% url 'dashboard:dashboard' %}">Dashboard</a>
-                                <a class="dropdown-item" href="{% url 'dashboard:needy_list' %}">Needy List</a>
-                                <a class="dropdown-item" href="{% url 'dashboard:list_of_students' %}">List of All Students</a>
+                           aria-haspopup="true" aria-expanded="false">Dashboard<i class="fas fa-caret-down"></i></a>
+                            <div class="dropdown-menu" style="background: #231f20;border:0px;color:white;">
+                                <a class="dropdown-item" href="{% url 'dashboard:dashboard' %}" style="color:white;">Dashboard</a>
+                                <a class="dropdown-item" href="{% url 'dashboard:needy_list' %}" style="color:white;">Needy List</a>
+                                <a class="dropdown-item" href="{% url 'dashboard:list_of_students' %}" style="color:white;">List of All Students</a>
                             </div>
                         </div>
 
@@ -89,7 +89,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'student_report:student_report'  sid   %}">
+                    <a class="nav-link" href="{% url 'student_report:student_report' sid  %}">
                         <i class="menu-icon mdi mdi-television"></i>
                         <span class="menu-title">Dashboard</span>
                     </a>
@@ -97,13 +97,13 @@
 
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'student_report:charts' %}">
+                    <a class="nav-link" href="{% url 'student_report:charts' sid %}">
                         <i class="menu-icon mdi mdi-chart-line"></i>
                         <span class="menu-title">Charts</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'student_report:tables' %}">
+                    <a class="nav-link" href="{% url 'student_report:tables' sid %}">
                         <i class="menu-icon mdi mdi-table"></i>
                         <span class="menu-title">Tables</span>
                     </a>
@@ -139,15 +139,14 @@
 <!-- Plugin js for this page-->
 <!-- End plugin js for this page-->
 <!-- inject:js -->
-<script src="{% static "student_report/js/off-canvas.js" %}statics/"></script>
 <script src="{% static "student_report/js/misc.js" %}"></script>
 <!-- endinject -->
 <!-- Custom js for this page-->
 <script src="{% static "student_report/js/dashboard.js" %}"></script>
 <!-- End custom js for this page-->
 <script src="{% static "student_report/js/chart.js" %}"></script>
+<script src="{% static 'student_report/js/Chart.bundle.js' %}"></script>
 {% block script %}
 {% endblock %}
-
-+</body>
+</body>
 </html>
