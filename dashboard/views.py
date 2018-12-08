@@ -332,8 +332,9 @@ def needy_list(request):
     needystudents = p.needy_student_list.split('-')
     needystudentdetails = []
     for i in needystudents:
-        j = Enrollments.objects.get(course_id=profile.professor_course, prof_id=user, student_id=i)
-        needystudentdetails.append([j.student_name, j.student_id, j.performance, j.persistance])
+        if i!='':
+            j = Enrollments.objects.get(course_id=profile.professor_course, prof_id=user, student_id=i)
+            needystudentdetails.append([j.student_name, j.student_id, j.performance, j.persistance])
     return render(request, "dashboard/needy_list.html",
                   {'username': user.username, 'photo': profile.professor_photo, 'needyList': needystudentdetails})
 
@@ -361,9 +362,23 @@ def list_of_students(request):
 
 
 def graph(request):
-    user = User.objects.get(username=request.user)
-    profile = professor_profile.objects.get(professor=user)
-    return render(request, "dashboard/graph.html",{'username': user.username, 'photo': profile.professor_photo})
+    if request.method=='POST':
+        user = User.objects.get(username=request.user)
+        profile = professor_profile.objects.get(professor=user)
+        quiz_name = str(request.POST['quizid'])
+        all_students_marks = Marks.objects.filter(prof_id=user,course_id=profile.professor_course,q_name=quiz_name)
+        student_quiz_marks = []
+        for i in all_students_marks:
+            student_quiz_marks.append([i.student_name,i.marks])
+        return render(request, "dashboard/quizgraph.html", {'username': user.username, 'photo': profile.professor_photo,'data':student_quiz_marks,'quiz':quiz_name,'Maximum':quiz_name.split('-')[2]})
+    else:
+        user = User.objects.get(username=request.user)
+        profile = professor_profile.objects.get(professor=user)
+        quizzes = course_exams.objects.filter(course_id=profile.professor_course)
+        quiz_name = []
+        for i in quizzes:
+            quiz_name.append(i.quiz_name)
+        return render(request, "dashboard/graph.html",{'username': user.username, 'photo': profile.professor_photo,'quizzes':quiz_name})
 
 
 def custom_404(request):
