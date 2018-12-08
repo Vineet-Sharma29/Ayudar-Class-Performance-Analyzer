@@ -18,5 +18,4 @@ Then ```cd``` into ```ase1``` repo.
 After changing the directory, install all the requirements by running the command ```pip install -r requirements.txt```. Then run the project using following command ```python manage.py runserver```
 
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/f4dbf9f4dea9495799de79b4e5844ff6)](https://www.codacy.com/app/vineet.s17/ase1?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Vineet-Sharma29/ase1&amp;utm_campaign=Badge_Grade)
-
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/b0f48cb6f3cd471f9c3b93e99d0119a4)](https://www.codacy.com/app/vineet.s17/ase1?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Vineet-Sharma29/ase1&amp;utm_campaign=Badge_Grade)
