@@ -1,0 +1,82 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block head %}
+    <title>LMS</title>
+        {% load static %}
+        <script src="{% static 'student_report/js/Chart.bundle.js' %}"></script>
+        <script src="{% static 'student_report/js/utils.js' %}"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static 'dashboard/css/w3.css' %}">
+
+{% endblock %}
+
+
+    {% block content %}
+        <div style="width: 100%;">
+    	    <canvas id="myChart"></canvas>
+	    </div>
+	    <div style="width: 50%; float:left;">
+	        <canvas id="myChart1" style="height:50%;"></canvas>
+	    </div>
+	    <div style="width: 50%; float:right;">
+	        <canvas id="myChart2" style="height:50%;"></canvas>
+	    </div>
+
+    {% endblock content %}
+
+
+{% block script %}
+<script>
+            var ctx = document.getElementById("myChart").getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: [{% for student in data %}"{{ student.0 }}",{% endfor %}],
+                    datasets: [{
+                        label: "{{ quiz }}",
+                        data: [{% for marks in data %}{{ marks.1 }},{% endfor %}],
+                        backgroundColor: "rgba(153,255,51,0.6)"
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                steps: 20,
+                                stepValue: 5,
+                                max: {{ Maximum }}
+                            }
+                        }]
+                    }
+                }
+            });
+            var ctx = document.getElementById("myChart1").getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: [{% for student in data %}"{{ student.0 }}",{% endfor %}],
+                    datasets: [{
+                        label: "{{ quiz }}",
+                        data: [{% for marks in data %}{{ marks.1 }},{% endfor %}],
+                        borderColor: "rgba(151,153,255,0.6)",
+                        backgroundColor: "rgba(151,153,255,0.6)",
+                        fill : false,
+                    }]
+                }
+            });
+            var ctx = document.getElementById("myChart2").getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: [{% for student in data %}"{{ student.0 }}",{% endfor %}],
+                    datasets: [{
+                        label: "{{ quiz }}",
+                        data: [{% for marks in data %}{{ marks.1 }},{% endfor %}],
+                        backgroundColor: "rgba(255,151,53,0.6)"
+                    }]
+                }
+            });
+        </script>
+{% endblock %}
