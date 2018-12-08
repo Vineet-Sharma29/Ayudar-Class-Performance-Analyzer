@@ -138,14 +138,14 @@
                              data-parent="#accordionExample">
                             <div class="card-body m-2">
 
-                                {% for student in courseoverview.2 %}
+                                {% for student in course_risk_list %}
                                     <div class="chip m-2 w-100">
                                         <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}"
                                                           alt="Person"
                                                           width="96"
                                                           height="96">
-                                            {{ student }}
-                                            <span class="text-right badge badge-danger ml-5">Danger</span>
+                                            {{ student.0 }}
+                                            <span class="text-right badge badge-danger ml-5">{{  student.1 }}</span>
                                             <span class="text-right badge badge-warning">Warning</span>
                                         </a>
                                     </div>
@@ -315,15 +315,15 @@
                              data-parent="#accordionExample">
                             <div class="card-body">
 
-                                {% for student in examoverview.2 %}
+                                {% for student in exam_risk_list %}
                                     <div class="chip m-2 w-100">
                                         <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}"
                                                           alt="Person"
                                                           width="96"
                                                           height="96">
-                                            {{ student }}
-                                            <span class="text-right badge badge-danger ml-5">Danger</span>
-                                            <span class="text-right badge badge-warning">Warning</span>
+                                            {{ student.0 }}
+                                            <span class="text-right badge badge-danger ml-5">{{ student.1 }}</span>
+                                            <span class="text-right badge badge-warning">{{ student.2    }}</span>
                                         </a>
                                     </div>
                                     <hr class="hr-line"/>
