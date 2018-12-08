@@ -100,6 +100,11 @@ def createAvg(marks):
                        * marks['avgLab'] / lab + 0.1 * marks['avgAsgn'] / asgn + 0.1 \
                        * marks['avgOth'] / oth
 
+    marks['avgExam'] = marks['avgExam'].apply(lambda x: int(x / exams))
+    marks['avgLab'] = marks['avgLab'].apply(lambda x: int(x / lab))
+    marks['avgAsgn'] = marks['avgAsgn'].apply(lambda x: int(x / asgn))
+    marks['avgOth'] = marks['avgOth'].apply(lambda x: int(x / oth))
+
     return marks
 
 
@@ -385,6 +390,15 @@ def OverallMarks(df):
 
     return list(df['overall'])
 
+def BoxPlot(df):
+    '''Assumes df as a Pandas DataFrame.
+
+       Returns the scaled marks for visualization as a tuple.'''
+
+    box = df[['avgExam', 'avgLab', 'avgAsgn', 'avgOth']]
+
+    return tuple([tuple(x) for x in box.to_records(index=False)])
+
 
 def getRank(df, exam):
     '''Assumes df as a Pandas dataframe, amd exam as a string.
@@ -436,7 +450,7 @@ def ExamDetails(df):
     for exam in df.columns:
         if len(exam.split('-')) > 2:
             avgCI = str(round(CI(df, exam)[0], 2)) + '-' + str(round(CI(df, exam)[1], 2))
-            examName = exam.split('-')[1]
+            examName = exam
             maxMarks = round(max(df[exam]), 2)
             details.append([examName, avgCI, maxMarks])
 
@@ -529,6 +543,17 @@ def studentMarks(dfArg):
     ret = tuple([tuple(x) for x in dfArg1.to_records(index=False)])
 
     return ret
+
+
+def BoxPlot(df):
+    '''Assumes df as a Pandas DataFrame.
+
+       Returns the scaled marks for visualization as a tuple
+       as a list of columns of ['avgExam', 'avgLab', 'avgAsgn', 'avgOth']'''
+
+    box = df[['avgExam', 'avgLab', 'avgAsgn', 'avgOth']]
+
+    return tuple([tuple(x) for x in box.to_records(index=False)])
 
 
 

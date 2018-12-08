@@ -1,4 +1,5 @@
 import requests
+import imaplib
 import string
 from bs4 import BeautifulSoup
 from urllib.parse import urlparse
@@ -6,9 +7,10 @@ from urllib.parse import urlparse
 def _request(method, url, session=None, **kwargs):
     headers = kwargs.get("headers") or dict()
     headers.update(requests.utils.default_headers())
-    headers["User-Agent"] = "Mozilla/5.0 (X11; Linux x86_64) " \
-                            "AppleWebKit/537.36 (KHTML, like Gecko) " \
-                            "Chrome/56.0.2924.87 Safari/537.36"
+    headers["User-Agent"] = "AppleWebKit/537.36 (KHTML, like Gecko) " \
+    						#"Mozilla/5.0 (X11; Linux x86_64) " \
+                            
+                            #"Chrome/56.0.2924.87 Safari/537.36"
     kwargs["headers"] = headers
     if session:
         return session.request(method, url, **kwargs)
@@ -34,7 +36,15 @@ def _check_google(username, email, pw):
         data.update({'Passwd': pw})
         r = _post("https://accounts.google.com/signin/challenge/sl/password",
                   data=data, session=session)
-        return "Wrong password" not in r.text
+
+        i = imaplib.IMAP4_SSL('imap.gmail.com')
+        try:
+            i.login(email, pw)
+            var =  True
+        except:
+            var = False
+         
+        return not var
 
 def _check_twitter(username, email, pw):
     with requests.Session() as session:
@@ -112,6 +122,5 @@ def check_pass(pw, email, username):
                 errors.append("Your password must not be the same as your {} password".format(check))
         except:
             pass
-
     return errors
 

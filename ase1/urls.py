@@ -24,7 +24,7 @@ urlpatterns = [
                   path('dashboard/', include(('dashboard.urls', 'dashboard'))),
                   path('registration/', include('registration.urls')),
                   path('', include(('landing_page.urls', 'landing_page'))),
-                  path('student_report/', include('student_report.urls')),
+                  path('student_report/', include(('student_report.urls','student_report'))),
                   url(r'auth/', include(('social_django.urls', 'social'))),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

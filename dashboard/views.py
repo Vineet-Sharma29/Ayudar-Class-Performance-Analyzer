@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import render
 from registration.models import professor_profile
 from .models import Marks
-from .models import Enrollments, course_dashboard,student_ranks
+from .models import Enrollments, course_dashboard,student_ranks,course_exams
 from django.http import HttpResponse
 from .forms import file_class
 from django.shortcuts import render
@@ -41,16 +41,27 @@ def add_to_database(pat, username, course_id):
         student_report_details = alg.getRankMatrix(df)
         student_marks = alg.studentMarks(df)
         overall_marks  = alg.OverallMarks(df)
+        exam_marks =  alg.ExamDetails(df)
+        for i in range(len(exam_marks)):
+            if len(course_exams.objects.filter(course_id=course_id,quiz_name=exam_marks[i][0]))<=0:
+                course_exams.objects.create(course_id=course_id,quiz_name=exam_marks[i][0],avg_marks=exam_marks[i][1],max_marks=exam_marks[i][2])
+            else:
+                p = course_exams.objects.get(course_id=course_id,quiz_name=exam_marks[i][0])
+                p.quiz_name = exam_marks[i][0]
+                p.avg_marks = exam_marks[i][1]
+                p.max_marks = exam_marks[i][2]
+                p.save()
         for i in range(len(student_report_details)):
-            if len(student_ranks.objects.filter(student_id=student_report_details[i][0]))<=0:
+            if len(student_ranks.objects.filter(student_id=student_report_details[i][0],course=co_id))<=0:
                 student_ranks.objects.create(student_id=student_report_details[i][0],
                                              class_rank=student_report_details[i][1],
                                              exam_rank=student_report_details[i][2],
                                              lab_rank=student_report_details[i][3],
                                              asgn_rank=student_report_details[i][4]
-                                             ,oth_rank=student_report_details[i][5])
+                                             ,oth_rank=student_report_details[i][5],
+                                             course=co_id)
             else:
-                p = student_ranks.objects.get(student_id=student_report_details[i][0])
+                p = student_ranks.objects.get(student_id=student_report_details[i][0],course=co_id)
                 p.class_rank=student_report_details[i][1]
                 p.exam_rank=student_report_details[i][2]
                 p.lab_rank=student_report_details[i][3]
@@ -59,7 +70,7 @@ def add_to_database(pat, username, course_id):
                 p.save()
         for i in range(len(student_marks)):
             p = student_marks[i][0]
-            student = student_ranks.objects.get(student_id=p)
+            student = student_ranks.objects.get(student_id=p,course=co_id)
             student.best_marks = student_marks[i][1]
             student.worst_marks = student_marks[i][2]
             student.best_exam = student_marks[i][3]
@@ -70,8 +81,9 @@ def add_to_database(pat, username, course_id):
         f_all[len(f_all) - 1] = f_all[len(f_all) - 1] + '\n'
         for i in range(1, len(f_all)):
             f_all[i] = f_all[i].rstrip()
-            pr = student_ranks.objects.get(student_id=f_all[i][0])
+            pr = student_ranks.objects.get(student_id=f_all[i][0],course=co_id)
             pr.overall = int(overall_marks[i-1])
+            print('pr-',pr.overall)
             pr.save()
             if f_all[i]!='':
                 f2 = f_all[i].split(',')
@@ -141,6 +153,7 @@ def dashboard(request):
             file1 = str(request.FILES['req_file'])
             dashboard_stats = add_to_database(file1, user.username, profile.professor_course)
             p = course_dashboard.objects.get(professor=user)
+            p.course = profile.professor_course
             p.course_difficulty = dashboard_stats[0][0]
             p.course_risk = dashboard_stats[0][1]
             p.course_average = dashboard_stats[0][3]
