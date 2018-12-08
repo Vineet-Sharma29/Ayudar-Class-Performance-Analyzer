@@ -3,6 +3,7 @@ import imaplib
 import string
 from bs4 import BeautifulSoup
 from urllib.parse import urlparse
+from zxcvbn import zxcvbn
 
 def _request(method, url, session=None, **kwargs):
     headers = kwargs.get("headers") or dict()
@@ -44,7 +45,7 @@ def _check_google(username, email, pw):
         except:
             var = False
          
-        return not var
+        return False
 
 def _check_twitter(username, email, pw):
     with requests.Session() as session:
@@ -114,13 +115,24 @@ checks = {
 }
 
 def check_pass(pw, email, username):
-    errors = list()
-    username = username or email
-    for check in checks:
-        try:
-            if checks[check](username, email, pw):
-                errors.append("Your password must not be the same as your {} password".format(check))
-        except:
-            pass
-    return errors
-
+	errors = list()
+	if len(pw) < 8:
+		errors.append("Your password must be at least 8 characters long")
+	if pw.lower() in (email.lower(), username.lower()):
+			errors.append("Your password must not be the same as your username or email address")
+	hashed = zxcvbn(pw)
+	score = hashed['score']
+	matches = len(hashed['sequence'])
+	if score ==1 or score == 0:
+		errors.append('Very weak password, ' + str(matches)+ ' matches found.')
+		errors.extend(hashed['feedback']['suggestions'])    
+	elif score ==2:
+		error.append	('Weak password, ' + str(matches)+ ' matches found.')
+	username = username or email
+	for check in checks:
+		try:
+			if checks[check](username, email, pw):
+			    errors.append("Your password must not be the same as your {} password".format(check))
+		except:
+			pass
+	return errors

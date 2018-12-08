@@ -18,7 +18,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.conf.urls import url
-
+from registration import views as jk
 urlpatterns = [
                   path('admin/', admin.site.urls),
                   path('dashboard/', include(('dashboard.urls', 'dashboard'))),
@@ -26,6 +26,7 @@ urlpatterns = [
                   path('', include(('landing_page.urls', 'landing_page'))),
                   path('student_report/', include(('student_report.urls','student_report'))),
                   url(r'auth/', include(('social_django.urls', 'social'))),
+                  path('api/<str:course_id>',jk.courselogdetail,name='api')
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
