@@ -14,7 +14,8 @@ class RegisterForm(forms.ModelForm):
                                  widget=forms.TextInput(attrs={'autocomplete': 'off', 'class': 'form-control'}))
     last_name = forms.CharField(max_length=100,
                                 widget=forms.TextInput(attrs={'autocomplete': 'off', 'class': 'form-control'}))
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control',}))
+
     confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
 
     class Meta:
@@ -55,17 +56,17 @@ class RegisterForm(forms.ModelForm):
 
         if password != confirm_password:
             raise forms.ValidationError('Passwords did not match')
-            #     return confirm_password
-            # error=check_pass(str(password),str(cleaned_data['email']),str(cleaned_data['username']))
-            # print(error)
-            # if error:
-            #     raise forms.ValidationError(error)
-            # return confirm_password
+        #     return confirm_password
+        # error=check_pass(str(password),str(cleaned_data['email']),str(cleaned_data['username']))
+        # print(error)
+        # if error:
+        #     raise forms.ValidationError(error)
+        return confirm_password
 
 
 class LoginForm(forms.Form):
     emailid = forms.EmailField(
-        widget=forms.TextInput(attrs={'autocomplete': 'on', 'class': "input100", 'placeholder': 'Email Id'}))
+        widget=forms.TextInput(attrs={'autocomplete': 'off', 'class': "input100", 'placeholder': 'Email Id'}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class': "input100", 'placeholder': 'Password'}))
 
     def clean_emailid(self):
@@ -97,7 +98,7 @@ class LoginForm(forms.Form):
 
 class ProfileForm(forms.ModelForm):
     professor_description = forms.CharField(max_length=200, widget=forms.Textarea())
-    professor_course = forms.CharField(max_length=100)
+    professor_course = forms.CharField()
     professor_photo = forms.ImageField()
 
     class Meta:
@@ -112,12 +113,12 @@ class ProfileForm(forms.ModelForm):
 
     def clean_professor_course(self):
         cleaned_data = super().clean()
-        course_id = str(cleaned_data.get('course_id'))
-        course_id = course_id.upper()
-        courselist = course.objects.filter(course_id=course_id)
+        professor_course = str(cleaned_data.get('professor_course'))
+        professor_course = professor_course.upper()
+        courselist = course.objects.filter(course_id=professor_course)
         if not courselist.exists():
             raise forms.ValidationError('course does not exist')
-        return course_id
+        return professor_course
 
 
 class ResetForm(forms.ModelForm):

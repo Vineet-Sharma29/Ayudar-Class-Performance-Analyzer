@@ -16,6 +16,7 @@
           <label>Photo :</label>{{ form.professor_photo }}
           <br><br>
           <label>Course :</label>{{ form.professor_course }}
+          <span style="color: red">{{ form.professor_course.errors }}</span>
           <br><br>
           <button type="submit">save</button>
       </form>

@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'landing_page',
     'registration',
     'student_report',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [

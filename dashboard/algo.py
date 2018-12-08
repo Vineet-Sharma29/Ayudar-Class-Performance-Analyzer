@@ -396,8 +396,10 @@ def BoxPlot(df):
        Returns the scaled marks for visualization as a tuple.'''
 
     box = df[['avgExam', 'avgLab', 'avgAsgn', 'avgOth']]
-
+    #box.to_csv('boxplot.csv', index = False)
     return tuple([tuple(x) for x in box.to_records(index=False)])
+
+
 
 
 def getRank(df, exam):

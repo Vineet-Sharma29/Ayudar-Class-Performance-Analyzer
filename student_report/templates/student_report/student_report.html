@@ -21,7 +21,7 @@
                         <div class="float-right">
                             <p class="mb-0 text-right">Exam Rank</p>
                             <div class="fluid-container">
-                                <h3 class="font-weight-medium text-right mb-0">{{ ranks.1 }}</h3>
+                                <h3 class="d-inline-block font-weight-medium text-right mb-0" style="font-family: 'Montserrat', sans-serif;">{{ ranks.1 }}</h3>
                             </div>
                         </div>
                     </div>
@@ -38,7 +38,7 @@
                         <div class="float-right">
                             <p class="mb-0 text-right">Lab Rank</p>
                             <div class="fluid-container">
-                                <h3 class="font-weight-medium text-right mb-0">{{ ranks.2 }}</h3>
+                                <h3 class="font-weight-medium text-right mb-0" style="font-family: 'Montserrat', sans-serif;">{{ ranks.2 }}</h3>
                             </div>
                         </div>
                     </div>
@@ -56,7 +56,7 @@
                         <div class="float-right">
                             <p class="mb-0 text-right">Assignment Rank</p>
                             <div class="fluid-container">
-                                <h3 class="font-weight-medium text-right mb-0">{{ ranks.3 }}</h3>
+                                <h3 class="font-weight-medium text-right mb-0" style="font-family: 'Montserrat', sans-serif;">{{ ranks.3 }}</h3>
                             </div>
                         </div>
                     </div>
@@ -74,7 +74,7 @@
                         <div class="float-right">
                             <p class="mb-0 text-right">Other Rank</p>
                             <div class="fluid-container">
-                                <h3 class="font-weight-medium text-right mb-0">{{ ranks.4 }}</h3>
+                                <h3 class="font-weight-medium text-right mb-0" style="font-family: 'Montserrat', sans-serif;">{{ ranks.4 }}</h3>
                             </div>
                         </div>
                     </div>
@@ -89,20 +89,6 @@
             <div class="col-md-12 grid-margin">
                 <div class="card">
                     <div class="card-body">
-                        <div class="row d-none d-sm-flex mb-4">
-                            <div class="col-4">
-                                <h5 class="text-primary">Unique Visitors</h5>
-                                <p>34657</p>
-                            </div>
-                            <div class="col-4">
-                                <h5 class="text-primary">Bounce Rate</h5>
-                                <p>45673</p>
-                            </div>
-                            <div class="col-4">
-                                <h5 class="text-primary">Active session</h5>
-                                <p>45673</p>
-                            </div>
-                        </div>
                         <div class="chart-container">
                             <canvas id="myChart" height="190"></canvas>
                         </div>
@@ -190,7 +176,7 @@
                             beginAtZero: true,
                             steps: 10,
                             stepValue: 5,
-                            max: 30
+                            max: {{ Maximum }}
                         }
                     }]
                 }
