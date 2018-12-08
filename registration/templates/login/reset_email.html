@@ -18,9 +18,11 @@
                     <p class="display-3">Enter email to which link will be sent </p>
                     {% csrf_token %}
                     {{ form.as_p }}
+                     <p style="color: orangered"> {{ message }}</p>
                     <button type="submit" type="submit" class="btn btn-success">Send Email</button>
                 </form>
             </div>
+
         </div>
     </div>
 {% endblock %}

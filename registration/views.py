@@ -120,10 +120,10 @@ def reset_password(request):
             })
 
             send_mail(mail_subject, message, 'iiits2021@gmail.com', [mail])
-            return HttpResponse('Link has been sent to your email')
+            return render(request, 'login/reset_email.html', {'form': form1,'message':'Email has been sent to '+mail})
     else:
         form1 = ResetForm()
-    return render(request, 'login/reset_email.html', {'form': form1})
+    return render(request, 'login/reset_email.html', {'form': form1,'message':''})
 
 
 def display_reset_password(request, uidb64, token):
@@ -200,7 +200,7 @@ def show_profile(request):
     return render(request, 'login/show_profile.html', {'user': user1, 'profile': profile1})
 
 
-@login_required()
+#@login_required()
 def course_selection(request):
     if request.method == 'POST':
         user = User.objects.get(username=request.user)
