@@ -303,7 +303,7 @@ def list_of_students(request):
     for i in j:
         allstudents.append([i.student_id, i.student_name, i.persistance, i.performance])
     print(allstudents)
-    paginator = Paginator(allstudents,3)
+    paginator = Paginator(allstudents,10)
     page = request.GET.get('page')
     allstudents = paginator.get_page(page)
     return render(request, "dashboard/list_of_students.html",
