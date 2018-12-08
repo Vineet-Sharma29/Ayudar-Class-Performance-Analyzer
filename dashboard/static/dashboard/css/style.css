@@ -727,3 +727,8 @@ footer.bg-dark {
 .name{
     font-size:1.5rem;
 }
+
+
+.to-upper{
+    text-transform: uppercase;
+}
