@@ -35,6 +35,7 @@ def student_report(request, id):
 
 
 
+
 def charts(request, id):
     user = User.objects.get(username=request.user)
     profile = professor_profile.objects.get(professor=user)
