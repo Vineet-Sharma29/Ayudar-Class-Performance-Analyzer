@@ -22,11 +22,12 @@
                 <div class="card d-inline-block my-5">
                     <img class="card-img-top" src="http://placehold.it/250x150" alt="Card image cap">
                     <div class="card-block p-2">
+                        <a href="{% url 'student_report:student_report' student.1 %}">
                         <h4 class="card-title">{{ student.0 }}</h4>
+                        <p class="card-text">{{ student.1 }}</p>
                         <span class="badge badge-primary">{{ student.2 }}</span>
                         <span class="badge badge-secondary">{{ student.3 }}</span>
-                        <p class="card-text">{{ student.1 }}</p>
-
+                        </a>
                     </div>
 
                 </div>

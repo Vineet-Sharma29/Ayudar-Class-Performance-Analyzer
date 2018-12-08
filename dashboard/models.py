@@ -23,7 +23,7 @@ class Marks(models.Model):
     course_id = models.CharField(default=0,max_length=15)
     prof_id = models.CharField(default=0,max_length=15)
     marks = models.FloatField(default=0)
-    q_name = models.CharField(max_length=150)
+    q_name = models.CharField(max_length=50)
 
     class Meta:
         unique_together = ('student_id', 'course_id','prof_id','q_name','student_name')
@@ -62,4 +62,4 @@ class course_exams(models.Model):
     course_id = models.CharField(max_length=150,default='-')
     quiz_name = models.CharField(max_length=150,default='-')
     max_marks = models.IntegerField(default=0)
-    avg_marks = models.CharField(max_length=100,default=0)
+    avg_marks = models.CharField(max_length=50,default=0)

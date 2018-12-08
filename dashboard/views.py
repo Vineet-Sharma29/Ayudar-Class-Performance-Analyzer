@@ -24,17 +24,18 @@ def add_to_database(pat, username, course_id):
         f1 = f.readline().split(",")
         f1[len(f1) - 1] = f1[len(f1) - 1].rstrip()
 
-        return_firstline_as_tuple(f1)
+        take = return_firstline_as_tuple(f1)
 
         f.seek(0, 0)
         f_all = f.readlines()
 
         tuples = return_tuple(f_all)
-        print(list(tuples))
-        headers = ['RollNumber', 'Name', 'exam-mid-35', 'exam-end-50', 'lab-basic01-20', 'lab-basic02-20',
-                   'lab-basic03-20', 'asgn-basic01-15', 'asgn-basic02-15', 'asgn-basic03-15', 'asgn-basic04-15',
-                   'oth-quiz01-30', 'oth-quiz02-30', 'oth-quiz03-30']
-        global df
+        headers = [i for i in take]
+        # print(list(tuples))
+        # #headers = ['RollNumber', 'Name', 'exam-mid-35', 'exam-end-50', 'lab-basic01-20', 'lab-basic02-20',
+        #            'lab-basic03-20', 'asgn-basic01-15', 'asgn-basic02-15', 'asgn-basic03-15', 'asgn-basic04-15',
+        #            'oth-quiz01-30', 'oth-quiz02-30', 'oth-quiz03-30']
+        # global df
         df = alg.initialse(tuples, headers)
         NeedyList = alg.mainFunc(df)
         CourseOverview = alg.CourseStats(df)
@@ -43,8 +44,12 @@ def add_to_database(pat, username, course_id):
         Performance_Labels = alg.PerformanceLabels(df)
         student_report_details = alg.getRankMatrix(df)
         student_marks = alg.studentMarks(df)
+
         overall_marks = alg.OverallMarks(df)
         exam_marks = alg.ExamDetails(df)
+        box_marks = alg.BoxPlot(df)
+        print(box_marks)
+
         for i in range(len(exam_marks)):
             if len(course_exams.objects.filter(course_id=course_id, quiz_name=exam_marks[i][0])) <= 0:
                 course_exams.objects.create(course_id=course_id, quiz_name=exam_marks[i][0], avg_marks=exam_marks[i][1],
@@ -80,14 +85,16 @@ def add_to_database(pat, username, course_id):
             student.best_exam = student_marks[i][3]
             student.worst_exam = student_marks[i][4]
             student.save()
-        print(overall_marks)
-        print("Persistence label : ", Persistent_Labels)
+
+        # print(overall_marks)
+        # print("Persistence label : ",Persistent_Labels)
         f_all[len(f_all) - 1] = f_all[len(f_all) - 1] + '\n'
         for i in range(1, len(f_all)):
             f_all[i] = f_all[i].rstrip()
             pr = student_ranks.objects.get(student_id=f_all[i][0], course=co_id)
             pr.overall = int(overall_marks[i - 1])
-            print('pr-', pr.overall)
+            # print('pr-',pr.overall)
+
             pr.save()
             if f_all[i] != '':
                 f2 = f_all[i].split(',')
@@ -120,7 +127,7 @@ def add_to_database(pat, username, course_id):
 
     # all_quiz_marks_in_a_course()
     # all_quiz_marks_in_all_courses()
-    return [CourseOverview, ExamOverview, NeedyList]
+    return [CourseOverview, ExamOverview, NeedyList, box_marks]
 
 
 #
@@ -152,7 +159,7 @@ def dashboard(request):
     if request.method == 'POST':
         if form1.is_valid():
             form1.save()
-            print(request.FILES['req_file'])
+            # print(request.FILES['req_file'])
             user = User.objects.get(username=request.user)
             profile = professor_profile.objects.get(professor=user)
             file1 = str(request.FILES['req_file'])
@@ -190,8 +197,10 @@ def dashboard(request):
                     value = value + '-' + str(i)
             p.needy_student_list = value
             p.save()
-            dashboard_marks = {}
+
+            dashboard_marks = {'exam_marks': 0, 'lab_marks': 0, 'asgn_marks': 0, 'oth_mark': 0}
             total_marks = Marks.objects.filter(prof_id=user, course_id=profile.professor_course).all()
+
             marks = [i.marks for i in total_marks if i.q_name[:4] == 'exam']
             dashboard_marks['exam_marks'] = marks
 
@@ -204,10 +213,25 @@ def dashboard(request):
             marks = [i.marks for i in total_marks if i.q_name[:3] == 'oth']
             dashboard_marks['oth_marks'] = marks
 
+            course_risk_list = []
+
+            for i in dashboard_stats[0][2]:
+                if i != '':
+                    q = Enrollments.objects.get(prof_id=user, course_id=profile.professor_course, student_id=i)
+                    course_risk_list.append([q.student_name, i, q.performance, q.persistance])
+            exam_risk_list = []
+            for i in dashboard_stats[1][2]:
+                if i != '':
+                    q = Enrollments.objects.get(prof_id=user, course_id=profile.professor_course, student_id=i)
+                    course_risk_list.append([q.student_name, i, q.performance, q.persistance])
+
             context = {'form': form1, 'courseoverview': dashboard_stats[0], 'examoverview': dashboard_stats[1],
                        'needystudents': dashboard_stats[2], 'username': user.username, 'photo': profile.professor_photo,
                        'dashboard_marks'
-                       : dashboard_marks}
+                       : dashboard_marks, 'course_risk_list': course_risk_list,
+                       'exam_risk_list': exam_risk_list
+                       }
+
             return render(request, "dashboard/dashboard.html", context)
 
         else:
@@ -218,20 +242,39 @@ def dashboard(request):
         profile = professor_profile.objects.get(professor=user)
         form1 = file_class()
         p = course_dashboard.objects.get(professor=user)
+
         coursestudents1 = p.course_student_list.split('-')
-        course_student_list = []
+
+        course_risk_list = []
+
+        for i in coursestudents1:
+            if i != '':
+                q = Enrollments.objects.get(prof_id=user, course_id=profile.professor_course, student_id=i)
+                course_risk_list.append([q.student_name, i, q.performance, q.persistance])
+
+        exam_risk_list = []
 
         course_values = (
             p.course_difficulty, p.course_risk, coursestudents1, p.course_average, [p.quartile_1, p.quartile_2,
+
                                                                                     p.quartile_3])
+
         examstudents1 = p.exam_student_list.split('-')
 
+        for i in examstudents1:
+            if i != '':
+                q = Enrollments.objects.get(prof_id=user, course_id=profile.professor_course, student_id=i)
+                exam_risk_list.append([q.student_name, i, q.performance, q.persistance])
+
         last_exam_details = (
+
             p.exam_difficulty, p.exam_cheat_risk, examstudents1, p.exam_average, [p.quartile_1, p.quartile_2,
                                                                                   p.quartile_3])
+
         needystudents1 = p.needy_student_list.split('-')
         dashboard_marks = {}
         total_marks = Marks.objects.filter(prof_id=user, course_id=profile.professor_course).all()
+
         if len(total_marks) == 0:
             marks = [0]
             dashboard_marks['exam_marks'] = marks
@@ -243,7 +286,10 @@ def dashboard(request):
 
                           {'form': form1, 'username': user.username, 'photo': profile.professor_photo,
                            'courseoverview': course_values, 'examoverview': last_exam_details,
-                           'needystudents': needystudents1, 'dashboard_marks': dashboard_marks
+                           'needystudents': needystudents1, 'dashboard_marks': dashboard_marks,
+                           'course_risk_list': course_risk_list,
+                           'exam_risk_list': exam_risk_list
+
                            }
                           )
 
@@ -263,7 +309,9 @@ def dashboard(request):
 
                   {'form': form1, 'username': user.username, 'photo': profile.professor_photo,
                    'courseoverview': course_values, 'examoverview': last_exam_details,
-                   'needystudents': needystudents1, 'dashboard_marks': dashboard_marks
+                   'needystudents': needystudents1, 'dashboard_marks': dashboard_marks,
+                   'course_risk_list': course_risk_list,
+                   'exam_risk_list': exam_risk_list
                    }
                   )
 
@@ -303,7 +351,9 @@ def list_of_students(request):
     for i in j:
         allstudents.append([i.student_id, i.student_name, i.persistance, i.performance])
     print(allstudents)
+
     paginator = Paginator(allstudents,10)
+
     page = request.GET.get('page')
     allstudents = paginator.get_page(page)
     return render(request, "dashboard/list_of_students.html",
@@ -320,7 +370,7 @@ def custom_404(request):
 
 def all_quiz_marks_in_a_course():
     b = Marks.objects.filter(student_id="55", course_id="ASE", prof_id="SUBU").values_list('q_name', 'marks')
-    print(b)
+    # print(b)
     print(type(b))
 
 
@@ -330,6 +380,7 @@ def all_quiz_marks_in_all_courses():
 
 def return_firstline_as_tuple(fline):
     print(tuple(fline))
+    return tuple(fline)
 
 
 def return_tuple(line):

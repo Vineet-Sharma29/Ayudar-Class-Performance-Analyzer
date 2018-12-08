@@ -13,6 +13,9 @@ from .tokens import account_activation_token
 from .forms import ResetPasswordForm
 from dashboard.models import course_dashboard
 from .models import course
+from .serailizer import courselogserializer
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
 
 
 # login
@@ -228,3 +231,10 @@ def activate(request, uidb64, token):
 
     else:
         return HttpResponse('Activation link is invalid!')
+
+
+@api_view()
+def courselogdetail(request,course_id):
+    course = course_dashboard.objects.filter(course=str(course_id).upper())
+    serializer1 = courselogserializer(course,many=True)
+    return Response(serializer1.data)
