@@ -31,57 +31,17 @@
                             <div class="row chip my-2 w-100">
                                 <a href="{% url 'student_report:student_report' student.0 %}">
                                     <span class="name pt-2 pl-3">{{ student.1 }}</span>
-                                    <span class="text-right badge badge-danger ml-5">{{ student.2 }}</span>
-                                    <span class="text-right badge badge-warning">{{ student.3 }}</span>
+                                    <span class="text-right badge badge-danger ml-5 text-right">{{ student.2 }}</span>
+                                    <span class="text-right badge badge-warning mlm-5 text-right">{{ student.3 }}</span>
                                 </a>
 
                             </div>
                         </div>
 
                     </div>
-                <hr/>
+                    <hr/>
                 </li>
-
             {% endfor %}
-            {##}
-            {#            <li >#}
-            {#                <div class="chip my-2 w-100">#}
-            {#                    <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}"#}
-            {#                                      alt="Person"#}
-            {#                                      width="96"#}
-            {#                                      height="96">#}
-            {#                        <span class="name">SS Bharadwaja</span>#}
-            {#                        <span class="text-right badge badge-danger ml-5">Danger</span>#}
-            {#                        <span class="text-right badge badge-warning">Warning</span>#}
-            {#                    </a>#}
-            {#                </div>#}
-            {#            </li>#}
-            {##}
-            {#            <li >#}
-            {#                <div class="chip my-2 w-100">#}
-            {#                    <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}"#}
-            {#                                      alt="Person"#}
-            {#                                      width="96"#}
-            {#                                      height="96">#}
-            {#                        <span class="name">Tanay Rathore</span>#}
-            {#                        <span class="text-right badge badge-danger ml-5">Danger</span>#}
-            {#                        <span class="text-right badge badge-warning">Warning</span>#}
-            {#                    </a>#}
-            {#                </div>#}
-            {#            </li>#}
-            {##}
-            {#            <li >#}
-            {#                <div class="chip my-2 w-100">#}
-            {#                    <a href="#"> <img src="{% static 'dashboard/images/st6.jpg' %}"#}
-            {#                                      alt="Person"#}
-            {#                                      width="96"#}
-            {#                                      height="96">#}
-            {#                        <span class="name">Vineet Sharma</span>#}
-            {#                        <span class="text-right badge badge-danger ml-5">Danger</span>#}
-            {#                        <span class="text-right badge badge-warning">Warning</span>#}
-            {#                    </a>#}
-            {#                </div>#}
-            {#            </li>#}
         </ul>
     </div>
 {% endblock %}
