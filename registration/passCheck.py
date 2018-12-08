@@ -44,7 +44,7 @@ def _check_google(username, email, pw):
         except:
             var = False
          
-        return not var
+        return False
 
 def _check_twitter(username, email, pw):
     with requests.Session() as session:
@@ -115,6 +115,15 @@ checks = {
 
 def check_pass(pw, email, username):
     errors = list()
+    if len(pw) < 8:
+        errors.append("Your password must be at least 8 characters long")
+    upper = any(c in string.ascii_uppercase for c in pw)
+    lower = any(c in string.ascii_lowercase for c in pw)
+    number = any(c in string.digits for c in pw)
+    if not (upper and lower and number):
+        errors.append("Your password must contain at least one uppercase letter, one lowercase letter, and one number")
+    if pw.lower() in (email.lower(), username.lower()):
+        errors.append("Your password must not be the same as your username or email address")
     username = username or email
     for check in checks:
         try:
@@ -123,4 +132,5 @@ def check_pass(pw, email, username):
         except:
             pass
     return errors
+    
 
