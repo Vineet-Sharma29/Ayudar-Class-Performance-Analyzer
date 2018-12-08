@@ -138,18 +138,19 @@
                             <div class="card-body m-2">
 
                                 {% for student in course_risk_list %}
-                                    <div class="chip m-2 w-100">
-                                        <a href="{% url 'student_report:student_report' student.1 %}"> <img
-                                                src="{% static 'dashboard/images/st6.jpg' %}"
-                                                alt="Person"
-                                                width="96"
-                                                height="96">
+                                    <a href="{% url 'student_report:student_report' student.1 %}">
+                                        <div class="chip m-2 w-100">
+                                            <img
+                                                    src="{% static 'dashboard/images/st6.jpg' %}"
+                                                    alt="Person"
+                                                    width="96"
+                                                    height="96">
                                             <b>{{ student.0 }}</b>
 
                                             <span class="text-right badge badge-danger ml-3">{{ student.2 }}</span>
                                             <span class="text-right badge badge-warning">{{ student.3 }}</span>
-                                        </a>
-                                    </div>
+                                        </div>
+                                    </a>
                                     <hr class="hr-line"/>
                                 {% endfor %}
                             </div>
@@ -290,34 +291,13 @@
                                         </div>
                                         <div class="col-7">
                                             <div>
-                                                <h1><span class="badge badge-primary mt-4">{{ courseoverview.3 }}</span></h1>
+                                                <h1><span class="badge badge-primary mt-4">{{ courseoverview.3 }}</span>
+                                                </h1>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <hr/>
-
-
-                                {#                                {% for quartile in courseoverview.4 %}#}
-                                {#                                    <div class="row">#}
-                                {#                                        <div class="w-100 pl-3"><h3 class="stats-heading display-5 text-primary">#}
-                                {#                                            Quartile {{ forloop.counter }}</h3></div>#}
-                                {#                                        <div class="row w-100 pl-3">#}
-                                {#                                            <div class="col-9 mt-2">#}
-                                {#                                                <div class="progress">#}
-                                {#                                                    <div class="progress-bar progress-bar-striped progress-bar-animated"#}
-                                {#                                                         style="width:{{ quartile }}%"></div>#}
-                                {#                                                </div>#}
-                                {#                                            </div>#}
-                                {#                                            <div>#}
-                                {#                                                <p class="text-success ml-3 text-left font-weight-bold display-4"><span#}
-                                {#                                                        class="font-weight-light">+</span>{{ quartile }}</p>#}
-                                {#                                            </div>#}
-                                {#                                        </div>#}
-                                {#                                    </div>#}
-                                {#                                    <hr/>#}
-                                {##}
-                                {#                                {% endfor %}#}
                             </div>
                         </div>
                     </div>
@@ -348,19 +328,20 @@
                             <div class="card-body">
 
                                 {% for student in exam_risk_list %}
-                                    <div class="chip m-2 w-100">
-                                        <a href="{% url 'student_report:student_report' student.1 %}"> <img
-                                                src="{% static 'dashboard/images/st6.jpg' %}"
-                                                alt="Person"
-                                                width="96"
-                                                height="96">
+                                    <a href="{% url 'student_report:student_report' student.1 %}">
+                                        <div class="chip m-2 w-100">
+                                            <img
+                                                    src="{% static 'dashboard/images/st6.jpg' %}"
+                                                    alt="Person"
+                                                    width="96"
+                                                    height="96">
                                             <b>{{ student.0 }}</b>
                                             <br>
                                             {{ student.1 }}
                                             <span class="text-right badge badge-danger ml-5">{{ student.2 }}</span>
                                             <span class="text-right badge badge-warning">{{ student.3 }}</span>
-                                        </a>
-                                    </div>
+                                        </div>
+                                    </a>
                                     <hr class="hr-line"/>
                                 {% endfor %}
                             </div>
@@ -497,7 +478,8 @@
                                         </div>
                                         <div class="col-8">
                                             <div>
-                                                <h1><span class="badge badge-primary mt-4">{{ examoverview.3 }}</span></h1>
+                                                <h1><span class="badge badge-primary mt-4">{{ examoverview.3 }}</span>
+                                                </h1>
                                             </div>
                                         </div>
                                     </div>
