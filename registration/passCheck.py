@@ -127,7 +127,7 @@ def check_pass(pw, email, username):
 		errors.append('Very weak password, ' + str(matches)+ ' matches found.')
 		errors.extend(hashed['feedback']['suggestions'])    
 	elif score ==2:
-		error.append	('Weak password, ' + str(matches)+ ' matches found.')
+		errors.append('Weak password, ' + str(matches)+ ' matches found.')
 	username = username or email
 	for check in checks:
 		try:
@@ -136,3 +136,4 @@ def check_pass(pw, email, username):
 		except:
 			pass
 	return errors
+

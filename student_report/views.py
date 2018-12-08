@@ -106,4 +106,4 @@ def tables(request, id):
     label = Enrollments.objects.get(course_id=profile.professor_course, student_id=id)
     return render(request, "student_report/tables.html",
                   {'sid': id, 'course_table': all_course_table, 'this_course': this_course_table,
-                   'student': name.student_name,'form':form,'label':label.label})
+                   'student': name.student_name,'form':form,'label':label.label,'course':profile.professor_course})

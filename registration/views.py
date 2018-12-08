@@ -120,10 +120,10 @@ def reset_password(request):
             })
 
             send_mail(mail_subject, message, 'iiits2021@gmail.com', [mail])
-            return HttpResponse('Link has been sent to your email')
+            return render(request, 'login/reset_email.html', {'form': form1,'message':'Email has been sent to '+mail})
     else:
         form1 = ResetForm()
-    return render(request, 'login/reset_email.html', {'form': form1})
+    return render(request, 'login/reset_email.html', {'form': form1,'message':''})
 
 
 def display_reset_password(request, uidb64, token):
@@ -168,7 +168,7 @@ def editprofile(request):
             profile.professor_description = form1.cleaned_data['professor_description']
             profile.professor_course = form1.cleaned_data['professor_course']
             profile.save()
-            return redirect('registration:allprofiles')
+            return redirect('dashboard:dashboard')
 
     else:
         user = User.objects.get(username=request.user)
@@ -239,6 +239,9 @@ def courselogdetail(request,course_id):
     serializer1 = courselogserializer(course,many=True)
     return Response(serializer1.data)
 
-def professor(request,professor):
-    print(professor)
-    return HttpResponse(professor)
+def professor(request):
+    user = User.objects.get(username=request.user)
+    profile = professor_profile.objects.get(professor=user)
+    return render(request,'login/user_profie.html',{'name':user.first_name+' '+user.last_name,'photo':profile.professor_photo
+                                                    ,'description':profile.professor_description,'userid':user.username,
+                                                    'email':user.email,'coursename':profile.professor_course})

@@ -36,11 +36,9 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="profile-work">
-                            <p>WORK LINK</p>
-                            <a href="">Course Website Link</a><br/>
-                            
-                            <p><b><strong>Research Interests</strong></b></p>
-                            <a href="">Distributed Computing and Machine Learning</a><br/>
+
+                            <p><b><strong>Descrption</strong></b></p>
+                            <a href="">{{ description }}</a><br/>
                             
                         </div>
                     </div>
@@ -60,7 +58,7 @@
                                                 <label>Name</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>{{ fullname }}</p>
+                                                <p>{{ name }}</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -76,9 +74,10 @@
                                                 <label>Courses I am Teaching</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>{{ coursename }}({{ courseid }})</p>
+                                                <p>{{ coursename }}</p>
                                             </div>
                                         </div>
+                                <a href="{% url 'registration:edit_profile' %}">Edit Profile</a>
                             </div>
                            
                         </div>
