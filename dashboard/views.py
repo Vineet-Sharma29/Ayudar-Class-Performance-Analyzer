@@ -21,17 +21,18 @@ def add_to_database(pat, username, course_id):
         f1 = f.readline().split(",")
         f1[len(f1) - 1] = f1[len(f1) - 1].rstrip()
 
-        return_firstline_as_tuple(f1)
+        take = return_firstline_as_tuple(f1)
 
         f.seek(0, 0)
         f_all = f.readlines()
 
         tuples = return_tuple(f_all)
+        headers = [i for i in take]
         #print(list(tuples))
-        headers = ['RollNumber', 'Name', 'exam-mid-35', 'exam-end-50', 'lab-basic01-20', 'lab-basic02-20',
-                   'lab-basic03-20', 'asgn-basic01-15', 'asgn-basic02-15', 'asgn-basic03-15', 'asgn-basic04-15',
-                   'oth-quiz01-30', 'oth-quiz02-30', 'oth-quiz03-30']
-        global df
+        # #headers = ['RollNumber', 'Name', 'exam-mid-35', 'exam-end-50', 'lab-basic01-20', 'lab-basic02-20',
+        #            'lab-basic03-20', 'asgn-basic01-15', 'asgn-basic02-15', 'asgn-basic03-15', 'asgn-basic04-15',
+        #            'oth-quiz01-30', 'oth-quiz02-30', 'oth-quiz03-30']
+        # global df
         df = alg.initialse(tuples, headers)
         NeedyList = alg.mainFunc(df)
         CourseOverview = alg.CourseStats(df)
@@ -42,7 +43,8 @@ def add_to_database(pat, username, course_id):
         student_marks = alg.studentMarks(df)
         overall_marks  = alg.OverallMarks(df)
         exam_marks =  alg.ExamDetails(df)
-        box_maxrks = alg.BoxPlot(df)
+        box_marks = alg.BoxPlot(df)
+        print(box_marks)
         for i in range(len(exam_marks)):
             if len(course_exams.objects.filter(course_id=course_id,quiz_name=exam_marks[i][0]))<=0:
                 course_exams.objects.create(course_id=course_id,quiz_name=exam_marks[i][0],avg_marks=exam_marks[i][1],max_marks=exam_marks[i][2])
@@ -116,7 +118,7 @@ def add_to_database(pat, username, course_id):
 
     # all_quiz_marks_in_a_course()
     # all_quiz_marks_in_all_courses()
-    return [CourseOverview, ExamOverview, NeedyList,box_maxrks]
+    return [CourseOverview, ExamOverview, NeedyList,box_marks]
 
 
 #
@@ -352,7 +354,7 @@ def all_quiz_marks_in_all_courses():
 
 def return_firstline_as_tuple(fline):
     print(tuple(fline))
-
+    return tuple(fline)
 
 def return_tuple(line):
     req_tuple = []

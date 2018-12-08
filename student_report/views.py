@@ -18,7 +18,7 @@ def student_report(request,id):
         for j in quiz_students:
             sum=sum+int(j.marks)
         average = sum/len(quiz_students)
-        quizzes.append([quiz_name,marks,average])
+        quizzes.append([quiz_name.split('-')[1],marks,average])
     name = Enrollments.objects.get(prof_id=user,course_id=profile.professor_course,student_id=id)
     rank = student_ranks.objects.get(student_id=id,course=profile.professor_course)
     ranks =[rank.class_rank,rank.exam_rank,rank.lab_rank,rank.asgn_rank,rank.oth_rank]
