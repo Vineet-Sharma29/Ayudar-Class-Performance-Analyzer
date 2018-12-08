@@ -200,7 +200,7 @@ def show_profile(request):
     return render(request, 'login/show_profile.html', {'user': user1, 'profile': profile1})
 
 
-@login_required()
+#@login_required()
 def course_selection(request):
     if request.method == 'POST':
         user = User.objects.get(username=request.user)
