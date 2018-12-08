@@ -162,22 +162,22 @@ def editprofile(request):
     if request.method == 'POST':
         user = User.objects.get(username=request.user)
         print(user)
-        form = ProfileForm(request.POST, request.FILES, instance=professor_profile.objects.get(professor=user))
-        if form.is_valid():
-            profile = form.save(commit=False)
-            profile.professor_description = form.cleaned_data['professor_description']
-            profile.professor_course = form.cleaned_data['professor_course']
+        form1 = ProfileForm(request.POST, request.FILES, instance=professor_profile.objects.get(professor=user))
+        if form1.is_valid():
+            profile = form1.save(commit=False)
+            profile.professor_description = form1.cleaned_data['professor_description']
+            profile.professor_course = form1.cleaned_data['professor_course']
             profile.save()
             return redirect('registration:allprofiles')
 
     else:
         user = User.objects.get(username=request.user)
         profile = professor_profile.objects.get(professor=user)
-        form = ProfileForm(initial={'professor_description': profile.professor_description,
+        form1 = ProfileForm(initial={'professor_description': profile.professor_description,
                                     'professor_photo': profile.professor_photo,
                                     'professor_course': profile.professor_course})
 
-    return render(request, 'login/profile.html', {'form': form})
+    return render(request, 'login/profile.html', {'form': form1})
 
 
 def allprofiles(request):
@@ -189,7 +189,7 @@ def allprofiles(request):
             profile = professor_profile.objects.get(professor=professor)
             details = (
             str(professor.first_name + ' ' + professor.last_name), profile.professor_photo, profile.professor_course,
-            profile.professor_description)
+            profile.professor_description,i)
             professors_details.append(details)
     return render(request, 'login/all_profiles.html', {'professor_details': professors_details})
 
@@ -238,3 +238,7 @@ def courselogdetail(request,course_id):
     course = course_dashboard.objects.filter(course=str(course_id).upper())
     serializer1 = courselogserializer(course,many=True)
     return Response(serializer1.data)
+
+def professor(request,professor):
+    print(professor)
+    return HttpResponse(professor)

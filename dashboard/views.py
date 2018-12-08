@@ -361,7 +361,9 @@ def list_of_students(request):
 
 
 def graph(request):
-    return render(request, "dashboard/graph.html")
+    user = User.objects.get(username=request.user)
+    profile = professor_profile.objects.get(professor=user)
+    return render(request, "dashboard/graph.html",{'username': user.username, 'photo': profile.professor_photo})
 
 
 def custom_404(request):

@@ -98,7 +98,7 @@ class LoginForm(forms.Form):
 
 class ProfileForm(forms.ModelForm):
     professor_description = forms.CharField(max_length=200, widget=forms.Textarea())
-    professor_course = forms.CharField(max_length=100)
+    professor_course = forms.CharField()
     professor_photo = forms.ImageField()
 
     class Meta:
@@ -113,12 +113,12 @@ class ProfileForm(forms.ModelForm):
 
     def clean_professor_course(self):
         cleaned_data = super().clean()
-        course_id = str(cleaned_data.get('course_id'))
-        course_id = course_id.upper()
-        courselist = course.objects.filter(course_id=course_id)
+        professor_course = str(cleaned_data.get('professor_course'))
+        professor_course = professor_course.upper()
+        courselist = course.objects.filter(course_id=professor_course)
         if not courselist.exists():
             raise forms.ValidationError('course does not exist')
-        return course_id
+        return professor_course
 
 
 class ResetForm(forms.ModelForm):
