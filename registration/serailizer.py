@@ -7,7 +7,7 @@ class userlogserializer(serializers.ModelSerializer):
         fields = ('first_name','last_name','email')
 
 
-class equationlogserializer(serializers.ModelSerializer):
+class courselogserializer(serializers.ModelSerializer):
     professor = userlogserializer()
     class Meta:
         model = course_dashboard
@@ -15,15 +15,6 @@ class equationlogserializer(serializers.ModelSerializer):
             'professor',
             'course_difficulty',
             'course_average',
-            
+            'course',
+            'needy_student_list',
         )
-        read_only_fields=('force',)
-
-    def create(self, validated_data):
-        userlogid_data = validated_data.pop('userlogid')
-        userlogid = UserLog.objects.create(**userlogid_data)
-        mass = validated_data['mass']
-        accelaration = validated_data['accelaration']
-        force = float(mass)*float(accelaration)
-        p=equation.objects.create(mass=mass,accelaration=accelaration,force=force,userlogid=userlogid)
-        return p
