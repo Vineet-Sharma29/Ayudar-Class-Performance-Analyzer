@@ -618,3 +618,13 @@ footer.bg-dark {
 .pagination-action:hover, .pagination-previous, .pagination-next {
     color: #3354AA;
 }
+
+
+.manual-label{
+    width:80%;
+    margin:1rem 5px;
+}
+
+.needy-card{
+
+}

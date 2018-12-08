@@ -16,7 +16,7 @@
     <link href="{% static "landing_page/css/one-page-wonder.css" %}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <style>
-        *{
+        * {
             font-family: 'Montserrat', sans-serif;
         }
     </style>
@@ -55,11 +55,13 @@
                     <li class="nav-item">
                         <div class="btn-group" style="border:0px;background: #231f20;">
                             <a class="nav-link text-light" href="{% url 'dashboard:dashboard' %}" data-toggle="dropdown"
-                           aria-haspopup="true" aria-expanded="false">Dashboard<i class="fas fa-caret-down"></i></a>
+                               aria-haspopup="true" aria-expanded="false">Dashboard<i class="fas fa-caret-down"></i></a>
                             <div class="dropdown-menu" style="background: #231f20;border:0px;color:white;">
                                 <a class="dropdown-item" href="{% url 'dashboard:dashboard' %}" style="color:white;">Dashboard</a>
-                                <a class="dropdown-item" href="{% url 'dashboard:needy_list' %}" style="color:white;">Needy List</a>
-                                <a class="dropdown-item" href="{% url 'dashboard:list_of_students' %}" style="color:white;">List of All Students</a>
+                                <a class="dropdown-item" href="{% url 'dashboard:needy_list' %}" style="color:white;">Needy
+                                    List</a>
+                                <a class="dropdown-item" href="{% url 'dashboard:list_of_students' %}"
+                                   style="color:white;">List of All Students</a>
                             </div>
                         </div>
 
@@ -85,7 +87,8 @@
 
                             <a href="#" style="text-decoration: none;">
                                 <img class="img-responsive rounded mx-5 mt-3 border"
-                                     src="{% static 'dashboard/images/st6.jpg' %}" alt="Professor Name" width="120" height="120"/>
+                                     src="{% static 'dashboard/images/st6.jpg' %}" alt="Professor Name" width="120"
+                                     height="120"/>
                                 <div class="page-header mx-4 my-4 text-center">
                                     <h1 style="font-family: 'Montserrat', sans-serif;">{{ student }}</h1>
                                 </div>
@@ -94,16 +97,18 @@
                         </div>
                     </div>
                 </li>
-                <li class="nav-item">
-                    {{ label }}
-                    <form method="POST">
-                    {% csrf_token %}
-                    {{ form.label }}<br/>
-                    <button type="submit">Save</button>
-                </form>
+                 <li class="nav-item text-center">
+                    <span class="badge badge-primary mb-2">{{ label }}</span>
+                    <div class="w-75 mx-auto form-group">
+                        <form method="POST">
+                            {% csrf_token %}
+                            {{ form.label }}<br/>
+                            <button type="submit" class="btn btn-success">ADD</button>
+                        </form>
+                    </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'student_report:student_report' sid  %}">
+                    <a class="nav-link" href="{% url 'student_report:student_report' sid %}">
                         <i class="menu-icon mdi mdi-television"></i>
                         <span class="menu-title">Dashboard</span>
                     </a>
@@ -122,6 +127,7 @@
                         <span class="menu-title">Tables</span>
                     </a>
                 </li>
+
             </ul>
         </nav>
 
