@@ -57,8 +57,14 @@
 /* === Import template variables === */
 /*-------------------------------------------------------------------*/
 /* === SCSS Compass Functions === */
+
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700");
 @import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700");
+
+*{
+  font-family: 'Montserrat', sans-serif;
+}
+
 @-moz-keyframes flash {
   0% {
     opacity: 1; }
