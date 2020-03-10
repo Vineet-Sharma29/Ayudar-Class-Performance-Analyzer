@@ -1,6 +1,6 @@
-## :star: it if you :+1: it !
+## :star: it if you find it useful!
 
-# Ayudar
+## Ayudar
 In a typical class, it is usually observed that some active students are
 able to get teacher’s attention while those who are not able to express
 themselves well are not able to come under their teacher’s eyes.
@@ -13,6 +13,17 @@ the teacher now knows about the needy students in her/his class. From
 students’ point of view, it helps to get them the much needed guidance
 from the teacher.This will be very beneficial for them ,since this will
 help them work on their weakness in a better way
+
+## Techstack
+- Django
+- Bootstrap
+- ChartJS
+
+## Screenshots
+![home](https://github.com/Vineet-Sharma29/Ayudar-Class-Performance-Analyzer/blob/master/docs/1.png)
+![login](https://github.com/Vineet-Sharma29/Ayudar-Class-Performance-Analyzer/blob/master/docs/2.png)
+![dashboard](https://github.com/Vineet-Sharma29/Ayudar-Class-Performance-Analyzer/blob/master/docs/3.png)
+
 
 # How to run this project
 Download this repo using command ``` git clone https://github.com/Vineet-Sharma29/ase1.git ```
