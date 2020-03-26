@@ -14,6 +14,8 @@ students’ point of view, it helps to get them the much needed guidance
 from the teacher.This will be very beneficial for them ,since this will
 help them work on their weakness in a better way
 
+![UML use case diagram](https://github.com/Vineet-Sharma29/Ayudar-Class-Performance-Analyzer/blob/master/docs/LMS.png)
+
 ## Techstack
 - Django
 - Bootstrap
